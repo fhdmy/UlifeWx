@@ -1,0 +1,63 @@
+<view class='view-page'>
+  <view style='top:{{navH}}px;height:calc(100vh - {{navH}}px);' class="{{swiper==true?'open-swiper':'close-swiper'}} left-swiper">
+    <view>
+      <view class="swiper-label">筛选</view>
+      <text class='swiper-button choosen-botton'>活动</text>
+      <text class='swiper-button'>组织</text>
+      <view style='clear:both;'></view>
+    </view>
+    <view>
+      <view class="swiper-label">时间</view>
+      <text class='swiper-button'>一天内</text>
+      <text class='swiper-button'>一周内</text>
+      <text class='swiper-button'>休息日</text>
+      <text class='swiper-button'>工作日</text>
+      <text class='swiper-button'>寒暑假</text>
+      <view style='clear:both;'></view>
+    </view>
+    <view>
+      <view class="swiper-label">形式</view>
+      <text class='swiper-button'>比赛</text>
+      <text class='swiper-button'>分享</text>
+      <text class='swiper-button'>互动</text>
+      <view style='clear:both;'></view>
+    </view>
+    <view>
+      <view class="swiper-label">兴趣</view>
+      <text class='swiper-button'>游戏</text>
+      <text class='swiper-button'>影视</text>
+      <text class='swiper-button'>棋牌</text>
+      <text class='swiper-button'>文化艺术</text>
+      <text class='swiper-button'>运动/户外</text>
+      <text class='swiper-button'>学术科技</text>
+      <text class='swiper-button'>社会科学</text>
+      <text class='swiper-button'>公益</text>
+      <text class='swiper-button'>实践</text>
+      <view style='clear:both;'></view>
+    </view>
+    <view>
+      <view class="swiper-label">排序</view>
+      <text class='swiper-button'>综合排序</text>
+      <text class='swiper-button'>时间排序</text>
+      <text class='swiper-button'>浏览最多</text>
+      <view style='clear:both;'></view>
+    </view>
+    <view class='swiper-last-button'>
+      <text class="confirm-button">确定</text>
+      <text class='clear-button'>重置</text>
+      <view style='clear:both;'></view>
+    </view>
+  </view>
+  <navbar page-name="Ulife" pageType="searchResult" bind:searchChoose="searchChoose"></navbar>
+  <view class='search-wrapper'>
+      <view class='search-inner'>
+        <i class="iconfont icon-sousuo"></i>
+        <input bindconfirm='search' bindinput='bindInput'></input>
+      </view>
+      <text bindtap='back'>取消</text>
+    </view>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+  </view> 
+</view>

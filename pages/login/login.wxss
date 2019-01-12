@@ -1,0 +1,101 @@
+@import"../../iconfont/iconfont.wxss";
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.Ulife-img{
+  vertical-align:top;
+  margin: 100rpx 225rpx 0 225rpx;
+  width: 300rpx;
+  height: 300rpx;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Ulife{
+  display: block;
+  font-size: 44rpx;
+  color: #484848;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 60rpx;
+  letter-spacing: 4rpx;
+}
+
+.input-userinfo{
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.account-wrapper{
+  margin:40rpx;
+  width: 670rpx;
+  height: 70rpx;
+  border-bottom: 1px solid #666666;
+}
+
+.account-wrapper i{
+  float: left;
+  color: #484848;
+  position: relative;
+  top: 8rpx;
+}
+
+.account-wrapper input{
+  float: left;
+  margin-left: 30rpx;
+  width: 600rpx;
+}
+
+.pwd-wrapper{
+  margin:40rpx 40rpx 10rpx 40rpx;
+  width: 670rpx;
+  height: 70rpx;
+  border-bottom: 1px solid #666666;
+}
+
+.pwd-wrapper i{
+  float: left;
+  color: #484848;
+  position: relative;
+  top: 8rpx;
+}
+
+.pwd-wrapper input{
+  float: left;
+  margin-left: 30rpx;
+  width: 600rpx;
+}
+
+.alert{
+  color:#FF0000;
+  font-size: 28rpx;
+  margin-left: 40rpx;
+}
+
+.login-button{
+  width: 670rpx;
+  height: 110rpx;
+  margin:60rpx 40rpx;
+}

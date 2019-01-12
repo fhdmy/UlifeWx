@@ -1,0 +1,34 @@
+<!--components/navbar/index.wxml-->
+<view class="navbar" style='height:{{navH}}px'>
+  <!-- <view class="navbar-action-wrap  {{showHome ? 'navbar-action-group' : ''}} row item-center" wx:if="{{showNav}}">
+    <block wx:if="{{showHome}}">
+    <view name="back" color="#333" size="15px" custom-class="navbar-action_item first" bind:click="navBack"></view>
+    <view name="index"  color="#333" size="16px" custom-class="navbar-action_item" bind:click="toIndex" ></view>
+    </block>
+    <block wx:else>
+<view name="back"  color="#fff" size="18px" custom-class="navbar-action_item first" bind:click="navBack"></view>
+    </block>
+  </view> -->
+  <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='home'}}"
+   bindtap='search'>
+    <i class="iconfont icon-sousuo"></i>
+  </view>
+  <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='StuOwn'}}" bindtap='getQRCode'>
+    <i class="iconfont icon-saomiao"></i>
+  </view>
+  <view class="navbar-action-wrap2 row item-center" wx:if="{{pageType=='StuOwn'}}" bindtap='changeaccount'>
+    <i class="iconfont icon-icon-qihuan"></i>
+  </view>
+  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='backButton'}}" bindtap='back'>
+    <i class="iconfont icon-zuojiantou"></i>
+  </view>
+  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='searchEntry'}}" bindtap='back'>
+    <i class="iconfont icon-zuojiantou"></i>
+  </view>
+  <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='searchResult'}}" bindtap='searchChoose'>
+    <i class="iconfont icon-funnel"></i>
+  </view>
+  <view class='navbar-title'>
+    {{pageName}}
+  </view>
+</view>

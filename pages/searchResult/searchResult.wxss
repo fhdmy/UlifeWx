@@ -1,0 +1,134 @@
+@import"../../iconfont/iconfont.wxss";
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.search-wrapper{
+  width: 100%;
+  height: 56rpx;
+  background: #E03636;
+  padding-top: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.search-inner{
+  background: white;
+  border-radius: 48rpx;
+  width: 540rpx;
+  margin: 0 0 0 40rpx;
+  float: left;
+}
+
+.search-inner i{
+  color: #666666;
+  position: relative;
+  left: 30rpx;
+  bottom: 7rpx;
+}
+
+.search-inner input{
+  display: inline-block;
+  position: relative;
+  left: 45rpx;
+  width: 440rpx;
+  height:35rpx;
+  top: 6rpx;
+}
+
+.search-wrapper text{
+  color: white;
+  float: right;
+  font-size: 30rpx;
+  margin-right: 40rpx;
+  margin-top: 8rpx;
+}
+
+.left-swiper{
+  position: absolute;
+  /* left: 0; */
+  left: -580rpx;
+  width: 580rpx;
+  z-index: 30;
+  background: white;
+  overflow: scroll;
+}
+
+.swiper-label{
+  color: #484848;
+  font-size: 36rpx;
+  margin: 40rpx 40rpx 0 40rpx;
+  font-weight: bold;
+}
+
+.swiper-button{
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  padding: 20rpx 0;
+  width:130rpx;
+  background: #F8F8F8;
+  color:#484848;
+  font-size: 26rpx;
+  float: left;
+  text-align: center;
+}
+
+.choosen-botton{
+  background: #444444!important;
+  color: white!important;
+}
+
+.swiper-last-button{
+  width: 580rpx;
+  margin-top: 100rpx;
+  margin-bottom: 200rpx;
+}
+
+.confirm-button{
+  padding: 20rpx 0;
+  background: #E03636;
+  float: right;
+  color: white;
+  margin-right: 70rpx;
+  text-align: center;
+  width: 140rpx;
+}
+
+.clear-button{
+  padding: 20rpx 0;
+  background: #FE9246;
+  float: right;
+  color: white;
+  margin-right: 60rpx;
+  text-align: center;
+  width: 140rpx;
+}
+
+.open-swiper{
+  transform: translateX(580rpx);
+  transition: all 500ms linear;
+}
+
+.close-swiper{
+  transform: translateX(-580rpx);
+  transition: all 500ms linear;
+}

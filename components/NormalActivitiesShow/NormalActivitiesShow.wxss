@@ -1,0 +1,72 @@
+@import"../../iconfont/iconfont.wxss";
+.activities-wrapper{
+  margin: 40rpx 0 120rpx;
+}
+
+.activity-sep-wrapper{
+  border-radius: 5%;
+  width:670rpx;
+  height: 440rpx;
+  margin: 0 auto 90rpx;
+  background: #ffffff;
+}
+
+.act-headimg{
+  width: 670rpx;
+  height: 280rpx;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 5% 5% 0 0;
+  vertical-align:top;
+}
+
+.act-inform{
+  width: 670rpx;
+  height: 160rpx;
+}
+
+.act-heading{
+  color: #484848;
+  font-size: 36rpx;
+  margin-left: 20rpx;
+  font-weight: bold;
+  position: relative;
+  top: 10rpx;
+}
+
+.act-time-place{
+  width:564rpx;
+  height: 120rpx;
+  float: left;
+}
+
+.date-place{
+  color: #484848;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+}
+
+.date-place-icon{
+  color: #484848;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+
+.orgAvatar{
+  width: 96rpx;
+  height:96rpx;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  float: right;
+  margin-right: 10rpx;
+}
+
+.time-place-inner{
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  /* justify-content: center; *内容居中 */
+  flex-direction:row; /* 子view排列方式row--水平 column--垂直 */
+  margin-top: 8rpx;
+}

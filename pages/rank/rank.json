@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+      "navbar": "/components/homeNavbar/homeNavbar","NormalActivitiesShow":"/components/NormalActivitiesShow/NormalActivitiesShow"
+    }
+}

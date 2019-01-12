@@ -1,0 +1,20 @@
+<view class='view-page'>
+  <navbar page-name="Ulife欢迎您" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <image src='/images/UlifeIcon.png' class='Ulife-img'></image>
+    <text class='Ulife'>Ulife</text>
+    <view class='input-userinfo'>
+      <view class='account-wrapper'>
+        <i class="iconfont icon-youxiang"></i>
+        <input placeholder='请输入手机号或组织名称' cursor-spacing="120"></input>
+      </view>
+      <view class='pwd-wrapper'>
+        <i class="iconfont icon-password"></i>
+        <input placeholder='请输入密码' password="true" cursor-spacing="50"></input>
+      </view>
+      <text class='alert'>{{alert}}</text>
+      <button type='warn' plain="true" class='login-button' bindtap='login'>登录</button>
+    </view>
+  </view> 
+</view>

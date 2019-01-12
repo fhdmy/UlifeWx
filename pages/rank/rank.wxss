@@ -1,0 +1,90 @@
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.recent-activities{
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  font-size: 48rpx;
+  color: #444444;
+  font-weight: bold;
+  display: block;
+}
+
+.org-recommand{
+  width:100%;
+  padding-bottom: 30rpx;
+}
+
+.org-recommand image{
+  width:180rpx;
+  height: 180rpx;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  margin-left: 40rpx;
+  margin-top: 30rpx;
+  float: left;
+}
+
+.org-recommand text{
+  font-size: 28rpx;
+  float: left;
+  width: 440rpx;
+  margin-top: 30rpx;
+  margin-left: 60rpx;
+}
+
+.org-rank{
+  width: 100%;
+  padding-bottom: 30rpx;
+}
+
+.swiper{
+  margin: 30rpx 0;
+  height: 220rpx;
+}
+
+.swiper-item{
+  display: block;
+  height: 200rpx;
+  padding: 0 40rpx; 
+}
+
+.swiper-item image{
+  height: 160rpx;
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align:top;
+}
+
+.orgRank-inform text{
+  font-size: 24rpx;
+  display: block;
+}
+
+.orgRank-inform{
+  padding-top: 10rpx;
+  text-align: center;
+  background: white;
+}

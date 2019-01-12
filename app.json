@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/rank/rank",
+    "pages/StuOwn/StuOwn",
+    "pages/login/login",
+    "pages/searchEntry/searchEntry",
+    "pages/searchResult/searchResult"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "dark",
+    "navigationStyle":"custom",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#E03636",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home-black.png",
+        "selectedIconPath": "images/home-red.png"
+      },
+      {
+        "pagePath": "pages/rank/rank",
+        "text": "排行榜",
+        "iconPath": "images/rank-black.png",
+        "selectedIconPath": "images/rank-red.png"
+      },
+      {
+        "pagePath": "pages/StuOwn/StuOwn",
+        "text": "我的",
+        "iconPath": "images/own-black.png",
+        "selectedIconPath": "images/own-red.png"
+      }
+    ]
+  }
+}

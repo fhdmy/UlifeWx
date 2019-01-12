@@ -1,0 +1,32 @@
+<view class='view-page'>
+  <navbar page-name="排行榜" pageType="noSearch"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <text class="recent-activities">每周·组织推荐</text> 
+    <view class='org-recommand'>
+      <image src='{{RecommandOrgAvatar}}'></image>
+      <text>{{RecommandOrgInform}}</text>
+      <view style='clear:both;'></view>
+    </view>  
+    <text class="recent-activities">组织排行榜</text>
+    <view class='org-rank'>
+      <view class='swiper'>
+      <swiper duration="100" display-multiple-items="3">
+        <block wx:for="{{orgRank}}" wx:key="*this">
+          <swiper-item>
+            <view class="swiper-item">
+              <image src='{{item.img}}'></image>
+              <view class='orgRank-inform'>
+                <text>{{item.org}}</text>
+                <text>组织评星: {{item.star}}</text>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    </view>
+    <text class="recent-activities">历史活动·排行榜</text>
+    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+  </view>
+</view>

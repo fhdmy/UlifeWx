@@ -1,0 +1,117 @@
+@import"../../iconfont/iconfont.wxss";
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.Student-inform{
+  height: 160rpx;
+  padding: 80rpx 60rpx 20rpx 100rpx;
+}
+
+.inform-left{
+  float: left;
+}
+
+.nickName{
+  color: #484848;
+  font-size: 40rpx;
+  display: block;
+  margin-bottom: 30rpx;
+  font-weight: bold;
+}
+
+.edit-student-inform{
+  color: #484848;
+  font-size: 24rpx;
+  display: block;
+}
+
+.student-avatar{
+  width: 120rpx;
+  height: 120rpx;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  float: right;
+}
+
+.passenger-avatar{
+  width: 120rpx;
+  height: 120rpx;
+  max-width: 100%;
+  max-height: 100%;
+  float: right;
+}
+
+.tab-item-wrapper{
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #CCC;
+}
+
+.tab-item{
+  width: 33.33%;
+  height: 100rpx;
+  float: left;
+  text-align: center;
+  color: #484848;
+}
+
+.tab-item i{
+  margin-bottom: 10rpx;
+  font-size: 40rpx;
+}
+
+.tab-item text{
+  font-size: 24rpx;
+  display: block;
+}
+
+.ver-item{
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #CCC;
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+}
+
+.ver-icon1{
+  font-size: 40rpx;
+  color: #E03636;
+  margin-left: 40rpx;
+  flex-grow:1;
+}
+
+.ver-icon2{
+  font-size: 36rpx;
+  color: #cccccc;
+  flex-grow:1;
+}
+
+.ver-item text{
+  font-size: 32rpx;
+  color: #484848;
+  flex-grow:10;
+  width: 100rpx;
+}

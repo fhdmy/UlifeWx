@@ -1,0 +1,19 @@
+<view>
+  <view class='activities-wrapper'>
+    <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item">
+      <image src='{{item.img}}' class='act-headimg'></image>
+        <text class='act-heading'>{{item.heading}}</text>
+        <view class='act-time-place'>
+          <view class="time-place-inner">
+            <i class="iconfont icon-shijian date-place-icon"></i>
+            <text class='date-place'>{{item.date}} {{item.time}}</text>
+          </view>
+          <view class="time-place-inner">
+            <i class="iconfont icon-didian date-place-icon"></i>
+            <text class='date-place'>{{item.location}}</text>
+          </view>
+        </view>
+        <image src='{{item.orgAvatar}}' class='orgAvatar'></image>
+    </view>
+  </view>
+</view>

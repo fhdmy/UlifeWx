@@ -1,0 +1,61 @@
+<view class='view-page'>
+  <navbar page-name="个人中心" pageType="StuOwn"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <view class='Student-inform' wx:if="{{isLogin}}">
+      <view class='inform-left'>
+        <text class='nickName'>{{nickName}}</text>
+        <text class='edit-student-inform' bindtap='editInform'>查看并编辑个人资料</text>
+      </view>
+      <image src='{{studentAvatar}}' class='student-avatar'></image>
+    </view>
+    <view class='Student-inform' wx:if="{{!isLogin}}">
+      <view class='inform-left'>
+        <text class='nickName' bindtap='login'>登录</text>
+        <text class='edit-student-inform'>登录后可查看关注动态等</text>
+      </view>
+      <image src='/images/passenger.png' class='passenger-avatar'></image>
+    </view>
+    <view class='tab-item-wrapper'>
+      <view class='tab-item'>
+        <i class="iconfont icon-baoming"></i>
+        <text>报名</text>
+      </view>
+      <view class='tab-item'>
+        <i class="iconfont icon-guanzhu"></i>
+        <text>关注</text>
+      </view>
+      <view class='tab-item'>
+        <i class="iconfont icon-wodexiaoxi"></i>
+        <text>消息</text>
+      </view>
+    </view>
+    <view class='ver-item-wrapper'>
+      <view class='ver-item'>
+        <i class="iconfont icon-favorite ver-icon1"></i>
+        <text>收藏</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item'>
+        <i class="iconfont icon-shijian ver-icon1"></i>
+        <text>历史</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item'>
+        <i class="iconfont icon-jieshao ver-icon1"></i>
+        <text>新版本介绍</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item'>
+        <i class="iconfont icon-navicon-yjjy ver-icon1"></i>
+        <text>给开发者的建议</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item'>
+        <i class="iconfont icon-guanyuwomen ver-icon1"></i>
+        <text>关于</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+    </view>
+  </view>
+</view>
