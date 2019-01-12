@@ -23,5 +23,29 @@ Page({
     wx.navigateTo({
       url: '/pages/login/login'
     })
-  }
+  },
+  signUp:function(){
+    // if(isLogin==false){
+
+    // }
+    wx.navigateTo({
+      url: '/pages/stuSignUp/stuSignUp',
+    })
+  },
+  watch: function () {
+    // if(isLogin==false){
+
+    // }
+    wx.navigateTo({
+      url: '/pages/stuWatch/stuWatch',
+    })
+  },
+  collect: function () {
+    // if(isLogin==false){
+
+    // }
+    wx.navigateTo({
+      url: '/pages/stuCollect/stuCollect',
+    })
+  },
 })

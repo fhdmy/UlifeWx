@@ -24,6 +24,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+    openAct:function(){
+      wx.navigateTo({
+        url: '/pages/actShow/actShow',
+      })
+    },
+    openOrg:function(){
+
+    }
   }
 })

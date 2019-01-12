@@ -1,0 +1,63 @@
+<view class='view-page'>
+  <wxs module="calStars" src="./calStars.wxs"></wxs>  
+  <navbar page-name="{{heading}}" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <image src='{{headImg}}' class='head-img'></image>
+    <view class='describe-wrapper'>
+      <image src='{{orgAvatar}}'></image>
+      <text class='heading'>{{heading}}</text>
+      <text class='describe-text'>{{describe}}</text>
+      <view class='stars'>
+        <i class="iconfont icon-stars" wx:for="{{calStars.cal(star).wholestar}}" wx:if="calStars.cal(star).wholestar!=0"></i>  <!--满-->
+        <i class="iconfont icon-xingxingbanke" wx:for="{{calStars.cal(star).halfstar}}"  wx:if="calStars.cal(star).halfstar!=0"></i> <!--半-->
+        <i class="iconfont icon-xingxingxianmiao" wx:for="{{calStars.cal(star).nostar}}" wx:if="calStars.cal(star).nostar!=0"></i> <!--空-->
+      </view>
+    </view>
+    <view class='time-location-type'>
+      <view class='time'>
+        <i class="iconfont icon-shijian"></i>
+        <text>{{date}} {{time}}</text>
+      </view>
+      <view class='slide1'></view>
+      <view class='location'>
+        <i class="iconfont icon-didian"></i>
+        <text>{{location}}</text>
+      </view>
+      <view class='slide2'></view>
+      <view class='type'>
+        <i class="iconfont icon-qiapianxingshi"></i>
+        <text>{{type}}/{{hobby}}</text>
+      </view>
+      <view style='clear:both;'></view>
+    </view>
+    <view class='main-content'>
+    
+    </view>
+    <view class='report'>举报</view>
+    <view class='comment-wrapper'>
+      <view class='comment-title'>评论</view>
+      <view class='comment-sep-item' wx:for="{{comment}}" wx:key="{{item}}">
+        <view class='comment-inform'>
+          <image src='{{item.avatar}}'></image>
+          <view style='float:left;'>
+            <text class='comment-nickname'>{{item.nickname}}</text>
+            <text class='comment-date'>{{item.date}}</text>
+          </view>
+          <view style='clear:both;'></view>
+        </view>
+        <text class='comment-index'>{{item.index}}</text>
+      </view>
+    </view>
+    <view class='buttom-fixed-item'>
+      <view class='collect' bindtap='toCollect'>
+        <i class="iconfont icon-shoucang collect-icon" wx:if="{{collected}}"></i> <!--实心-->
+        <i class="iconfont icon-shoucang1 collect-icon" wx:if="{{!collected}}"></i><!--空心-->
+        <text>收藏</text>
+      </view>
+      <view class="sign-up {{hasSignUp==true?'has-sign-up':''}}">
+        <text>报名</text>
+      </view>
+    </view>
+  </view>
+</view>

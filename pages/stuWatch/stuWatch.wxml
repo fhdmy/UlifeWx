@@ -1,0 +1,17 @@
+<view class='view-page'>
+  <navbar page-name="关注" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <view class='top-tabbar'>
+      <view class='left-tab' bindtap='chooseTab0'>
+        <text class="{{choosen==0?'choosen':''}}">动态</text>
+        <view class="{{choosen==0?'choosenv':''}}"></view>
+      </view>
+      <view class='right-tab' bindtap='chooseTab1'>
+        <text class="{{choosen==1?'choosen':''}}">关注</text>
+        <view class="{{choosen==1?'choosenv':''}}"></view>
+      </view>
+    </view>
+    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+  </view>
+</view>

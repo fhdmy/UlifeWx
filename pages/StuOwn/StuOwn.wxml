@@ -17,11 +17,11 @@
       <image src='/images/passenger.png' class='passenger-avatar'></image>
     </view>
     <view class='tab-item-wrapper'>
-      <view class='tab-item'>
+      <view class='tab-item' bindtap='signUp'>
         <i class="iconfont icon-baoming"></i>
         <text>报名</text>
       </view>
-      <view class='tab-item'>
+      <view class='tab-item' bindtap='watch'>
         <i class="iconfont icon-guanzhu"></i>
         <text>关注</text>
       </view>
@@ -31,7 +31,7 @@
       </view>
     </view>
     <view class='ver-item-wrapper'>
-      <view class='ver-item'>
+      <view class='ver-item' bindtap='collect'>
         <i class="iconfont icon-favorite ver-icon1"></i>
         <text>收藏</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>

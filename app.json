@@ -5,7 +5,11 @@
     "pages/StuOwn/StuOwn",
     "pages/login/login",
     "pages/searchEntry/searchEntry",
-    "pages/searchResult/searchResult"
+    "pages/searchResult/searchResult",
+    "pages/stuSignUp/stuSignUp",
+    "pages/stuCollect/stuCollect",
+    "pages/stuWatch/stuWatch",
+    "pages/actShow/actShow"
   ],
   "window": {
     "backgroundTextStyle": "dark",
