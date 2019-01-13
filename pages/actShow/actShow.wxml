@@ -39,9 +39,9 @@
       <view class='comment-title'>评论</view>
       <view class='comment-sep-item' wx:for="{{comment}}" wx:key="{{item}}">
         <view class='comment-inform'>
-          <image src='{{item.avatar}}'></image>
+          <image src='{{item.avatar}}' bindtap='openStu'></image>
           <view style='float:left;'>
-            <text class='comment-nickname'>{{item.nickname}}</text>
+            <text class='comment-nickname' bindtap='openStu'>{{item.nickname}}</text>
             <text class='comment-date'>{{item.date}}</text>
           </view>
           <view style='clear:both;'></view>

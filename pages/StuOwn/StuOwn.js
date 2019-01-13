@@ -17,7 +17,9 @@ Page({
     })
   },
   editInform:function(){
-
+    wx.navigateTo({
+      url: '/pages/stuEdit/stuEdit',
+    })
   },
   login:function(){
     wx.navigateTo({

@@ -82,7 +82,7 @@ Component({
       this.triggerEvent('searchChoose', {}, {})
     },
     toWatch:function(){
-      this.triggerEvent('toWatch', {}, {})
+      this.triggerEvent('towatch', {}, {})
     }
   }
 })

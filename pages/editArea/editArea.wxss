@@ -1,0 +1,39 @@
+@import"../../iconfont/iconfont.wxss";
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+input{
+  width: 100%;
+  height: 96rpx;
+  background:white;
+  padding-left: 40rpx;
+  margin-bottom: 80rpx;
+}
+
+button{
+  width: 670rpx;
+  margin: 0 auto;
+  background: #FE9246;
+  color: white;
+}

@@ -10,7 +10,10 @@
     "pages/stuCollect/stuCollect",
     "pages/stuWatch/stuWatch",
     "pages/actShow/actShow",
-    "pages/orgDisplay/orgDisplay"
+    "pages/orgDisplay/orgDisplay",
+    "pages/stuDisplay/stuDisplay",
+    "pages/stuEdit/stuEdit",
+    "pages/editArea/editArea"
   ],
   "window": {
     "backgroundTextStyle": "dark",

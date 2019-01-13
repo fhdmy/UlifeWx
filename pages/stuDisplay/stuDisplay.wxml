@@ -1,5 +1,5 @@
 <view class='view-page'>
-  <navbar page-name="{{org}}" pageType="orgDisplay" displayAvatar="{{orgAvatar}}" hasWatched="{{hasWatched}}" bind:towatch="towatch"></navbar>
+  <navbar page-name="{{stu}}的个人空间" pageType="stuDisplay" displayAvatar="{{stuAvatar}}"></navbar>
   <view class="page-content" style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
@@ -9,26 +9,26 @@
         <text class='describe-sep-val'>{{watch}}</text>
       </view>
       <view class='describe-sep'>
-        <text class='describe-sep-title'>评星</text>
-        <text class='describe-sep-val'>{{star}}</text>
+        <text class='describe-sep-title'>参与</text>
+        <text class='describe-sep-val'>{{participate}}</text>
       </view>
       <view class='describe-sep'>
-        <text class='describe-sep-title'>活动</text>
-        <text class='describe-sep-val'>{{actNum}}</text>
+        <text class='describe-sep-title'>信誉</text>
+        <text class='describe-sep-val'>{{credit}}</text>
       </view>
       <view style='clear:both;'></view>
     </view>
     <view class='main-wrapper'>
       <view class='abstract-title' wx:if="{{!showItem}}">
-        <text class='abstract-title-left'>简介</text>
-        <text class='abstract-title-right' bindtap='toDynamic'>动态=></text>
+        <text class='abstract-title-left'>TA关注的活动</text>
+        <text class='abstract-title-right' bindtap='toDynamic'>参与=></text>
         <view style='clear:both;'></view>
       </view>
       <view class='abstract' wx:if="{{!showItem}}">
-        <text>{{abstract}}</text>
+        <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
       </view>
       <view class='abstract-title' wx:if="{{showItem}}">
-        <text class='abstract-title-left'>动态</text>
+        <text class='abstract-title-left'>TA参与的活动</text>
         <text class='abstract-title-right' bindtap='toAbstract'>{{abstractTitle}}</text>
         <view style='clear:both;'></view>
       </view>

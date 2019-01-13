@@ -1,0 +1,44 @@
+<view class='view-page'>
+  <navbar page-name="个人信息" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <view class='inform-sep-wrapper' bindtap='changeAvatar'>
+      <text class='inform-sep-title'>头像</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <image src='{{avatar}}'></image>
+    </view>
+    <view class='inform-sep-wrapper' bindtap='toEditArea'>
+      <text class='inform-sep-title'>昵称</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{nickname}}</text>
+    </view>
+    <view class='inform-sep-wrapper'>
+      <text class='inform-sep-title'>真实姓名</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{realname}}</text>
+    </view>
+    <view class='inform-sep-wrapper'>
+      <text class='inform-sep-title'>手机号</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{phone}}</text>
+    </view>
+    <view class='inform-sep-wrapper'>
+      <text class='inform-sep-title'>性别</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{sex}}</text>
+    </view>
+    <view class='inform-sep-wrapper'>
+      <text class='inform-sep-title'>院系</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{college}}</text>
+    </view>
+    <view class='inform-sep-wrapper'>
+      <text class='inform-sep-title'>年级</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{grade}}</text>
+    </view>
+    <text class='further-inform' bindtap='toFurtherInform'>修改背景或隐私设置</text>
+    <button type='default' plain="true" class='save-button' bindtap='save'>保存</button>
+    <text class='remind-text'>报名活动需要填写以上信息</text>
+  </view>
+</view>

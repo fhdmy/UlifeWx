@@ -46,6 +46,11 @@ Page({
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay',
     })
+  },
+  openStu:function(){
+    wx.navigateTo({
+      url: '/pages/stuDisplay/stuDisplay',
+    })
   }
 })
 

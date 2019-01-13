@@ -1,0 +1,91 @@
+@import"../../iconfont/iconfont.wxss";
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden; 
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.head-img{
+  width: 100%;
+  height: 400rpx;
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align:top;
+}
+
+.describe-wrapper{
+  position: relative;
+  width: 630rpx;
+  height: 150rpx;
+  margin: 0 auto -120rpx;
+  background: white;
+  border-radius: 25rpx;
+  bottom: 75rpx;
+}
+
+.describe-sep{
+  width: 210rpx;
+  height: 150rpx;
+  float: left;
+  text-align: center;
+}
+
+.describe-sep-title{
+  display: block;
+  font-size: 36rpx;
+  color: #999999;
+  margin: 20rpx 0 15rpx 0;
+}
+
+.describe-sep-val{
+  display: block;
+  font-size: 36rpx;
+  color: #FE9246;
+}
+
+.abstract-title{
+  margin-bottom: 40rpx;
+}
+
+.abstract-title-left{
+  color: #444444;
+  font-weight: bold;
+  font-size: 48rpx;
+  float: left;
+  margin-left: 40rpx;
+}
+
+.abstract-title-right{
+  color: #FE9246;
+  font-size: 40rpx;
+  float: right;
+  margin-right: 40rpx;
+}
+
+.abstract{
+  width: 670rpx;
+  margin: 0 40rpx 120rpx 40rpx;
+}
+
+.abstract text{
+  font-size: 32rpx;
+  color: #484848;
+}

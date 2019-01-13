@@ -12,7 +12,7 @@
     <view class='Student-inform' wx:if="{{!isLogin}}">
       <view class='inform-left'>
         <text class='nickName' bindtap='login'>登录</text>
-        <text class='edit-student-inform'>登录后可查看关注动态等</text>
+        <text class='edit-student-inform' bindtap='editInform'>登录后可查看关注动态等</text>
       </view>
       <image src='/images/passenger.png' class='passenger-avatar'></image>
     </view>
