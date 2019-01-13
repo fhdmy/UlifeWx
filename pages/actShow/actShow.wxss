@@ -173,7 +173,7 @@ page {
 }
 
 .main-content{
-  width: 100%;
+  width: 670rpx;
   padding: 0 40rpx;
   margin: 40rpx 0 20rpx;
   border-bottom: 1px solid #484848;

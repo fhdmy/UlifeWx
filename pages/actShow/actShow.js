@@ -41,6 +41,11 @@ Page({
     this.setData({
       collected:!this.data.collected
     })
+  },
+  openOrg: function () {
+    wx.navigateTo({
+      url: '/pages/orgDisplay/orgDisplay',
+    })
   }
 })
 

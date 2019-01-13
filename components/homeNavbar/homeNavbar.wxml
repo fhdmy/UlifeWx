@@ -19,7 +19,7 @@
   <view class="navbar-action-wrap2 row item-center" wx:if="{{pageType=='StuOwn'}}" bindtap='changeaccount'>
     <i class="iconfont icon-icon-qihuan"></i>
   </view>
-  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='backButton'}}" bindtap='back'>
+  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='backButton' || pageType=='display'}}" bindtap='back'>
     <i class="iconfont icon-zuojiantou"></i>
   </view>
   <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='searchEntry'}}" bindtap='back'>
@@ -28,7 +28,13 @@
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='searchResult'}}" bindtap='searchChoose'>
     <i class="iconfont icon-funnel"></i>
   </view>
-  <view class='navbar-title'>
+  <view class='navbar-title' wx:if="{{pageType!='display'}}">
     {{pageName}}
+  </view>
+  <view class='display-wrapper' wx:if="{{pageType=='display'}}">
+    <image src='{{displayAvatar}}'></image>
+    <text>{{pageName}}</text>
+    <i class="iconfont icon-stars watch-icon" wx:if="{{hasWatched}}" bindtap="toWatch"></i>
+    <i class="iconfont icon-xingxingxianmiao watch-icon" wx:if="{{!hasWatched}}" bindtap="toWatch"></i>
   </view>
 </view>

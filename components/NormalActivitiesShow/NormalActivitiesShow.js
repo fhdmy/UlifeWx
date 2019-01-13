@@ -30,7 +30,9 @@ Component({
       })
     },
     openOrg:function(){
-
+      wx.navigateTo({
+        url: '/pages/orgDisplay/orgDisplay',
+      })
     }
   }
 })

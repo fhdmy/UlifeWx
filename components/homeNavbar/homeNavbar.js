@@ -13,7 +13,9 @@ Component({
   properties: {
     pageName: String,
     pageType: String,
-    qRCodeMsg: String
+    qRCodeMsg: String,
+    displayAvatar:String,
+    hasWatched:Boolean
     // showNav: {
     //   type: Boolean,
     //   value: true
@@ -78,6 +80,9 @@ Component({
     },
     searchChoose:function(){
       this.triggerEvent('searchChoose', {}, {})
+    },
+    toWatch:function(){
+      this.triggerEvent('toWatch', {}, {})
     }
   }
 })

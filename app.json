@@ -9,7 +9,8 @@
     "pages/stuSignUp/stuSignUp",
     "pages/stuCollect/stuCollect",
     "pages/stuWatch/stuWatch",
-    "pages/actShow/actShow"
+    "pages/actShow/actShow",
+    "pages/orgDisplay/orgDisplay"
   ],
   "window": {
     "backgroundTextStyle": "dark",
