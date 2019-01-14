@@ -12,6 +12,11 @@ Page({
       "ISHARE", "经济学院学生会","星际"
     ],
     searchContent:"",
+    type:"活动",
+    time:"",
+    interest:"",
+    hobby:"",
+    sort:"综合排序",
     activities: [
       {
         img: "/test/3.jpg",
@@ -66,6 +71,41 @@ Page({
   searchChoose:function(){
     this.setData({
       swiper:!this.data.swiper
+    })
+  },
+  chooseType:function(e){
+    // console.log(e._relatedInfo.anchorTargetText)
+    this.setData({
+      type: e._relatedInfo.anchorTargetText
+    })
+  },
+  chooseTime:function(e){
+    this.setData({
+      time: e._relatedInfo.anchorTargetText
+    })
+  },
+  chooseInterest:function(e){
+    this.setData({
+      interest: e._relatedInfo.anchorTargetText
+    })
+  },
+  chooseHobby:function(e){
+    this.setData({
+      hobby: e._relatedInfo.anchorTargetText
+    })
+  },
+  chooseSort:function(e){
+    this.setData({
+      sort: e._relatedInfo.anchorTargetText
+    })
+  },
+  clearChoose:function(){
+    this.setData({
+      type: "活动",
+      time: "",
+      interest: "",
+      hobby: "",
+      sort: "综合排序",
     })
   }
 })

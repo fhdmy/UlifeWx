@@ -2,7 +2,9 @@
   <view class='activities-wrapper'>
     <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item">
       <image src='{{item.img}}' class='act-headimg' bindtap='openAct'></image>
-        <text class='act-heading' bindtap='openAct'>{{item.heading}}</text>
+        <view class='act-heading' bindtap='openAct'>{{item.heading}}
+          <i class="iconfont icon-shuzi{{index+1}} act-rank-icon" wx:if="{{pageType=='actRank'}}"></i>
+        </view>
         <view class='act-time-place' bindtap='openAct'>
           <view class="time-place-inner">
             <i class="iconfont icon-shijian date-place-icon"></i>

@@ -24,7 +24,9 @@ Page({
     })
   },
   clear:function(){
-
+    this.setData({
+      historyButton:[]
+    })
   },
   search:function(){
     wx.navigateTo({

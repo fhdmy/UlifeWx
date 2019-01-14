@@ -53,6 +53,7 @@ page {
   width: 440rpx;
   height:35rpx;
   top: 6rpx;
+  color: #666666;
 }
 
 .search-wrapper text{
@@ -130,5 +131,5 @@ page {
 
 .close-swiper{
   transform: translateX(-580rpx);
-  transition: all 500ms linear;
+  transition: all 500ms ease-out;
 }

@@ -73,9 +73,11 @@ page {
 .history-button text{
   margin-right: 40rpx;
   margin-bottom: 20rpx;
-  padding: 20rpx 30rpx;
-  border:1px solid #cccccc;
+  padding: 15rpx 25rpx;
+  /* border:1px solid #cccccc; */
   border-radius: 5%;
   font-size: 24rpx;
-  color: #484848;
+  /* color: #484848; */
+  background: #999999;
+  color: white;
 }

@@ -38,6 +38,7 @@
   width:564rpx;
   height: 120rpx;
   float: left;
+  margin-top: 8rpx;
 }
 
 .date-place{
@@ -68,5 +69,9 @@
   vertical-align: center; /**垂直居中*/
   /* justify-content: center; *内容居中 */
   flex-direction:row; /* 子view排列方式row--水平 column--垂直 */
-  margin-top: 8rpx;
+  margin-top: 6rpx;
+}
+
+.act-rank-icon{
+  color: #FE9246;
 }

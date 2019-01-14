@@ -8,7 +8,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    activities:Array
+    activities:Array,
+    pageType:String
   },
 
   /**

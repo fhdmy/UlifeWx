@@ -17,27 +17,43 @@ Page({
     ],
     sexArray:["男","女"]
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    if(options){
-      if(options.type=="nickname"){
-        this.setData({
-          nickname:options.content
-        })
-      }
-      else if(options.type=="realname"){
-        this.setData({
-          realname:options.content
-        })
-      }
-      else if(options.type=="phone"){
-        this.setData({
-          phone:options.content
-        })
-      }
+    // if(options){
+    //   if(options.type=="nickname"){
+    //     this.setData({
+    //       nickname:options.content
+    //     })
+    //   }
+    //   else if(options.type=="realname"){
+    //     this.setData({
+    //       realname:options.content
+    //     })
+    //   }
+    //   else if(options.type=="phone"){
+    //     this.setData({
+    //       phone:options.content
+    //     })
+    //   }
+    // }
+    var stuEditType = app.globalData.stuEditType;
+    if(stuEditType=="nickname"){
+      this.setData({
+        nickname:app.globalData.stuEditContent
+      })
+    }
+    else if(stuEditType=='realname'){
+      this.setData({
+        realname:app.globalData.stuEditContent
+      })
+    }
+    else if(stuEditType=='phone'){
+      this.setData({
+        phone:app.globalData.stuEditContent
+      })
     }
   },
   bindGradeChange(e) {

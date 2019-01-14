@@ -2,7 +2,10 @@
 App({
   globalData:{
     navbarHeight:0,
-    isLogin:false
+    isLogin:false,
+    // 编辑区域
+    stuEditType:"",
+    stuEditContent:""
   },
   onLaunch: function () {
     //获得导航栏高度

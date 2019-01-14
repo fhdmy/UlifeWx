@@ -22,8 +22,13 @@ Page({
   },
   save:function(){
     if(this.data.pageFrom=="stuEdit"){
-      wx.navigateTo({
-        url: '/pages/stuEdit/stuEdit?type='+this.data.pageType+'&content='+this.data.content,
+      // wx.navigateTo({
+      //   url: '/pages/stuEdit/stuEdit?type='+this.data.pageType+'&content='+this.data.content,
+      // })
+      app.globalData.stuEditType=this.data.pageType;
+      app.globalData.stuEditContent=this.data.content;
+      wx.navigateBack({
+        delta: 1
       })
     }
   },

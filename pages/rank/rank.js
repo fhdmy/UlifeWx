@@ -57,6 +57,11 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
+  },
+  openOrg:function(){
+    wx.navigateTo({
+      url: '/pages/orgDisplay/orgDisplay',
+    })
   }
 })
 

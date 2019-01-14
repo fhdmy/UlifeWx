@@ -24,7 +24,7 @@ page {
 
 .recent-activities{
   margin-left: 40rpx;
-  font-size: 48rpx;
+  font-size: 44rpx;
   color: #444444;
   font-weight: bold;
 }
