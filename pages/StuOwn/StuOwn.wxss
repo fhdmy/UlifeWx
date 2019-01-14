@@ -97,20 +97,20 @@ page {
 }
 
 .ver-icon1{
-  font-size: 40rpx;
+  font-size: 36rpx;
   color: #E03636;
   margin-left: 40rpx;
   flex-grow:1;
 }
 
 .ver-icon2{
-  font-size: 36rpx;
+  font-size: 32rpx;
   color: #cccccc;
   flex-grow:1;
 }
 
 .ver-item text{
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #484848;
   flex-grow:10;
   width: 100rpx;

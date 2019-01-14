@@ -1,5 +1,6 @@
 <view class='view-page'>
-  <navbar page-name="个人中心" pageType="StuOwn"></navbar>
+<web-view src="{{qrUrl}}" wx:if="{{qrUrl!=''}}"></web-view>
+  <navbar page-name="个人中心" pageType="StuOwn" bind:qrCodeMsg="qrCodeMsg"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <view class='Student-inform' wx:if="{{isLogin}}">
@@ -12,7 +13,7 @@
     <view class='Student-inform' wx:if="{{!isLogin}}">
       <view class='inform-left'>
         <text class='nickName' bindtap='login'>登录</text>
-        <text class='edit-student-inform' bindtap='editInform'>登录后可查看关注动态等</text>
+        <text class='edit-student-inform'>登录后可查看关注动态等</text>
       </view>
       <image src='/images/passenger.png' class='passenger-avatar'></image>
     </view>

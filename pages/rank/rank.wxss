@@ -33,7 +33,7 @@ page {
 
 .org-recommand{
   width:100%;
-  padding-bottom: 30rpx;
+  padding-bottom: 80rpx;
 }
 
 .org-recommand image{
@@ -57,7 +57,7 @@ page {
 
 .org-rank{
   width: 100%;
-  padding-bottom: 30rpx;
+  padding-bottom: 80rpx;
 }
 
 .swiper{

@@ -13,8 +13,8 @@
 
 .navbar-title {
   width: 100%;
-  height: 46px;
-  line-height: 46px;
+  height: 42px;
+  line-height: 42px;
   text-align: center;
   position: absolute;
   bottom: 0;
@@ -22,7 +22,7 @@
   z-index: 10;
   background-color: #E03636;
   color: white;
-  font-size: 40rpx;
+  font-size: 36rpx;
 }
 
 .navbar-action-wrap{

@@ -68,10 +68,7 @@ Component({
           _this.setData({
             qRCodeMsg: res.result
           });
-          wx.showToast({
-            title: '成功',
-            duration: 2000
-          })
+          _this.triggerEvent("qrCodeMsg", {qrCode:_this.data.qRCodeMsg},{})
         }
       })
     },

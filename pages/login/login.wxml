@@ -3,7 +3,7 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <image src='/images/UlifeIcon.png' class='Ulife-img'></image>
-    <text class='Ulife'>Ulife</text>
+    <!-- <text class='Ulife'>Ulife</text> -->
     <view class='input-userinfo'>
       <view class='account-wrapper'>
         <i class="iconfont icon-youxiang"></i>

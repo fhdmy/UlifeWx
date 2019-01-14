@@ -29,6 +29,7 @@ input{
   background:white;
   padding-left: 40rpx;
   margin-bottom: 80rpx;
+  color:#666666;
 }
 
 button{

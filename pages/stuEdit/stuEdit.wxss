@@ -82,3 +82,34 @@ page {
   display: block;
   text-align: center;
 }
+
+.inform-sep-wrapper-picker{
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 1px solid #cccccc;
+}
+
+.inform-sep-title-picker{
+  font-size: 32rpx;
+  color: #484848;
+  float: left;
+  padding: 37rpx 0 37rpx 40rpx;
+}
+
+.inform-sep-val-picker{
+  color: #666666;
+  font-size: 32rpx;
+  float: right;
+  padding: 37rpx 30rpx;
+  text-align: right;
+  width: 500rpx;
+}
+
+.inform-sep-icon-picker{
+  color: #484848;
+  float: right;
+  padding: 40rpx 40rpx 40rpx 0;
+}
+
+
+

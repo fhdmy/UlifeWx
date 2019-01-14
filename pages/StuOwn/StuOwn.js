@@ -7,7 +7,8 @@ Page({
     navH:0,
     nickName:"Xnick",
     studentAvatar:"/test/xnick.jpg",
-    isLogin:false
+    isLogin:false,
+    qrUrl:""
   },
   onShow: function (options) {
     let _this=this;
@@ -50,4 +51,9 @@ Page({
       url: '/pages/stuCollect/stuCollect',
     })
   },
+  qrCodeMsg:function(e){
+    this.setData({
+      qrUrl:e.detail.qrCode
+    })
+  }
 })
