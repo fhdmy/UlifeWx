@@ -1,4 +1,4 @@
-// components/navbar/index.js
+// 以下为参考网址
 //http://www.cnblogs.com/sese/p/9761713.html
 //https://blog.csdn.net/w390058785/article/details/83857427
 const app = getApp();
@@ -11,56 +11,35 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    pageName: String,
-    pageType: String,
-    qRCodeMsg: String,
-    displayAvatar:String,
-    hasWatched:Boolean
-    // showNav: {
-    //   type: Boolean,
-    //   value: true
-    // },
-    // showHome: {
-    //   type: Boolean,
-    //   value: true
-    // }
+    pageName: String,    //标题
+    pageType: String,    //判断使用该组件的页面类型，决定html以不同的形式展示
+    qRCodeMsg: String,   //扫描二维码用
+    displayAvatar:String,  //组织和学生展示界面的头像url
+    hasWatched:Boolean   //组织展示界面是否关注的判断依据
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
 
   },
   lifetimes: {
     attached: function () {
       this.setData({
-        navH: app.globalData.navbarHeight
+        navH: app.globalData.navbarHeight  //自定义导航栏高度设置
       })
     }
   },
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    // //回退
+    //回退
     back: function () {
       wx.navigateBack({
         delta: 1
       })
     },
-    // //回主页
-    // toIndex: function () {
-    //   wx.navigateTo({
-    //     url: '/pages/admin/home/index/index'
-    //   })
-    // },
     search:function(){
       wx.navigateTo({
         url: '/pages/searchEntry/searchEntry'
       })
     },
-    getQRCode: function () {
+    getQRCode: function () {  //复制自官方文档
       var _this = this;
       wx.scanCode({        //扫描API
         success: function (res) {
@@ -68,7 +47,7 @@ Component({
           _this.setData({
             qRCodeMsg: res.result
           });
-          _this.triggerEvent("qrCodeMsg", {qrCode:_this.data.qRCodeMsg},{})
+          _this.triggerEvent("qrCodeMsg", {qrCode:_this.data.qRCodeMsg},{}) //向父组件传递值，参考官方文档
         }
       })
     },

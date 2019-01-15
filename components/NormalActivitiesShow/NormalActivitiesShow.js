@@ -4,33 +4,23 @@ Component({
   options: {
     
   },
-  /**
-   * 组件的属性列表
-   */
   properties: {
     activities:Array,
     pageType:String
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
 
   },
   lifetimes: {
     
   },
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    openAct:function(){
+    openAct:function(){  //打开活动界面
       wx.navigateTo({
         url: '/pages/actShow/actShow',
       })
     },
-    openOrg:function(){
+    openOrg:function(){  //打开组织界面
       wx.navigateTo({
         url: '/pages/orgDisplay/orgDisplay',
       })

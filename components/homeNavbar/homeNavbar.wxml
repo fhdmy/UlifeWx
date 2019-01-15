@@ -1,14 +1,5 @@
-<!--components/navbar/index.wxml-->
+<!-- 以下用很多if来筛选pageType，大多数是决定左上角的图标数量和位置，组织和学生展示界面还需要改动标题的显示 -->
 <view class="navbar" style='height:{{navH}}px'>
-  <!-- <view class="navbar-action-wrap  {{showHome ? 'navbar-action-group' : ''}} row item-center" wx:if="{{showNav}}">
-    <block wx:if="{{showHome}}">
-    <view name="back" color="#333" size="15px" custom-class="navbar-action_item first" bind:click="navBack"></view>
-    <view name="index"  color="#333" size="16px" custom-class="navbar-action_item" bind:click="toIndex" ></view>
-    </block>
-    <block wx:else>
-<view name="back"  color="#fff" size="18px" custom-class="navbar-action_item first" bind:click="navBack"></view>
-    </block>
-  </view> -->
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='home'}}"
    bindtap='search'>
     <i class="iconfont icon-sousuo"></i>
