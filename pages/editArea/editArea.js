@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     navH: 0,
+    focus:true,
     pageFrom:"",
     pageType:"",
     content:""

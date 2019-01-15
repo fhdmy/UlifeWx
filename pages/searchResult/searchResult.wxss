@@ -105,23 +105,23 @@ page {
 }
 
 .confirm-button{
-  padding: 20rpx 0;
+  padding: 15rpx 0;
   background: #E03636;
   float: right;
   color: white;
   margin-right: 70rpx;
   text-align: center;
-  width: 140rpx;
+  width: 160rpx;
 }
 
 .clear-button{
-  padding: 20rpx 0;
+  padding: 15rpx 0;
   background: #FE9246;
   float: right;
   color: white;
   margin-right: 60rpx;
   text-align: center;
-  width: 140rpx;
+  width: 160rpx;
 }
 
 .open-swiper{

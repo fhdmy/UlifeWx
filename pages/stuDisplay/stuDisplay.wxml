@@ -24,7 +24,7 @@
         <text class='abstract-title-right' bindtap='toDynamic'>参与=></text>
         <view style='clear:both;'></view>
       </view>
-      <view class='abstract' wx:if="{{!showItem}}">
+      <view class='dynamic' wx:if="{{!showItem}}">
         <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
       </view>
       <view class='abstract-title' wx:if="{{showItem}}">

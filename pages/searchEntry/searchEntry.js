@@ -11,7 +11,8 @@ Page({
     historyButton:[
       "ISHARE", "经济学院学生会","星际"
     ],
-    searchContent:""
+    searchContent:"",
+    focus:true
   },
 
   /**

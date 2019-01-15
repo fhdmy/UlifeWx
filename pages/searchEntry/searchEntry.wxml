@@ -3,7 +3,7 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <view class='search-input'>
-      <input placeholder='想到什么好玩意儿了？' placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='search' bindinput='bindInput'></input>
+      <input placeholder='想到什么好玩意儿了？' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='search' bindinput='bindInput'></input>
       <!-- <text class='search-button' bindtap='search'>=></text> -->
     </view>
     <view class='label-item'>

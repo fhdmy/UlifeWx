@@ -73,5 +73,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  openAct:function(){
+    wx.navigateTo({
+      url: '/pages/actShow/actShow',
+    })
   }
 })
