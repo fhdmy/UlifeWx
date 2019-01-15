@@ -99,3 +99,11 @@ page {
   height: 110rpx;
   margin:60rpx 40rpx;
 }
+
+.logout{
+  color:#FE9246;
+  font-size: 28rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-top: 12rpx;
+}

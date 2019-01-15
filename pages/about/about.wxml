@@ -1,0 +1,22 @@
+<view class='view-page'>
+  <navbar page-name="关于" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <image src='/images/UlifeIcon.png' class='Ulife-img'></image>
+    <view class='present-version'>当前版本  {{version}}</view>
+    <view class='main-content'>
+    <text>Ulife简介：\n</text>
+    <text>Ulife团队成立于2018年1月，经由若干大一学生的不懈努力，旨在打造一个综合性的活动平台，给学生和组织带来便利。\n\n</text>  
+    <text>成员分工：\n</text>
+    <text>姜辰昊：Ulife创始人，Ulife-Web版的前端开发组长。\n</text>
+    <text>王盛赟：Ulife-Web版的后端开发及运维。\n</text>
+    <text>刘子航：解决各项法律问题、运维及后端开发。\n</text>
+    <text>张天寅：负责功能测试、产品运营。\n</text>
+    <text>王劭卿：前端开发成员，及技术支持。\n\n</text>
+    <text>特别鸣谢：（不分先后）\n</text>
+    <text>刘炜（老师）、朱颖（老师）、王艺璇（老师）、彭明强（学长）、谢依蓉、程徳铭、俞祯妍、邢哲、黄坤蓉、钮书礼 \n\n</text>
+    <text>感谢每一位团队成员的勇气！\n</text>
+    </view>
+    <view class='call-us'>联系我们：UlifeOfficial@163.com</view>
+  </view>
+</view>

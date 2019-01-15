@@ -34,7 +34,7 @@
     <view class='main-content'>
     
     </view>
-    <view class='report'>举报</view>
+    <view class='report' bindtap='reportAct'>举报</view>
     <view class='comment-wrapper'>
       <view class='comment-title'>评论</view>
       <view class='comment-sep-item' wx:for="{{comment}}" wx:key="{{item}}">

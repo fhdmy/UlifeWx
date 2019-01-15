@@ -13,7 +13,13 @@
     "pages/orgDisplay/orgDisplay",
     "pages/stuDisplay/stuDisplay",
     "pages/stuEdit/stuEdit",
-    "pages/editArea/editArea"
+    "pages/editArea/editArea",
+    "pages/about/about",
+    "pages/newVersion/newVersion",
+    "pages/stuHistory/stuHistory",
+    "pages/stuMsg/stuMsg",
+    "pages/stuFurtherEdit/stuFurtherEdit",
+    "pages/actReport/actReport"
   ],
   "window": {
     "backgroundTextStyle": "dark",

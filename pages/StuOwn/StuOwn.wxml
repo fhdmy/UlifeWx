@@ -26,7 +26,7 @@
         <i class="iconfont icon-guanzhu"></i>
         <text>关注</text>
       </view>
-      <view class='tab-item'>
+      <view class='tab-item' bindtap='toStuMsg'>
         <i class="iconfont icon-wodexiaoxi"></i>
         <text>消息</text>
       </view>
@@ -37,22 +37,22 @@
         <text>收藏</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
       </view>
-      <view class='ver-item'>
+      <view class='ver-item' bindtap='toStuHistory'>
         <i class="iconfont icon-shijian ver-icon1"></i>
         <text>历史</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
       </view>
-      <view class='ver-item'>
+      <view class='ver-item' bindtap='toNewVersion'>
         <i class="iconfont icon-jieshao ver-icon1"></i>
         <text>新版本介绍</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
       </view>
-      <view class='ver-item'>
+      <!-- <view class='ver-item'>
         <i class="iconfont icon-navicon-yjjy ver-icon1"></i>
         <text>给开发者的建议</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
-      </view>
-      <view class='ver-item'>
+      </view> -->
+      <view class='ver-item' bindtap='toAbout'>
         <i class="iconfont icon-guanyuwomen ver-icon1"></i>
         <text>关于</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>

@@ -73,7 +73,9 @@ Component({
       })
     },
     changeaccount:function(){
-      
+      wx.navigateTo({
+        url: '/pages/login/login?type=changeAccount'
+      })
     },
     searchChoose:function(){
       this.triggerEvent('searchChoose', {}, {})

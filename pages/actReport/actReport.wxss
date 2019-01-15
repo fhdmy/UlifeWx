@@ -1,0 +1,42 @@
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+textarea{
+  font-size: 28rpx;
+  color: #484848;
+  margin: 40rpx 40rpx 70rpx 40rpx;
+  display: block;
+  width: 670rpx;
+  height: 600rpx;
+  border: 1px solid #999999;
+}
+
+text{
+  color: #484848;
+  font-size: 32rpx;
+  margin-right: 40rpx;
+  padding: 15rpx 40rpx;
+  border: 1px solid #999999;
+  float: right;
+}

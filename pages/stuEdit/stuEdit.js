@@ -73,7 +73,7 @@ Page({
   },
   toFurtherInform:function(){
     wx.navigateTo({
-      url: '',
+      url: '/pages/stuFurtherEdit/stuFurtherEdit',
     })
   },
   save:function(){

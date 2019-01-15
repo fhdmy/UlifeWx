@@ -1,0 +1,32 @@
+<view class='view-page'>
+  <navbar page-name="个人信息" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <view class='inform-sep-wrapper' bindtap='changeHeadImg'>
+      <text class='inform-sep-title'>背景</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <image src='{{headImg}}'></image>
+    </view>
+    <picker range='{{judgeArray}}' bindchange="bindWatchChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>是否公开关注组织</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{publishWatch}}</view>
+    </picker>
+    <picker range='{{judgeArray}}' bindchange="bindVistorChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>是否公开访客记录</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{publishVisitor}}</view>
+    </picker>
+    <picker range='{{judgeArray}}' bindchange="bindCollectChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>是否公开个人收藏</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{publishCollect}}</view>
+    </picker>
+    <picker range='{{judgeArray}}' bindchange="bindHistoryChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>是否公开历史参加活动</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{publishHistory}}</view>
+    </picker>
+    <button type='default' plain="true" class='save-button' bindtap='save'>保存</button>
+  </view>
+</view>

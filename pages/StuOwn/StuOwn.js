@@ -24,7 +24,7 @@ Page({
   },
   login:function(){
     wx.navigateTo({
-      url: '/pages/login/login'
+      url: '/pages/login/login?type=login'
     })
   },
   signUp:function(){
@@ -49,6 +49,26 @@ Page({
     // }
     wx.navigateTo({
       url: '/pages/stuCollect/stuCollect',
+    })
+  },
+  toAbout:function(){
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  }, 
+  toNewVersion:function(){
+    wx.navigateTo({
+      url: '/pages/newVersion/newVersion',
+    })
+  },
+  toStuHistory:function(){
+    wx.navigateTo({
+      url: '/pages/stuHistory/stuHistory',
+    })
+  },
+  toStuMsg:function(){
+    wx.navigateTo({
+      url: '/pages/stuMsg/stuMsg',
     })
   },
   qrCodeMsg:function(e){

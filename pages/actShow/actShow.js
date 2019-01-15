@@ -42,6 +42,11 @@ Page({
       collected:!this.data.collected
     })
   },
+  reportAct:function(){
+    wx.navigateTo({
+      url: '/pages/actReport/actReport',
+    })
+  },
   openOrg: function () {
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay',

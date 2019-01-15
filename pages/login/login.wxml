@@ -1,5 +1,5 @@
 <view class='view-page'>
-  <navbar page-name="Ulife欢迎您" pageType="backButton"></navbar>
+  <navbar page-name="{{type=='login'?'Ulife欢迎您':'切换账号'}}" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <image src='/images/UlifeIcon.png' class='Ulife-img'></image>
@@ -14,6 +14,7 @@
         <input placeholder='请输入密码' password="true" cursor-spacing="50"></input>
       </view>
       <text class='alert'>{{alert}}</text>
+      <text class='logout' wx:if="{{type=='changeAccount'}}" bindtap='logout'>我只是想注销</text>
       <button type='warn' plain="true" class='login-button' bindtap='login'>登录</button>
     </view>
   </view> 

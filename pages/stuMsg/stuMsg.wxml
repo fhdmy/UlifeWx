@@ -1,0 +1,6 @@
+<view class='view-page'>
+  <navbar page-name="消息" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+  </view>
+</view>
