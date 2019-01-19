@@ -1,6 +1,7 @@
 <view class='view-page'>
   <navbar page-name="个人信息" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <view class='inform-sep-wrapper' bindtap='changeHeadImg'>
       <text class='inform-sep-title'>背景</text>

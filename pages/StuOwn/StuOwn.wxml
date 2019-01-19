@@ -2,6 +2,7 @@
 <web-view src="{{qrUrl}}" wx:if="{{qrUrl!=''}}"></web-view>
   <navbar page-name="个人中心" pageType="StuOwn" bind:qrCodeMsg="qrCodeMsg"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <view class='Student-inform' wx:if="{{isLogin}}">
       <view class='inform-left'>

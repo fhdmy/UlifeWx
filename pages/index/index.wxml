@@ -2,16 +2,17 @@
   <navbar page-name="Ulife" pageType="home"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
+    <loading hidden="{{!loading}}">加载中...</loading>
     <view class='swiper'>
       <swiper indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#FE9246">
-        <block wx:for="{{background}}" wx:key="*this">
+        <block wx:for="{{carouselcontainer}}" wx:key="item">
           <swiper-item>
-            <image class="swiper-item" src='{{item}}' bindtap='openAct'></image>
+            <image class="swiper-item" src='{{item.head_img}}' bindtap='openAct'></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
     <text class="recent-activities">近期活动</text>
-    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+    <NormalActivitiesShow activities="{{actcontainer}}"></NormalActivitiesShow>
   </view>
 </view>

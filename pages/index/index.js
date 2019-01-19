@@ -4,77 +4,95 @@ const app = getApp()
 
 Page({
   data: {
-    navH:0,
-    userInfo: {},
-    hasUserInfo: false,
-    activities:[
-      {
-        img:"/test/3.jpg",
-        heading:"ISHARE真人图书馆",
-        date:"2018年1月5日",
-        time:"15:00",
-        location:"东区平台",
-        orgAvatar:"/test/suselogo.jpg"
-      },
-      {
-        img: "/test/5.jpg",
-        heading: "ISHARE真人图书馆",
-        date: "2018年1月5日",
-        time: "15:00",
-        location: "东区平台",
-        orgAvatar: "/test/suselogo.jpg"
-      }
-    ],
-    background: ['/test/1.jpg', '/test/2.jpg', '/test/3.jpg', '/test/4.jpg', '/test/5.jpg'],
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    navH: 0,
+    actcontainer: [],
+    carouselcontainer: [],
+    moreacts: '',
+    presentacts: 0,
+    actmax: 0,
+    loading: false
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function (options) {
-    let _this=this;
+  onLoad: function(options) {
+    let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+    // 获得近期活动
+    _this.setData({
+      loading: true
+    })
+    let p1 = new Promise(function(resolve, reject) {
+      wx.request({
+        url: app.globalData.url + "/activity/activities/?ordering=-created_at&is_published=True",
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          // 网络请求问题
+          if (res.statusCode != 200) {
+            resolve(1);
+          } else {
+            for (let k = 0; k < res.data.results.length; k++) {
+              // 设置数组
+              var computeddate = res.data.results[k].start_at.split('T');
+              var acontainer = "actcontainer[" + k + ']';
+              _this.setData({
+                [acontainer]: {
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  heading: res.data.results[k].heading,
+                  date: computeddate[0],
+                  location: res.data.results[k].location,
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  isover: false,
+                  acturl: res.data.results[k].id,
+                  org_id: res.data.results[k].owner.id,
+                  is_ended: res.data.results[k].is_ended
+                },
+                moreacts: res.data.next,
+                presentacts: res.data.results.length,
+                actmax: res.data.count
+              });
+            }
+            resolve(1);
+          }
+        }
+      });
+    });
+    // 获得滚播图片
+    let p2 = new Promise(function(resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/activity/activity-homepaged/',
+        head: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          // 网络请求问题
+          if (res.statusCode != 200) {
+            resolve(2);
+          } else {
+            for (let k = 0; k < res.data.length; k++) {
+              var ccontainer = "carouselcontainer[" + k + "]";
+              _this.setData({
+                [ccontainer]: {
+                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.1.jpg',
+                  number: k,
+                  acturl: res.data[k].id,
+                  heading: res.data[k].heading
+                }
+              });
+            }
+            resolve(2);
+          }
         }
       })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+    });
+    Promise.all([p1, p2]).then(function(results) {
+      _this.setData({
+        loading: false
+      })
     })
   },
-  openAct:function(){
+  openAct: function() {
     wx.navigateTo({
       url: '/pages/actShow/actShow',
     })

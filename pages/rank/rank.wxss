@@ -53,6 +53,7 @@ page {
   width: 440rpx;
   margin-top: 30rpx;
   margin-left: 60rpx;
+  word-break: break-all;
 }
 
 .org-rank{
@@ -81,6 +82,9 @@ page {
 .orgRank-inform text{
   font-size: 24rpx;
   display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .orgRank-inform{

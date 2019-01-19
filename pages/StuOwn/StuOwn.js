@@ -5,16 +5,19 @@ const app = getApp()
 Page({
   data: {
     navH:0,
-    nickName:"Xnick",
-    studentAvatar:"/test/xnick.jpg",
+    nickName:"",
+    studentAvatar:"",
     isLogin:false,
-    qrUrl:""
+    qrUrl:"",
+    loading:false
   },
   onShow: function (options) {
     let _this=this;
     _this.setData({
       navH:app.globalData.navbarHeight,
-      isLogin:app.globalData.isLogin
+      isLogin:app.globalData.isLogin,
+      studentAvatar:app.globalData.avatar,
+      nickName:app.globalData.name
     })
   },
   editInform:function(){
