@@ -1,6 +1,7 @@
 <view class='view-page'>
   <navbar page-name="{{org}}" pageType="orgDisplay" displayAvatar="{{orgAvatar}}" hasWatched="{{hasWatched}}" bind:towatch="towatch"></navbar>
-  <view class="page-content" style='height:calc(100vh - {{navH}}px)'>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y scroll-top="{{scrollTop}}" scroll-with-animation="true">
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
     <view class='describe-wrapper'>
@@ -19,22 +20,24 @@
       <view style='clear:both;'></view>
     </view>
     <view class='main-wrapper'>
-      <view class='abstract-title' wx:if="{{!showItem}}">
-        <text class='abstract-title-left'>简介</text>
-        <text class='abstract-title-right' bindtap='toDynamic'>动态=></text>
-        <view style='clear:both;'></view>
+      <view id="abstract">
+        <view class='abstract-title'>
+          <text class='abstract-title-left'>简介</text>
+          <text class='abstract-title-right' bindtap='toDynamic'>动态=></text>
+          <view style='clear:both;'></view>
+        </view>
+        <view class='abstract'>
+          <text>{{abstract}}</text>
+        </view>
       </view>
-      <view class='abstract' wx:if="{{!showItem}}">
-        <text>{{abstract}}</text>
-      </view>
-      <view class='abstract-title' wx:if="{{showItem}}">
+      <view class='abstract-title'>
         <text class='abstract-title-left'>动态</text>
         <text class='abstract-title-right' bindtap='toAbstract'>{{abstractTitle}}</text>
         <view style='clear:both;'></view>
       </view>
-      <view class='dynamic' wx:if="{{showItem}}">
+      <view class='dynamic'>
         <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

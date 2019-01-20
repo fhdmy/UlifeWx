@@ -2,10 +2,11 @@
   <wxs module="calStars" src="./calStars.wxs"></wxs>  
   <navbar page-name="{{heading}}" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
     <view class='describe-wrapper'>
-      <image src='{{orgAvatar}}' bindtap='openOrg'></image>
+      <image src='{{orgAvatar}}' bindtap='openOrg' id="{{orgId}}"></image>
       <text class='heading'>{{heading}}</text>
       <text class='describe-text'>{{describe}}</text>
       <view class='stars'>
@@ -32,16 +33,21 @@
       <view style='clear:both;'></view>
     </view>
     <view class='main-content'>
-    
+      <image src='{{linkhtml}}'></image>
+      <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
+        <text wx:if="{{item.type=='title'}}" class='content-title'>{{item.inner}}</text>
+        <text wx:if="{{item.type=='text'}}" style="'color':{{item.color}}!important,'text-align':{{item.align}},'text-decoration':{{item.text_decoration}},'font-weight':{{item.font_weight}},'font-style':{{item.font_style}}"      class='content-text'>{{item.inner}}</text>
+        <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img'></image>
+      </view>
     </view>
     <view class='report' bindtap='reportAct'>举报</view>
-    <view class='comment-wrapper'>
+    <view class='comment-wrapper' wx:if="{{ended==true}}">
       <view class='comment-title'>评论</view>
       <view class='comment-sep-item' wx:for="{{comment}}" wx:key="{{item}}">
         <view class='comment-inform'>
-          <image src='{{item.avatar}}' bindtap='openStu'></image>
+          <image src='{{item.avatar}}' bindtap='openStu' id="{{item.id}}"></image>
           <view style='float:left;'>
-            <text class='comment-nickname' bindtap='openStu'>{{item.nickname}}</text>
+            <text class='comment-nickname' bindtap='openStu' id="{{item.id}}">{{item.nickname}}</text>
             <text class='comment-date'>{{item.date}}</text>
           </view>
           <view style='clear:both;'></view>

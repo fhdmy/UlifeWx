@@ -4,17 +4,23 @@ const app = getApp()
 Page({
   data: {
     navH: 0,
-    showItem:false,//false为简介，true为动态
+    loading:false,
+    showItem:true,
     abstractTitle:"<=关注",
-    stu:"Xnick",
-    stuAvatar:"/test/xnick.jpg",
-    headImg:"/test/3.jpg",
-    watch:10,
-    participate:8,
+    stu:"",
+    stuAvatar:"",
+    stuId:0,
+    headImg:"",
+    watch:0,
+    participate:0,
     credit:"100%",
+    is_visitor_public: true,
+    is_fav_public: true,
+    is_history_public: true,
+    is_watched_orgs_public: true,
     activities: [
       {
-        img: "/test/3.jpg",
+        head_img: "/test/3.jpg",
         heading: "ISHARE真人图书馆",
         date: "2018年1月5日",
         time: "15:00",
@@ -22,7 +28,7 @@ Page({
         orgAvatar: "/test/suselogo.jpg"
       },
       {
-        img: "/test/5.jpg",
+        head_img: "/test/5.jpg",
         heading: "ISHARE真人图书馆",
         date: "2018年1月5日",
         time: "15:00",
@@ -36,15 +42,53 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-  },
-  toDynamic:function(){
-    this.setData({
-      showItem:true
+    _this.setData({
+      loading:true
+    })
+    //获得基本信息
+    let p1=new Promise(function(resolve,reject){
+      wx.request({
+        url: app.globalData.url + '/account/student-visitor-homepage/' + options.stuId + '/',
+        headers: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve(1)
+          }
+          else {
+            _this.setData({
+              headImg: app.globalData.url + res.data.bg_img + '.thumbnail.2.jpg',
+              stuAvatar: app.globalData.url + res.data.avatar + '.thumbnail.3.jpg',
+              stu: res.data.nickname,
+              watch: res.data.watching_count,
+              participate: res.data.participation_count,
+              credit: res.data.credit+"%",
+              stuId: res.data.user,
+              is_visitor_public:res.data.is_visitor_public,
+              is_fav_public:res.data.is_fav_public,
+              is_history_public:res.data.is_history_public,
+              is_watched_orgs_public:res.data.is_watched_orgs_public
+            })
+            resolve(1)
+          }
+        }
+      })
+    })
+    p1.then(function(results){
+      _this.setData({
+        loading:false
+      })
     })
   },
-  toAbstract:function(){
+  toDynamic: function () {
     this.setData({
-      showItem: false
+      showItem:false
+    })
+  },
+  toAbstract: function () {
+    this.setData({
+      showItem:true
     })
   }
 })

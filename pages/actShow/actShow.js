@@ -3,58 +3,143 @@ const app = getApp()
 
 Page({
   data: {
+    globalUrl:app.globalData.url,
     navH: 0,
-    orgAvatar:"/test/suselogo.jpg",
-    headImg:"/test/success.jpg",
-    heading:"云光寻履迹",
-    describe:"这是一个什么奇怪的活动，还反坏发哈个花花采暖IC阿迪啊会啊人员马刺啊缠绕膜爱臭美让。这是一个什么奇怪的活动，还反坏发哈个花花采暖IC阿迪啊会啊人员马刺啊缠绕膜爱臭美让。",
-    star:3.6,
-    date:"3/14",
-    time:"15:00",
-    location:"新世纪村口",
-    hobby:"运动/户外",
-    type:"比赛",
-    comment:[
-      {
-        avatar:"/test/xnick.jpg",
-        nickname:"Xnick",
-        date:"2017/09/08",
-        index:"让ui好人car花女购入啊过于冗长暖谷有人v啊u插入呀才能让个v印染工艺人餐盎然CR卡hi v你噶与个人啊u如果擦干惹怒嘎v内裤人民擦汗入眠v海瑞哈v怒如果v啊u要你如果率啊与个人你啊忍耐牙槽骨那吗用啊于次日个奶个v阿奴如果采用此乃杨灿灿菜如v啊ui软v改一个绿啊晕如果v阿姨如果v把韵律感路过那vu率啊u人奥i啊CR华北v个人努亚耻辱啊个v有如果啊"
-      },
-      {
-        avatar: "/test/xnick.jpg",
-        nickname: "Xnick",
-        date: "2017/09/08",
-        index: "让ui好人car花女购入啊过于冗长暖谷有人v啊u插入呀才能让个v印染工艺人餐盎然CR卡hi v你噶与个人啊u如果擦干惹怒嘎v内裤人民擦汗入眠v海瑞哈v怒如果v啊u要你如果率啊与个人你啊忍耐牙槽骨那吗用啊于次日个奶个v阿奴如果采用此乃杨灿灿菜如v啊ui软v改一个绿啊晕如果v阿姨如果v把韵律感路过那vu率啊u人奥i啊CR华北v个人努亚耻辱啊个v有如果啊"
-      }
-    ],
-    collected:false,
-    hasSignUp:false
+    loading: false,
+    orgAvatar: "",
+    orgName: "",
+    orgId: 0,
+    headImg: "",
+    heading: "",
+    describe: "",
+    star: 2,
+    date: "",
+    time: "",
+    location: "",
+    hobby: "",
+    type: "",
+    requirement:[],
+    lists:[],
+    linkhtml:"",
+    ended: false,
+    link: false,
+    comment: [],
+    collected: false,
+    hasSignUp: false
   },
   onLoad: function (options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-  },
-  toCollect:function(){
-    this.setData({
-      collected:!this.data.collected
+    _this.setData({
+      loading: true
+    })
+    let p1 = new Promise(function (resolve, reject) {
+      // 获得活动
+      wx.request({
+        url: app.globalData.url + '/activity/activity-demo/' + options.actId + '/',
+        headers: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve(1)
+          }
+          else {
+            let computedstart = res.data.start_at.split('T');
+            let cst = computedstart[0].split("-");
+            let comutedstarttime = computedstart[1].split(':');
+            _this.setData({
+              headImg: app.globalData.url + res.data.head_img + '.thumbnail.2.jpg',
+              orgAvatar: app.globalData.url + res.data.owner.avatar + '.thumbnail.3.jpg',
+              orgName: res.data.owner.org_name,
+              heading: res.data.heading,
+              orgId: res.data.owner.id,
+              date: (cst[1] + "/" + cst[2]),
+              time: (comutedstarttime[0] + ':' + comutedstarttime[1]),
+              describe: res.data.description,
+              location: res.data.location,
+              type: res.data._type,
+              hobby: res.data.hobby,
+              ended: res.data.is_ended,
+              star: ((_this.data.is_ended == true) ? res.data.score : 2),
+              link: res.data.link,
+              requirement: JSON.parse(res.data.requirement)
+            })
+            if(!res.data.link)
+              _this.setData({
+                lists: JSON.parse(res.data.demonstration)
+              })
+            else
+              _this.setData({
+                linkhtml: JSON.parse(res.data.demonstration).linkhtml
+              })
+            resolve(1);
+          }
+        }
+      })
+    })
+    // 获得评论
+    p1.then(function (results) {
+      var p2 = new Promise(function (resolve, reject) {
+        if (_this.data.ended == true) {
+          wx.request({
+            url: app.globalData.url + '/activity/activities/' + options.actId + '/get_comment/',
+            headers: {
+              "Authorization": app.globalData.token
+            },
+            complete: (res) => {
+              if (res.statusCode != 200) {
+                resolve(2)
+              }
+              else {
+                for (let k = 0; k < res.data.results.length; k++) {
+                  let computeddate = res.data.results[k].commented_at.split('T');
+                  let cl = "comment[" + k + "]";
+                  _this.setData({
+                    [cl]: {
+                      index: res.data.results[k].index,
+                      score: res.data.results[k].score,
+                      avatar: app.globalData.url + res.data.results[k].commentator.avatar + '.thumbnail.3.jpg',
+                      nickname: res.data.results[k].commentator.nickname,
+                      id: res.data.results[k].commentator.id,
+                      date: computeddate[0]
+                    }
+                  });
+                }
+                resolve(2);
+              }
+            }
+          })
+        }
+        else resolve(2)
+      })
+      p2.then(function(results){
+        _this.setData({
+          loading: false
+        })
+      })
     })
   },
-  reportAct:function(){
+  toCollect: function () {
+    this.setData({
+      collected: !this.data.collected
+    })
+  },
+  reportAct: function () {
     wx.navigateTo({
       url: '/pages/actReport/actReport',
     })
   },
-  openOrg: function () {
+  openOrg: function (e) {
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay',
     })
   },
-  openStu:function(){
+  openStu: function (e) {
     wx.navigateTo({
-      url: '/pages/stuDisplay/stuDisplay',
+      url: '/pages/stuDisplay/stuDisplay?stuId=' + e.target.id,
     })
   }
 })

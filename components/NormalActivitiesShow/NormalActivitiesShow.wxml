@@ -1,12 +1,12 @@
 <view>
   <view class='activities-wrapper'>
     <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item">
-      <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct'></image>
-        <view class='act-heading' bindtap='openAct'>{{item.heading}}
+      <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct' id="{{item.acturl}}"></image>
+        <view class='act-heading' bindtap='openAct' id="{{item.acturl}}">{{item.heading}}
           <!-- 用pageType判断使用该组件的页面是否是”排行榜“，如果是，显示以下图标，icon-shuzi1,icon-shuzi2等依次为1，2，3..的图标  -->
           <i class="iconfont icon-shuzi{{index+1}} act-rank-icon" wx:if="{{pageType=='actRank'}}"></i>
         </view>
-        <view class='act-time-place' bindtap='openAct'>
+        <view class='act-time-place' bindtap='openAct' id="{{item.acturl}}">
           <view class="time-place-inner">
             <i class="iconfont icon-shijian date-place-icon"></i>
             <text class='date-place'>{{item.date}} {{item.time}}</text>
@@ -16,7 +16,7 @@
             <text class='date-place'>{{item.location}}</text>
           </view>
         </view>
-        <image src='{{item.orgavatar}}' class='orgAvatar' bindtap='openOrg'></image>
+        <image src='{{item.orgavatar}}' class='orgAvatar' bindtap='openOrg' id="{{item.org_id}}"></image>
     </view>
   </view>
 </view>

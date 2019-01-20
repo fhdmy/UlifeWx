@@ -111,9 +111,9 @@ Page({
       })
     })
   },
-  openOrg: function() {
+  openOrg: function(e) {
     wx.navigateTo({
-      url: '/pages/orgDisplay/orgDisplay',
+      url: '/pages/orgDisplay/orgDisplay?orgId='+e.target.id,
     })
   }
 })

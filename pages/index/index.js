@@ -10,9 +10,10 @@ Page({
     moreacts: '',
     presentacts: 0,
     actmax: 0,
-    loading: false
+    loading: false,
+    scroll:false
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
@@ -21,7 +22,7 @@ Page({
     _this.setData({
       loading: true
     })
-    let p1 = new Promise(function(resolve, reject) {
+    let p1 = new Promise(function (resolve, reject) {
       wx.request({
         url: app.globalData.url + "/activity/activities/?ordering=-created_at&is_published=True",
         header: {
@@ -59,7 +60,7 @@ Page({
       });
     });
     // 获得滚播图片
-    let p2 = new Promise(function(resolve, reject) {
+    let p2 = new Promise(function (resolve, reject) {
       wx.request({
         url: app.globalData.url + '/activity/activity-homepaged/',
         head: {
@@ -86,15 +87,69 @@ Page({
         }
       })
     });
-    Promise.all([p1, p2]).then(function(results) {
+    Promise.all([p1, p2]).then(function (results) {
       _this.setData({
         loading: false
       })
     })
   },
-  openAct: function() {
+  scrollBottom: function () {
+    let _this=this;
+    if(_this.data.actmax==_this.data.presentacts || _this.data.scroll==true)
+      return;
+    //更多活动
+    _this.setData({
+      loading:true,
+      scroll:true
+    })
+    var pm = new Promise(function (resolve, reject) {
+      wx.request({
+        url: _this.data.moreacts,
+        headers: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve("pm");
+          }
+          else {
+            for (let k = 0; k < res.data.results.length; k++) {
+              // 设置数组
+              var computeddate = res.data.results[k].start_at.split('T');
+              let actner = "actcontainer[" + parseInt(_this.data.presentacts + k) + "]";
+              _this.setData({
+                [actner]: {
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  heading: res.data.results[k].heading,
+                  date: computeddate[0],
+                  location: res.data.results[k].location,
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  isover: false,
+                  acturl: res.data.results[k].id,
+                  org_id: res.data.results[k].owner.id,
+                  is_ended: res.data.results[k].is_ended,
+                },
+              })
+            }
+            _this.setData({
+              moreacts: res.data.next,
+              presentacts: (res.data.results.length + _this.data.presentacts)
+            })
+            resolve("pm");
+          }
+        }
+      })
+    })
+    Promise.all([pm]).then(function (results) {
+      _this.setData({
+        loading:false,
+        scroll:false
+      })
+    })
+  },
+  openAct: function (e) {
     wx.navigateTo({
-      url: '/pages/actShow/actShow',
+      url: '/pages/actShow/actShow?actId=' + e.target.id,
     })
   }
 })

@@ -174,7 +174,7 @@ page {
 
 .main-content{
   width: 670rpx;
-  padding: 0 40rpx;
+  padding: 0 40rpx 60rpx 40rpx;
   margin: 40rpx 0 20rpx;
   border-bottom: 1px solid #484848;
 }
@@ -233,4 +233,30 @@ page {
 .comment-index{
   color: #484848;
   font-size: 28rpx;
+}
+
+.content-title{
+  font-size: 40rpx;
+  color: #484848;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+.content-text{
+  font-size: 30rpx;
+  color: #484848;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+.content-img{
+  width: 670rpx;
+  max-width: 100%;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+iframe{
+  width: 670rpx;
+  height: 1000rpx;
 }

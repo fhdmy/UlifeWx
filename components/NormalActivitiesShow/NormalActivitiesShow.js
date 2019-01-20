@@ -15,14 +15,14 @@ Component({
     
   },
   methods: {
-    openAct:function(){  //打开活动界面
+    openAct:function(e){  //打开活动界面
       wx.navigateTo({
-        url: '/pages/actShow/actShow',
+        url: '/pages/actShow/actShow?actId='+e.target.id,
       })
     },
-    openOrg:function(){  //打开组织界面
+    openOrg:function(e){  //打开组织界面
       wx.navigateTo({
-        url: '/pages/orgDisplay/orgDisplay',
+        url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
       })
     }
   }

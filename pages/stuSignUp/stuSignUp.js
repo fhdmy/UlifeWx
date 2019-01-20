@@ -28,6 +28,8 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
+
+    
   }
 })
 

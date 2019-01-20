@@ -5,7 +5,7 @@
     <!--这里放你的内容-->
     <text class="recent-activities">每周·组织推荐</text> 
     <view class='org-recommand'>
-      <image src='{{target.avatar}}' bindtap='openOrg'></image>
+      <image src='{{target.avatar}}' bindtap='openOrg' id="{{org_id}}"></image>
       <text>{{target.index}}</text>
       <view style='clear:both;'></view>
     </view>  
@@ -16,8 +16,8 @@
         <block wx:for="{{org_rank}}" wx:key="item">
           <swiper-item>
             <view class="swiper-item">
-              <image src='{{item.avatar}}' bindtap="openOrg"></image>
-              <view class='orgRank-inform' bindtap="openOrg">
+              <image src='{{item.avatar}}' bindtap="openOrg" id="{{item.org_id}}"></image>
+              <view class='orgRank-inform' bindtap="openOrg" id="{{item.org_id}}">
                 <text>{{item.org_name}}</text>
                 <text>组织评星: {{item.stars}}</text>
               </view>

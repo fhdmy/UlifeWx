@@ -4,18 +4,19 @@ const app = getApp()
 Page({
   data: {
     navH: 0,
-    showItem:false,//false为简介，true为动态
-    abstractTitle:"<=简介",
-    org:"上大学生会",
-    orgAvatar:"/test/xhlogo.jpg",
-    headImg:"/test/3.jpg",
-    watch:10,
-    star:4.5,
-    actNum:14,
+    scrollTop: 0,
+    loading: false,
+    abstractTitle: "<=简介",
+    org: "",
+    orgAvatar: "",
+    orgId: 0,
+    headImg: "",
+    watch: 0,
+    star: 2,
+    actNum: 0,
     abstract: "In sit amet condimentum felis, quis finibus sapien. Nunc felis nisi, pellentesque accumsan diam ut, accumsan porta turpis. Pellentesque maximus nec ipsum id condimentum. Integer consequat, massa eget laoreet scelerisque, sapien turpis varius urna, et tempor justo nisl eu lectus. Mauris vestibulum nibh id tortor varius, vitae dictum tortor maximus. Fusce vel dignissim turpis, a pulvinar enim. Sed imperdiet tellus ac ornare semper.celerisque, sapien turpis varius urna, et tempor justo nisl eu lectus.Mauris vestibulum nibh id tortor varius, vitae dictum tortor maximus.",
-    activities: [
-      {
-        img: "/test/3.jpg",
+    activities: [{
+        head_img: "/test/3.jpg",
         heading: "ISHARE真人图书馆",
         date: "2018年1月5日",
         time: "15:00",
@@ -23,7 +24,7 @@ Page({
         orgAvatar: "/test/suselogo.jpg"
       },
       {
-        img: "/test/5.jpg",
+        head_img: "/test/5.jpg",
         heading: "ISHARE真人图书馆",
         date: "2018年1月5日",
         time: "15:00",
@@ -31,28 +32,68 @@ Page({
         orgAvatar: "/test/suselogo.jpg"
       }
     ],
-    hasWatched:false
+    hasWatched: false
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-  },
-  towatch:function(){
-    this.setData({
-      hasWatched:!this.data.hasWatched
+    _this.setData({
+      loading: true
+    })
+    let p1 = new Promise(function(resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/account/org-visitor-homepage/' + options.orgId + '/',
+        headers: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve(1)
+          } else {
+            _this.setData({
+              headImg: app.globalData.url + res.data.bg_img + '.thumbnail.2.jpg',
+              orgAvatar: app.globalData.url + res.data.avatar + '.thumbnail.3.jpg',
+              org: res.data.org_name,
+              watch: res.data.watcher_count,
+              stars: res.data.stars,
+              actNum: res.data.activity_count,
+              orgId: res.data.user
+            })
+            resolve(1)
+          }
+        }
+      })
+    })
+    Promise.all([p1]).then(function(results) {
+      _this.setData({
+        loading: false
+      })
     })
   },
-  toDynamic:function(){
+  towatch: function() {
     this.setData({
-      showItem:true
+      hasWatched: !this.data.hasWatched
     })
   },
-  toAbstract:function(){
-    this.setData({
-      showItem: false
+  toDynamic: function() {
+    let _this = this;
+    var query = wx.createSelectorQuery();
+    query.select("#abstract").boundingClientRect();
+    query.exec(function(res) {
+      let height = res[0].height;
+      let screenWidth=wx.getSystemInfoSync().windowWidth;
+      height = height*750/screenWidth;
+      _this.setData({
+        scrollTop: parseInt(480 + height) + "rpx"
+      })
+    })
+  },
+  toAbstract: function() {
+    let _this = this;
+    _this.setData({
+      scrollTop: 480 + "rpx"
     })
   }
 })
-
