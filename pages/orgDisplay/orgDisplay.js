@@ -5,6 +5,7 @@ Page({
   data: {
     navH: 0,
     scrollTop: 0,
+    globalUrl: app.globalData.url,
     loading: false,
     abstractTitle: "<=简介",
     org: "",
@@ -14,7 +15,7 @@ Page({
     watch: 0,
     star: 2,
     actNum: 0,
-    abstract: "In sit amet condimentum felis, quis finibus sapien. Nunc felis nisi, pellentesque accumsan diam ut, accumsan porta turpis. Pellentesque maximus nec ipsum id condimentum. Integer consequat, massa eget laoreet scelerisque, sapien turpis varius urna, et tempor justo nisl eu lectus. Mauris vestibulum nibh id tortor varius, vitae dictum tortor maximus. Fusce vel dignissim turpis, a pulvinar enim. Sed imperdiet tellus ac ornare semper.celerisque, sapien turpis varius urna, et tempor justo nisl eu lectus.Mauris vestibulum nibh id tortor varius, vitae dictum tortor maximus.",
+    lists: [],
     activities: [{
         head_img: "/test/3.jpg",
         heading: "ISHARE真人图书馆",
@@ -59,7 +60,8 @@ Page({
               watch: res.data.watcher_count,
               stars: res.data.stars,
               actNum: res.data.activity_count,
-              orgId: res.data.user
+              orgId: res.data.user,
+              lists: JSON.parse(res.data.demonstration)
             })
             resolve(1)
           }

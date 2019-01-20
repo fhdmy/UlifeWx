@@ -33,7 +33,6 @@
       <view style='clear:both;'></view>
     </view>
     <view class='main-content'>
-      <image src='{{linkhtml}}'></image>
       <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
         <text wx:if="{{item.type=='title'}}" class='content-title'>{{item.inner}}</text>
         <text wx:if="{{item.type=='text'}}" style="'color':{{item.color}}!important,'text-align':{{item.align}},'text-decoration':{{item.text_decoration}},'font-weight':{{item.font_weight}},'font-style':{{item.font_style}}"      class='content-text'>{{item.inner}}</text>

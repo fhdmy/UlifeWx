@@ -255,8 +255,3 @@ page {
   margin-bottom: 30rpx;
   display: block;
 }
-
-iframe{
-  width: 670rpx;
-  height: 1000rpx;
-}
