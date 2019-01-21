@@ -148,14 +148,16 @@ function html2json(html, bindName) {
             if (node.tag === 'img') {
                 node.imgIndex = results.images.length;
                 var imgUrl = node.attr.src;
-                if (imgUrl[0] == '') {
+                if(imgUrl){
+                  if (imgUrl[0] == '') {
                     imgUrl.splice(0, 1);
+                  }
+                  imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
+                  node.attr.src = imgUrl;
+                  node.from = bindName;
+                  results.images.push(node);
+                  results.imageUrls.push(imgUrl);
                 }
-                imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
-                node.attr.src = imgUrl;
-                node.from = bindName;
-                results.images.push(node);
-                results.imageUrls.push(imgUrl);
             }
             
             // 处理font标签样式属性

@@ -21,3 +21,109 @@ page {
   overflow-y: auto;
   background: #f8f8f8;
 }
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.msg-wrapper{
+  min-height: 120rpx;
+  width: 670rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #cccccc;
+}
+
+.title-wrapper{
+  height: 90rpx;
+  margin-top: 16rpx;
+  width: 100%;
+}
+
+.name-wrapper{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.org-avatar{
+  float: left;
+  width: 90rpx;
+  height: 90rpx;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+}
+
+.org-name{
+  font-size: 30rpx;
+  color: #E03636;
+}
+
+.otext{
+  font-size: 30rpx;
+  color: #484848;
+}
+
+.msg-date{
+  display: block;
+  font-size: 24rpx;
+  color: #aaaaaa;
+}
+
+.msg-index{
+  display: block;
+  margin-top: 25rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  color: #484848;
+}
+
+.act-name{
+  font-size: 30rpx;
+  color: #E03636;
+}
+
+.comment-otext{
+  font-size: 30rpx;
+  color: #484848;
+}
+
+textarea{
+  color: #484848;
+  font-size: 30rpx;
+  border: 1px solid #666666;
+  display: block;
+  width: 650rpx;
+  height: 150rpx;
+  margin-top: 5rpx;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+}
+.tag-star{
+  font-size: 30rpx;
+  color: #484848;
+  display: block;
+}
+
+slider{
+  width: 480rpx;
+  margin:0;
+  float: left;
+  position: relative;
+  top: 10rpx;
+}
+
+.submit{
+  color: white;
+  font-size: 30rpx;
+  padding: 15rpx 30rpx;
+  background: #E03636;
+  float: right;
+}
+
+.slider-wrapper{
+  padding:0 0 20rpx 0;
+}

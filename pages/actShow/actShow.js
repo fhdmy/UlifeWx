@@ -4,7 +4,7 @@ var WxParse = require('../../utils/wxParse/wxParse.js');
 
 Page({
   data: {
-    globalUrl:app.globalData.url,
+    globalUrl: app.globalData.url,
     navH: 0,
     loading: false,
     orgAvatar: "",
@@ -19,16 +19,19 @@ Page({
     location: "",
     hobby: "",
     type: "",
-    requirement:[],
-    lists:[],
-    linkhtml:"",
+    requirement: [],
+    lists: [],
+    linkhtml: "",
     ended: false,
     link: false,
     comment: [],
     collected: false,
-    hasSignUp: false
+    hasSignUp: false,
+
+    teststyle:"",
+    testhtml:""
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
@@ -36,7 +39,7 @@ Page({
     _this.setData({
       loading: true
     })
-    let p1 = new Promise(function (resolve, reject) {
+    let p1 = new Promise(function(resolve, reject) {
       // 获得活动
       wx.request({
         url: app.globalData.url + '/activity/activity-demo/' + options.actId + '/',
@@ -46,8 +49,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             resolve(1)
-          }
-          else {
+          } else {
             let computedstart = res.data.start_at.split('T');
             let cst = computedstart[0].split("-");
             let comutedstarttime = computedstart[1].split(':');
@@ -68,7 +70,7 @@ Page({
               link: res.data.link,
               requirement: JSON.parse(res.data.requirement)
             })
-            if(!res.data.link)
+            if (!res.data.link)
               _this.setData({
                 lists: JSON.parse(res.data.demonstration)
               })
@@ -82,8 +84,8 @@ Page({
       })
     })
     // 获得评论
-    p1.then(function (results) {
-      var p2 = new Promise(function (resolve, reject) {
+    p1.then(function(results) {
+      var p2 = new Promise(function(resolve, reject) {
         if (_this.data.ended == true) {
           wx.request({
             url: app.globalData.url + '/activity/activities/' + options.actId + '/get_comment/',
@@ -93,8 +95,7 @@ Page({
             complete: (res) => {
               if (res.statusCode != 200) {
                 resolve(2)
-              }
-              else {
+              } else {
                 for (let k = 0; k < res.data.results.length; k++) {
                   let computeddate = res.data.results[k].commented_at.split('T');
                   let cl = "comment[" + k + "]";
@@ -113,41 +114,93 @@ Page({
               }
             }
           })
-        }
-        else resolve(2)
+        } else resolve(2)
       })
+      var html = `
+        <!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <script nonce="368111801" type="text/javascript">
+        window.logs = {
+            pagetime: {}
+        };
+        window.logs.pagetime['html_begin'] = (+new Date());
+    </script>
+    <style>
+        .a {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p class="a">这是一个红色的文字</p>
+    <script>
+      window.logs = {
+            pagetime: {}
+        };
+        window.logs.pagetime['html_begin'] = (+new Date());
+    </script>
+</body>
+</html>
+      ` 
       wx.request({
         url: 'https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html',
         complete:(res)=>{
-          console.log(res.data)
+          var html=res.data;
+          var body="";
+          var bodySplit = html.split("<body");
+          var nextBodySplit=bodySplit[1].split(">");
+          var before = nextBodySplit[0];
+          var wb=bodySplit[1].split(before+">");
+          var hBody = wb[1].split("</body>");
+          body = hBody[0]
+          var scriptSplit=body.split("<script");
+          var beforeScript = scriptSplit[0];
+          var linkText=beforeScript;
+          for(let i=1;i<scriptSplit.length;i++){
+            var afterSplit = scriptSplit[i].split("</script>");
+            var afterScript=afterSplit[1];
+            linkText=linkText+afterScript;
+          }
+          var linkSplit=linkText.split("<link")
+          var beforeLink=linkSplit[0];
+          var richText=beforeLink;
+          for (let i = 1; i < linkSplit.length; i++) {
+            var aSplit = linkSplit[i].split("/>");
+            var as = linkSplit[i].split(aSplit[0]+"/>");
+            richText = richText + as[1];
+          }
+          console.log(richText)
+          WxParse.wxParse("article",'html',richText,_this,0)
         }
       })
-      p2.then(function(results){
+      p2.then(function(results) {
         _this.setData({
           loading: false
         })
       })
     })
   },
-  toCollect: function () {
+  toCollect: function() {
     this.setData({
       collected: !this.data.collected
     })
   },
-  reportAct: function () {
+  reportAct: function() {
     wx.navigateTo({
       url: '/pages/actReport/actReport',
     })
   },
-  openOrg: function (e) {
+  openOrg: function(e) {
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay',
     })
   },
-  openStu: function (e) {
+  openStu: function(e) {
     wx.navigateTo({
       url: '/pages/stuDisplay/stuDisplay?stuId=' + e.target.id,
     })
   }
 })
-

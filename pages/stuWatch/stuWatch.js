@@ -12,6 +12,7 @@ Page({
     presentsignup: 0,
     signupmax: 0,
     scroll: false,
+    watcher:[]
   },
   onLoad: function (options) {
     let _this = this;
@@ -142,8 +143,64 @@ Page({
     })
   },
   chooseTab1: function () {
-    this.setData({
+    let _this=this;
+    _this.setData({
       choosen: 1
+    })
+    if(_this.data.watcher.length==0){
+      _this.setData({
+        loading:true
+      })
+      let id = wx.getStorageSync(md5.hex_md5("user_url"))
+      let p2=new Promise(function(resolve,reject){
+        wx.request({
+          url: app.globalData.url + '/account/watchings/?watcher=' + id,
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete: (res) => {
+            if(res.statusCode!=200)
+              resolve(2);
+            else{
+              for (let k = 0; k < res.data.length; k++) {
+                let wter = "watcher[" + k + "]";
+                _this.setData({
+                  [wter]: {
+                    orgavatar: app.globalData.url + res.data[k].target.avatar + '.thumbnail.1.jpg',
+                    orgname: res.data[k].target.org_name,
+                    orgid: res.data[k].target.id
+                  }
+                })
+              }
+              resolve(2);
+            }
+          }
+        })
+      })
+      p2.then(function(results){
+        _this.setData({
+          loading:false
+        })
+      })
+    }
+  },
+  cancelWatch:function(){
+    wx.showModal({
+      content: '你真的想取消关注吗？',
+      confirmText: '确定',
+      cancelText: '取消',
+      success(res) {
+        if (res.confirm) {
+          //取消关注api
+        } else if (res.cancel) {
+          console.log('取消按钮')
+        }
+      }
+    })
+  },
+  openOrg:function(e){
+    wx.navigateTo({
+      url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
     })
   }
 })
