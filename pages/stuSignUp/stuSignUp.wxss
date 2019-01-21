@@ -21,3 +21,11 @@ page {
   overflow-y: auto;
   background: #f8f8f8;
 }
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}

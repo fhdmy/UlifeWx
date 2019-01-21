@@ -1,7 +1,9 @@
 <view class='view-page'>
   <navbar page-name="收藏" pageType="backButton"></navbar>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
+    <image wx:if="{{activities.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
-  </view>
+  </scroll-view>
 </view>

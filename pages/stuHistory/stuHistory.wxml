@@ -1,17 +1,21 @@
 <view class='view-page'>
   <navbar page-name="历史" pageType="backButton"></navbar>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
-    <!--这里放你的内容-->
-    <view class='top-tabbar'>
-      <view class='left-tab' bindtap='chooseTab0'>
-        <text class="{{choosen==0?'choosen':''}}">浏览</text>
-        <view class="{{choosen==0?'choosenv':''}}"></view>
-      </view>
-      <view class='right-tab' bindtap='chooseTab1'>
-        <text class="{{choosen==1?'choosen':''}}">参加</text>
-        <view class="{{choosen==1?'choosenv':''}}"></view>
-      </view>
+  <view class='top-tabbar'>
+    <view class='left-tab' bindtap='chooseTab0'>
+      <text class="{{choosen==0?'choosen':''}}">浏览</text>
+      <view class="{{choosen==0?'choosenv':''}}"></view>
     </view>
-    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+    <view class='right-tab' bindtap='chooseTab1'>
+      <text class="{{choosen==1?'choosen':''}}">参加</text>
+      <view class="{{choosen==1?'choosenv':''}}"></view>
+    </view>
   </view>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--这里放你的内容-->
+    <image wx:if="{{activities1.length==0 && loading==false && choosen==0}}" src='/images/noActs.png' class='no-acts'></image>
+    <image wx:if="{{activities2.length==0 && loading==false && choosen==1}}" src='/images/noActs.png' class='no-acts'></image>
+    <NormalActivitiesShow activities="{{activities1}}" wx:if="{{choosen==0}}"></NormalActivitiesShow>
+    <NormalActivitiesShow activities="{{activities2}}" wx:if="{{choosen==1}}"></NormalActivitiesShow>
+  </scroll-view>
 </view>

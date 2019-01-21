@@ -70,3 +70,11 @@ page {
   bottom: 0;
   left: 124rpx;
 }
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}

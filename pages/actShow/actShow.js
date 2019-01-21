@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+var WxParse = require('../../utils/wxParse/wxParse.js');
 
 Page({
   data: {
@@ -114,6 +115,12 @@ Page({
           })
         }
         else resolve(2)
+      })
+      wx.request({
+        url: 'https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html',
+        complete:(res)=>{
+          console.log(res.data)
+        }
       })
       p2.then(function(results){
         _this.setData({
