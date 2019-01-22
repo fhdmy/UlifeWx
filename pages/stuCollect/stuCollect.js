@@ -94,7 +94,7 @@ Page({
     var pm = new Promise(function (resolve, reject) {
       wx.request({
         url: _this.data.moresignupacts,
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {

@@ -7,7 +7,10 @@ Page({
     focus:true,
     pageFrom:"",
     pageType:"",
-    content:""
+    content:"",
+    actId:0,
+    array:[],
+    item:""
   },
   onLoad: function (options) {
     let _this = this;
@@ -19,6 +22,24 @@ Page({
         pageFrom:options.from,
         pageType:options.type
       })
+      if (options.from =='SignupHomepage'){
+        if(options.type=='answer'){
+          if(options.item=='text'){
+            _this.setData({
+              actId:options.id,
+              content:options.answer,
+              item:"text"
+            })
+          }else{
+            _this.setData({
+              array: JSON.parse(options.array),
+              actId: options.id,
+              content: options.answer,
+              item:"select"
+            })
+          }
+        }
+      }
     }
   },
   save:function(){
@@ -32,11 +53,27 @@ Page({
         delta: 1
       })
     }
+    else if(this.data.pageFrom=='SignupHomepage'){
+      app.globalData.signupType = this.data.pageType;
+      app.globalData.signupContent = this.data.content;
+      if(this.data.item!=""){
+        app.globalData.signupItem=this.data.item;
+        app.globalData.signupId=this.data.actId;
+      }
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   inputContent:function(e){
     this.setData({
       content: e.detail.value
     })
-  }
+  },
+  bindInputPicker:function(e){
+    this.setData({
+      content: this.data.array[e.detail.value]
+    })
+  } 
 })
 

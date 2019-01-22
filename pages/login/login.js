@@ -11,7 +11,7 @@ Page({
     type: "login",
     number: "",
     pwd: "",
-    loading:false
+    loading: false
   },
   onLoad: function (options) {
     let _this = this;
@@ -35,11 +35,11 @@ Page({
     }
     const pattern = /^\d{8}$/; //八位数字
     _this.setData({
-      loading:true
+      loading: true
     })
-    //学生登录
-    if (this.number(this.data.number) == true) {
-      var p1=new Promise(function(resolve,reject){
+    var p1 = new Promise(function (resolve, reject) {
+      //学生登录
+      if (_this.number(_this.data.number) == true) {
         wx.request({
           url: app.globalData.url + '/account/students/login/',
           method: "POST",
@@ -48,16 +48,19 @@ Page({
             j_password: base64.encode(_this.data.pwd)
           },
           complete: (res) => {
-            console.log(res)
-            resolve(1)
             if (res.data == 'SNO verification failed') {
               _this.setData({
-                alert: "账号或密码错误！"
+                alert: "账号或密码错误！",
+                loading: false
               })
+              reject("fail")
             }
             // 网络请求失败
             else if (res.statusCode != 200) {
-
+              reject("fail")
+              _this.setData({
+                loading:false
+              })
             }
             else {
               wx.clearStorageSync();
@@ -68,17 +71,13 @@ Page({
                 wx.setStorageSync(md5.hex_md5("admin"), "true");
               }
               app.globalData.isLogin = true;
-              wx.navigateBack({
-                delta: 1
-              })
+              resolve("success")
             }
           }
         })
-      })
-    }
-    // 组织登录
-    else{
-      var p2 = new Promise(function (resolve, reject) {
+      }
+      // 组织登录
+      else {
         wx.request({
           url: app.globalData.url + '/account/org-login/',
           method: "POST",
@@ -87,16 +86,19 @@ Page({
             password: base64.encode(_this.data.pwd)
           },
           complete: (res) => {
-            resolve(2)
-            console.log(res)
             if (res.data.non_field_errors == "Unable to log in with provided credentials.") {
               _this.setData({
-                alert: "账号或密码错误！"
+                alert: "账号或密码错误！",
+                loading:false
               })
+              reject("fail")
             }
             // 网络请求问题
             else if (res.statusCode != 200) {
-
+              reject("fail")
+              _this.setData({
+                loading: false
+              })
             }
             else {
               wx.clearStorageSync();
@@ -104,17 +106,102 @@ Page({
               wx.setStorageSync(md5.hex_md5("org_url"), res.data.profile_url);
               wx.removeStorageSync(md5.hex_md5("user_url"));
               app.globalData.isLogin = true;
-              wx.navigateBack({
-                delta: 1
-              })
+              resolve("success")
             }
           }
         })
+      }
+    })
+    p1.then(function (results) {
+      let url0, url1;
+      url0 = wx.getStorageSync(md5.hex_md5("user_url"))
+      url1 = wx.getStorageSync(md5.hex_md5("org_url"));
+      app.globalData.token = (wx.getStorageSync(md5.hex_md5("token")) == "" ? "" : "Token " + wx.getStorageSync(md5.hex_md5("token")));
+      app.globalData.avatar = wx.getStorageSync(md5.hex_md5("avatar"));
+      let p3 = new Promise(function (resolve, reject) {
+        if (url0 != "") {
+          var admin = wx.getStorageSync(md5.hex_md5("admin"));
+          if (admin != "")
+            app.globalData.type = "student";
+          else if (admin == "true")
+            app.globalData.type = "admin";
+          // 普通用户
+          wx.request({
+            url: app.globalData.url + '/account/students/get_toolbar/',
+            header: {
+              "Authorization": app.globalData.token
+            },
+            complete: (res) => {
+
+              if (res.data.detail == "Token has expired" || res.data.detail == "Invalid token") {
+                app.globalData.type = "none";
+                wx.clearStorageSync();
+                reject("fail")
+                _this.setData({
+                  loading: false
+                })
+              } else if (res.statusCode != 200) {
+                reject("fail")
+                _this.setData({
+                  loading: false
+                })
+              } else {
+                app.globalData.isLogin = true;
+                app.globalData.uid = res.data.user;
+                wx.setStorageSync(md5.hex_md5("uid"), res.data.user);
+                app.globalData.inbox_count = res.data.inbox_count;
+                app.globalData.avatar = app.globalData.url + res.data.avatar + '.thumbnail.3.jpg';
+                wx.setStorageSync(md5.hex_md5("avatar"), app.globalData.avatar);
+                app.globalData.name = res.data.nickname;
+                wx.setStorageSync(md5.hex_md5("name"), res.data.nickname);
+                resolve("success")
+              }
+            }
+          })
+        }
+        else if (url1 != "") {
+          // 组织用户
+          app.globalData.type = "org";
+          wx.request({
+            url: app.globalData.url + '/account/orgs/get_toolbar/',
+            header: {
+              "Authorization": app.globalData.token
+            },
+            complete: function (res) {
+              if (res.data.detail == "Token has expired" || res.data.detail == "Invalid token") {
+                app.globalData.type = "none";
+                wx.clearStorageSync();
+                reject("fail")
+                _this.setData({
+                  loading: false
+                })
+              } else if (res.statusCode != 200) {
+                reject("fail")
+                _this.setData({
+                  loading: false
+                })
+              } else {
+                app.globalData.isLogin = true;
+                wx.setStorageSync(md5.hex_md5("uid"), res.data.user);
+                app.globalData.uid = res.data.user;
+                app.globalData.inbox_count = res.data.inbox_count;
+                app.globalData.avatar = app.globalData.url + res.data.avatar + '.thumbnail.3.jpg';
+                wx.setStorageSync(md5.hex_md5("avatar"), app.globalData.avatar);
+                app.globalData.name = res.data.org_name;
+                wx.setStorageSync(md5.hex_md5("name"), app.globalData.org_name);
+                resolve("success")
+              }
+            }
+          })
+        }
       })
-    }
-    Promise.all([p1,p2]).then(function(results){
-      _this.setData({
-        loading:false
+      p3.then(function(results){
+        _this.setData({
+          loading: false
+        })
+        wx.navigateBack({
+          delta: 1
+        })
       })
     })
   },
@@ -126,7 +213,7 @@ Page({
       success(res) {
         if (res.confirm) {
           wx.clearStorageSync();
-          app.globalData.isLogin=false;
+          app.globalData.isLogin = false;
           wx.navigateBack({
             delta: 1
           })

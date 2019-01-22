@@ -176,7 +176,7 @@ Page({
       var pm = new Promise(function (resolve, reject) {
         wx.request({
           url: _this.data.moresignupacts1,
-          headers: {
+          header: {
             "Authorization": app.globalData.token
           },
           complete: (res) => {
@@ -230,7 +230,7 @@ Page({
       var pm = new Promise(function (resolve, reject) {
         wx.request({
           url: _this.data.moresignupacts2,
-          headers: {
+          header: {
             "Authorization": app.globalData.token
           },
           complete: (res) => {
@@ -273,5 +273,34 @@ Page({
       })
     }
   },
+  clearView:function(){
+    let _this = this;
+    _this.setData({
+      loading: true
+    })
+    let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
+    wx.request({
+      url: app.globalData.url + '/activity/browsering-history-wipe/',
+      method: "DELETE",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      data: {
+        'stu_id': stuId
+      },
+      complete: (res) => {
+        console.log(res)
+        _this.setData({
+          activities1: 0,
+          presentsignup1: 0,
+          signupmax1: 0,
+          loading: false
+        })
+      }
+    })
+  },
+  clearAttend:function(){
+
+  }
 })
 

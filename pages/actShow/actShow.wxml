@@ -63,7 +63,7 @@
         <i class="iconfont icon-shoucang1 collect-icon" wx:if="{{!collected}}"></i><!--空心-->
         <text>收藏</text>
       </view>
-      <view class="sign-up {{hasSignUp==true?'has-sign-up':''}}">
+      <view class="sign-up {{hasSignUp==true?'has-sign-up':''}}" bindtap='toSignup'>
         <text>报名</text>
       </view>
     </view>

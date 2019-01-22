@@ -19,7 +19,8 @@
     "pages/stuHistory/stuHistory",    
     "pages/stuMsg/stuMsg", 
     "pages/stuFurtherEdit/stuFurtherEdit", 
-    "pages/actReport/actReport" 
+    "pages/actReport/actReport",
+    "pages/SignupHomepage/SignupHomepage" 
   ], 
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+var md5 = require('../../utils/MD5.js')
 
 Page({
   data: {
@@ -33,7 +34,8 @@ Page({
         orgAvatar: "/test/suselogo.jpg"
       }
     ],
-    hasWatched: false
+    hasWatched: false,
+    watchUrl:""
   },
   onLoad: function(options) {
     let _this = this;
@@ -46,7 +48,7 @@ Page({
     let p1 = new Promise(function(resolve, reject) {
       wx.request({
         url: app.globalData.url + '/account/org-visitor-homepage/' + options.orgId + '/',
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -68,15 +70,105 @@ Page({
         }
       })
     })
-    Promise.all([p1]).then(function(results) {
+    let p2 = new Promise(function (resolve, reject) {
+      let stuId=wx.getStorageSync(md5.hex_md5("user_url"));
+      wx.request({
+        url: app.globalData.url + '/account/watching-status/?watcher=' + stuId + '&target=' + options.orgId,
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve(2)
+          } else {
+            if (res.data.length == 0) {
+              // 未关注
+              _this.setData({
+                hasWatched:false
+              })
+            } else {
+              // 关注了
+              _this.setData({
+                watchUrl: res.data[0].url,
+                hasWatched: true
+              })
+            }
+            resolve(2)
+          }
+        }
+      })
+    })
+    Promise.all([p1,p2]).then(function(results) {
       _this.setData({
         loading: false
       })
     })
   },
   towatch: function() {
-    this.setData({
-      hasWatched: !this.data.hasWatched
+    let _this=this;
+    _this.setData({
+      loading:true
+    })
+    let p3=new Promise(function(resolve,reject){
+      // 取消关注
+      if (_this.data.hasWatched == true) {
+        wx.request({
+          url: _this.data.watchUrl,
+          method:"DELETE",
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete:(res)=>{
+            console.log(res)
+            // if(res.statusCode!=200){
+            //   reject(3)
+            //   _this.setData({
+            //     loading:false
+            //   })
+            // }else{
+            //   _this.setData({
+            //     hasWatched: false
+            //   })
+            //   resolve(3)
+            // }
+          }
+        })
+      }
+      // 进行关注
+      else {
+        let stu_id = localStorage.getItem(hex_md5("user_url"));
+        wx.request({
+          url: app.globalData.url +'/account/watchings/',
+          method:"POST",
+          header: {
+            "Authorization" : app.globalData.token
+          },
+          data:{
+            'watcher': stu_id,
+            'target': _this.data.orgId
+          },
+          complete:(res)=>{
+            if(res.statusCode!=200){
+              _this.setData({
+                loading:false
+              })
+              reject(3)
+            }
+            else{
+              _this.setData({
+                watchUrl: res.data.url,
+                hasWatched:true
+              })
+              resolve(3)
+            }
+          }
+        })
+      }
+    })
+    p3.then(function(results){
+      _this.setData({
+        loading:false
+      })
     })
   },
   toDynamic: function() {

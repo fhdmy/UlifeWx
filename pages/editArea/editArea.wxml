@@ -2,7 +2,11 @@
   <navbar page-name="编辑" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
-    <input placeholder='请在这里输入' bindconfirm='save' bindinput='inputContent' value='{{content}}' focus='{{focus}}'></input>
+    <input placeholder='请在这里输入' bindconfirm='save' bindinput='inputContent' value='{{content}}' focus='{{focus}}' wx:if="{{array.length==0}}"></input>
+    <picker range='{{array}}' bindchange="bindInputPicker" class='picker-wrapper' wx:if="{{array.length>0}}">
+      <view class='picker-left-text'>请进行选择：</view>
+      <view class='picker-right-text'>{{content}}</view>
+    </picker>
     <button bindtap='save'>确定</button>
   </view>
 </view>

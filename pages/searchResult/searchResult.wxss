@@ -133,3 +133,53 @@ page {
   transform: translateX(-580rpx);
   transition: all 500ms ease-out;
 }
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.org-button{
+  color: #bbbbbb!important;
+  background: white!important;
+  pointer-events: none;
+}
+
+.org-wrapper{
+  width: 670rpx;
+  height: 120rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #cccccc;
+}
+
+.org-img{
+  width: 90rpx;
+  height: 90rpx;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 100%;
+  float: left;
+  margin-right: 30rpx;
+  margin-top: 17rpx;
+}
+
+.org-right-wrapper{
+  float: left;
+  margin-top: 17rpx;
+}
+
+.org-top-text{
+  font-size: 32rpx;
+  color: #484848;
+  display: block;
+}
+
+.org-bottom-text{
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #aaaaaa;
+  display: block;
+}

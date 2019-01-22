@@ -26,7 +26,7 @@ Page({
     let p1 = new Promise(function(resolve, reject) {
       wx.request({
         url: app.globalData.url + '/account/weeklyrecommendation/',
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -53,7 +53,7 @@ Page({
       // 组织排行榜
       wx.request({
         url: app.globalData.url + '/account/orgs/get_ranking/',
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -81,7 +81,7 @@ Page({
       // 活动排行榜
       wx.request({
         url: app.globalData.url + '/activity/activities/get_ranking/',
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -90,13 +90,19 @@ Page({
             resolve(3);
           } else {
             for (let k = 0; k < 9 && k < res.data.length; k++) {
-              var acrank = "activity_rank[" + k + "]";
+              let computeddate = res.data[k].start_at.split('T');
+              let acrank = "activity_rank[" + k + "]";
               _this.setData({
                 [acrank]: {
+                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.0.jpg',
                   heading: res.data[k].heading,
-                  score: res.data[k].score,
-                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.3.jpg',
+                  date: computeddate[0],
+                  location: res.data[k].location,
+                  orgavatar: app.globalData.url + res.data[k].owner.avatar + '.thumbnail.2.jpg',
+                  isover: false,
                   acturl: res.data[k].id,
+                  org_id: res.data[k].owner.id,
+                  is_ended: res.data[k].is_ended
                 }
               });
             }

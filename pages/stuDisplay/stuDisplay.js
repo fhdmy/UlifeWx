@@ -49,7 +49,7 @@ Page({
     let p1=new Promise(function(resolve,reject){
       wx.request({
         url: app.globalData.url + '/account/student-visitor-homepage/' + options.stuId + '/',
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {

@@ -1,0 +1,45 @@
+<view class='view-page'>
+  <navbar page-name="报名" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <!--这里放你的内容-->
+    <view class='inform-sep-wrapper' wx:if="{{select_name}}" bindtap='toEditName'>
+      <text class='inform-sep-title'>姓名</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon {{ifo[0].length>0?'':'red-icon'}}"></i>
+      <text class='inform-sep-val'>{{ifo[0]}}</text>
+    </view>
+    <view class='inform-sep-wrapper' wx:if="{{select_phone_number}}" bindtap='toEditPhone'>
+      <text class='inform-sep-title'>手机号</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon {{ifo[1].length>0?'':'red-icon'}}"></i>
+      <text class='inform-sep-val'>{{ifo[1]}}</text>
+    </view>
+    <picker range='{{sexArray}}' class='inform-sep-wrapper-picker' bindchange="bindSexChange" wx:if="{{select_gender}}">
+      <text class='inform-sep-title-picker'>性别</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker {{ifo[2].length>0?'':'red-icon'}}"></i>
+      <view class='inform-sep-val-picker'>{{ifo[2]}}</view>
+    </picker>
+    <picker range='{{collegeArray}}' class='inform-sep-wrapper-picker' bindchange="bindCollegeChange" wx:if="{{select_college}}">
+      <text class='inform-sep-title-picker'>院系</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker {{ifo[3].length>0?'':'red-icon'}}"></i>
+      <view class='inform-sep-val-picker'>{{ifo[3]}}</view>
+    </picker>
+    <picker range='{{gradeArray}}' class='inform-sep-wrapper-picker' bindchange="bindGradeChange" wx:if="{{select_grade}}">
+      <text class='inform-sep-title-picker'>年级</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker {{ifo[4].length>0?'':'red-icon'}}"></i>
+      <view class='inform-sep-val-picker'>{{ifo[4]}}</view>
+    </picker>
+    <view class='otext'>注意，我们将自动保存以上个人信息至ulife账号中。</view>
+    <view wx:for="{{requirement}}" wx:key="item">
+      <view bindtap='toEditAnswer' id="{{index}}">
+        <view class='inform-sep-wrapper' wx:if="{{item.type=='text'}}">
+          <text class='answer-sep-title'>{{item.inner}}</text>
+          <i class="iconfont icon-youjiantou inform-sep-icon {{answer[index].length>0?'':'red-icon'}}"></i>
+        </view>
+        <view class='inform-sep-wrapper' wx:if="{{item.type=='select'}}">
+          <text class='answer-sep-title'>{{item.title}}</text>
+          <i class="iconfont icon-youjiantou inform-sep-icon {{answer[index].length>0?'':'red-icon'}}"></i>
+        </view>
+      </view>
+    </view>
+    <button type='default' plain="true" class='signup-button' bindtap='signup'>报名</button>
+  </view>
+</view>

@@ -3,43 +3,43 @@
     <view>
       <view class="swiper-label">筛选</view>
       <text class="swiper-button {{type=='活动'?'choosen-botton':''}}" bindtap='chooseType'>活动</text>
-      <text class="swiper-button {{type=='组织'?'choosen-botton':''}}"  bindtap='chooseType'>组织</text>
+      <text class="swiper-button {{type=='组织'?'choosen-botton':''}}" bindtap='chooseType'>组织</text>
       <view style='clear:both;'></view>
     </view>
     <view>
       <view class="swiper-label">时间</view>
-      <text class="swiper-button {{time=='一天内'?'choosen-botton':''}}"  bindtap='chooseTime'>一天内</text>
-      <text class="swiper-button {{time=='一周内'?'choosen-botton':''}}"  bindtap='chooseTime'>一周内</text>
-      <text class="swiper-button {{time=='休息日'?'choosen-botton':''}}" bindtap='chooseTime'>休息日</text>
-      <text class="swiper-button {{time=='工作日'?'choosen-botton':''}}" bindtap='chooseTime'>工作日</text>
-      <text class="swiper-button {{time=='寒暑假'?'choosen-botton':''}}" bindtap='chooseTime'>寒暑假</text>
+      <text class="swiper-button {{time=='一天内'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseTime'>一天内</text>
+      <text class="swiper-button {{time=='一周内'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseTime'>一周内</text>
+      <text class="swiper-button {{time=='休息日'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseTime'>休息日</text>
+      <text class="swiper-button {{time=='工作日'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseTime'>工作日</text>
+      <text class="swiper-button {{time=='寒暑假'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseTime'>寒暑假</text>
       <view style='clear:both;'></view>
     </view>
     <view>
       <view class="swiper-label">形式</view>
-      <text class="swiper-button {{interest=='比赛'?'choosen-botton':''}}" bindtap='chooseInterest'>比赛</text>
-      <text class="swiper-button {{interest=='分享'?'choosen-botton':''}}" bindtap='chooseInterest'>分享</text>
-      <text class="swiper-button {{interest=='互动'?'choosen-botton':''}}" bindtap='chooseInterest'>互动</text>
+      <text class="swiper-button {{interest=='比赛'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseInterest'>比赛</text>
+      <text class="swiper-button {{interest=='分享'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseInterest'>分享</text>
+      <text class="swiper-button {{interest=='互动'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseInterest'>互动</text>
       <view style='clear:both;'></view>
     </view>
     <view>
       <view class="swiper-label">兴趣</view>
-      <text class="swiper-button {{hobby=='游戏'?'choosen-botton':''}}" bindtap='chooseHobby'>游戏</text>
-      <text class="swiper-button {{hobby=='影视'?'choosen-botton':''}}" bindtap='chooseHobby'>影视</text>
-      <text class="swiper-button {{hobby=='棋牌'?'choosen-botton':''}}" bindtap='chooseHobby'>棋牌</text>
-      <text class="swiper-button {{hobby=='文化艺术'?'choosen-botton':''}}" bindtap='chooseHobby'>文化艺术</text>
-      <text class="swiper-button {{hobby=='运动/户外'?'choosen-botton':''}}" bindtap='chooseHobby'>运动/户外</text>
-      <text class="swiper-button {{hobby=='学术科技'?'choosen-botton':''}}" bindtap='chooseHobby'>学术科技</text>
-      <text class="swiper-button {{hobby=='社会科学'?'choosen-botton':''}}" bindtap='chooseHobby'>社会科学</text>
-      <text class="swiper-button {{hobby=='公益'?'choosen-botton':''}}" bindtap='chooseHobby'>公益</text>
-      <text class="swiper-button {{hobby=='实践'?'choosen-botton':''}}" bindtap='chooseHobby'>实践</text>
+      <text class="swiper-button {{hobby=='游戏'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>游戏</text>
+      <text class="swiper-button {{hobby=='影视'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>影视</text>
+      <text class="swiper-button {{hobby=='棋牌'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>棋牌</text>
+      <text class="swiper-button {{hobby=='文化艺术'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>文化艺术</text>
+      <text class="swiper-button {{hobby=='运动/户外'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>运动/户外</text>
+      <text class="swiper-button {{hobby=='学术科技'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>学术科技</text>
+      <text class="swiper-button {{hobby=='社会科学'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>社会科学</text>
+      <text class="swiper-button {{hobby=='公益'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>公益</text>
+      <text class="swiper-button {{hobby=='实践'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseHobby'>实践</text>
       <view style='clear:both;'></view>
     </view>
     <view>
       <view class="swiper-label">排序</view>
-      <text class="swiper-button {{sort=='综合排序'?'choosen-botton':''}}" bindtap='chooseSort'>综合排序</text>
-      <text class="swiper-button {{sort=='时间排序'?'choosen-botton':''}}" bindtap='chooseSort'>时间排序</text>
-      <text class="swiper-button {{sort=='浏览最多'?'choosen-botton':''}}" bindtap='chooseSort'>浏览最多</text>
+      <text class="swiper-button {{sort=='综合排序'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseSort'>综合排序</text>
+      <text class="swiper-button {{sort=='时间排序'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseSort'>时间排序</text>
+      <text class="swiper-button {{sort=='浏览最多'?'choosen-botton':''}} {{type=='组织'?'org-button':''}}" bindtap='chooseSort'>浏览最多</text>
       <view style='clear:both;'></view>
     </view>
     <view class='swiper-last-button'>
@@ -50,14 +50,27 @@
   </view>
   <navbar page-name="Ulife" pageType="searchResult" bind:searchChoose="searchChoose"></navbar>
   <view class='search-wrapper'>
-      <view class='search-inner'>
-        <i class="iconfont icon-sousuo"></i>
-        <input bindconfirm='search' bindinput='bindInput'></input>
-      </view>
-      <text bindtap='back'>取消</text>
+    <view class='search-inner'>
+      <i class="iconfont icon-sousuo"></i>
+      <input bindconfirm='search' bindinput='bindInput' value='{{searchContent}}'></input>
     </view>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <text bindtap='back'>取消</text>
+  </view>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <!--这里放你的内容-->
-    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
-  </view> 
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <image wx:if="{{activities.length==0 && loading==false && searchType==0}}" src='/images/noActs.png' class='no-acts'></image>
+    <NormalActivitiesShow activities="{{activities}}" wx:if="{{searchType==0}}"></NormalActivitiesShow>
+    <view wx:if="{{searchType==1}}">
+      <image wx:if="{{searchorgs.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+      <view wx:for="{{searchorgs}}" wx:key="item" class='org-wrapper' id="{{item.id}}">
+        <image src='{{item.avatar}}' class='org-img'></image>
+        <view class='org-right-wrapper'>
+          <text class='org-top-text'>{{item.org_name}}</text>
+          <text class='org-bottom-text' decode="{{true}}">关注数:{{item.watcher_count}}&nbsp;&nbsp;&nbsp;活动数:{{item.activity_count}}&nbsp;&nbsp;&nbsp;评星:{{item.stars}}</text>
+        </view>
+        <view style='clear:both;'></view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

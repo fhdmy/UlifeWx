@@ -4,14 +4,13 @@
     <!--这里放你的内容-->
     <view class='search-input'>
       <input placeholder='想到什么好玩意儿了？' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='search' bindinput='bindInput'></input>
-      <!-- <text class='search-button' bindtap='search'>=></text> -->
     </view>
     <view class='label-item'>
       <text class='label-item-left'>历史搜索</text>
       <text class='label-item-right' bindtap='clear'>清空</text>
     </view>
     <view class='history-button'>
-      <text wx:for="{{historyButton}}" wx:key="item">{{item}}</text>
+      <text wx:for="{{searchHistory}}" wx:key="item" bindtap='chooseItem' id="{{item}}">{{item}}</text>
     </view>
   </view> 
 </view>

@@ -17,6 +17,22 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
+    var id = wx.getStorageSync(md5.hex_md5("user_url"))
+    if (id == "") {
+      wx.showModal({
+        title: '未登录Ulife',
+        content: '请登录后再进入此页面。',
+        showCancel: false,
+        confirmText: '确定',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+    }
     _this.setData({
       loading:true
     })
@@ -101,7 +117,7 @@ Page({
     var pm = new Promise(function (resolve, reject) {
       wx.request({
         url: _this.data.moremsg,
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
