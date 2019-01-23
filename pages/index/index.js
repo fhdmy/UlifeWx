@@ -63,7 +63,7 @@ Page({
     let p2 = new Promise(function (resolve, reject) {
       wx.request({
         url: app.globalData.url + '/activity/activity-homepaged/',
-        head: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -105,7 +105,7 @@ Page({
     var pm = new Promise(function (resolve, reject) {
       wx.request({
         url: _this.data.moreacts,
-        headers: {
+        header: {
           "Authorization": app.globalData.token
         },
         complete: (res) => {
@@ -140,7 +140,7 @@ Page({
         }
       })
     })
-    Promise.all([pm]).then(function (results) {
+    pm.then(function (results) {
       _this.setData({
         loading:false,
         scroll:false

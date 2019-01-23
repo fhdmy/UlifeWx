@@ -62,7 +62,7 @@ Page({
               watch: res.data.watcher_count,
               stars: res.data.stars,
               actNum: res.data.activity_count,
-              orgId: res.data.user,
+              orgId: options.orgId,
               lists: JSON.parse(res.data.demonstration)
             })
             resolve(1)
@@ -70,6 +70,7 @@ Page({
         }
       })
     })
+    // 是否关注
     let p2 = new Promise(function (resolve, reject) {
       let stuId=wx.getStorageSync(md5.hex_md5("user_url"));
       wx.request({
@@ -89,7 +90,7 @@ Page({
             } else {
               // 关注了
               _this.setData({
-                watchUrl: res.data[0].url,
+                watchUrl: res.data[0].id,
                 hasWatched: true
               })
             }
@@ -99,6 +100,25 @@ Page({
       })
     })
     Promise.all([p1,p2]).then(function(results) {
+      // 添加访客
+      if (app.globalData.token != "" && app.globalData.uid != _this.data.orgId) {
+        wx.request({
+          url: app.globalData.url + '/message/visitings/',
+          method: "POST",
+          header: {
+            "Authorization": app.globalData.token
+          },
+          data: {
+            'watcher': app.globalData.uid,
+            'target': _this.data.orgId
+          },
+          complete: (res) => {
+            if(res.statusCode!=201){
+              
+            }
+          }
+        })
+      }
       _this.setData({
         loading: false
       })
@@ -113,30 +133,30 @@ Page({
       // 取消关注
       if (_this.data.hasWatched == true) {
         wx.request({
-          url: _this.data.watchUrl,
+          url: app.globalData.url+'/account/watchings/'+_this.data.watchUrl,
           method:"DELETE",
           header: {
             "Authorization": app.globalData.token
           },
           complete:(res)=>{
             console.log(res)
-            // if(res.statusCode!=200){
-            //   reject(3)
-            //   _this.setData({
-            //     loading:false
-            //   })
-            // }else{
-            //   _this.setData({
-            //     hasWatched: false
-            //   })
-            //   resolve(3)
-            // }
+            if(res.statusCode!=204){
+              reject(3)
+              _this.setData({
+                loading:false
+              })
+            }else{
+              _this.setData({
+                hasWatched: false
+              })
+              resolve(3)
+            }
           }
         })
       }
       // 进行关注
       else {
-        let stu_id = localStorage.getItem(hex_md5("user_url"));
+        let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
         wx.request({
           url: app.globalData.url +'/account/watchings/',
           method:"POST",
@@ -144,11 +164,11 @@ Page({
             "Authorization" : app.globalData.token
           },
           data:{
-            'watcher': stu_id,
+            'watcher': stuId,
             'target': _this.data.orgId
           },
           complete:(res)=>{
-            if(res.statusCode!=200){
+            if(res.statusCode!=201){
               _this.setData({
                 loading:false
               })
@@ -156,7 +176,7 @@ Page({
             }
             else{
               _this.setData({
-                watchUrl: res.data.url,
+                watchUrl: res.data.id,
                 hasWatched:true
               })
               resolve(3)

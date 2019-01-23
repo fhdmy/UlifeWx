@@ -168,7 +168,8 @@ Page({
                   [wter]: {
                     orgavatar: app.globalData.url + res.data[k].target.avatar + '.thumbnail.1.jpg',
                     orgname: res.data[k].target.org_name,
-                    orgid: res.data[k].target.id
+                    orgid: res.data[k].target.id,
+                    watchId:res.data[k].id
                   }
                 })
               }
@@ -184,7 +185,12 @@ Page({
       })
     }
   },
-  cancelWatch:function(){
+  cancelWatch:function(e){
+    let _this=this;
+    let id=e.target.id;
+    let spt=id.split("-");
+    let index=spt[1];
+    let watchId=spt[0];
     wx.showModal({
       content: '你真的想取消关注吗？',
       confirmText: '确定',
@@ -192,8 +198,36 @@ Page({
       success(res) {
         if (res.confirm) {
           //取消关注api
+          _this.cancelWatchRequest(index, watchId);
         } else if (res.cancel) {
           console.log('取消按钮')
+        }
+      }
+    })
+  },
+  cancelWatchRequest:function(index,watchId){
+   let _this=this;
+   _this.setData({
+     loading:false
+   })
+    wx.request({
+      url: app.globalData.url + '/account/watchings/' + watchId,
+      method: "DELETE",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      complete: (res) => {
+        if (res.statusCode != 204) {
+          _this.setData({
+            loading: false
+          })
+        } else {
+          let temp=_this.data.watcher;
+          temp.splice(index,1);
+          _this.setData({
+            watcher: temp,
+            loading:false
+          })
         }
       }
     })

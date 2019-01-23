@@ -1,3 +1,4 @@
+@import"../../iconfont/iconfont.wxss";
 page {
   height: 100%;
   position: relative;
@@ -126,4 +127,11 @@ slider{
 
 .slider-wrapper{
   padding:0 0 20rpx 0;
+}
+
+.unread{
+  float: right;
+  color: #E03636;
+  font-size:30rpx;
+  padding-top: 10rpx;
 }

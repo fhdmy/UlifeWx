@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+var md5 = require('../../utils/MD5.js')
 
 Page({
   data: {
@@ -10,7 +11,8 @@ Page({
     moremsg:"",
     presentmsg:0,
     msgmax:0,
-    setStar:[]
+    setStar:[],
+    comment:[]
   },
   onLoad: function (options) {
     let _this = this;
@@ -194,15 +196,38 @@ Page({
       url: '/pages/actShow/actShow?actId=' + e.target.id,
     })
   },
-  tagRead:function(e){
+  chooseLongTap:function(e){
+    let id = e.currentTarget.id;
+    let _this=this;
+    if(_this.data.msg[id].msg_type=='reminder'){
+      wx.showActionSheet({
+        itemList: ['删除'],
+        success(e) {
+          _this.deleteMsg(id);
+        }
+      })
+    }
+    else{
+      wx.showActionSheet({
+        itemList: ['标记已读', '删除'],
+        success(e) {
+          if (e.tapIndex == 0)
+            _this.tagRead(id);
+          else
+            _this.deleteMsg(id);
+        }
+      })  
+    }
+  },
+  tagRead:function(id){
+    let _this=this;
     wx.showModal({
       content: '标记为已读吗？',
       confirmText: '确定',
       cancelText: '取消',
       success(res) {
         if (res.confirm) {
-          //取消关注api
-          let id = e.target.id
+          _this.tagReadRequest(id);
         } else if (res.cancel) {
           console.log('取消按钮')
         }
@@ -217,7 +242,92 @@ Page({
   },
   submit:function(e){
     let _this=this;
+    let id=e.currentTarget.id;
     let star = (_this.data.setStar[e.target.id] == null) ? 2 : _this.data.setStar[e.target.id];
+    let comment = (_this.data.comment[id] == undefined || _this.data.comment[id] == null) ? '' : _this.data.comment[id];//为空对应为''
+    if (comment == "") {
+      wx.showToast({
+        title: '不能为空！',
+      })
+      return;
+    }
+    _this.setData({
+      loading: true
+    })
+    wx.request({
+      url: app.globalData.url + '/activity/activities/' + _this.data.msg[id].reminder_act_id + '/post_comment/',
+      method: "POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      data: {
+        index: comment,
+        score: _this.data.setStar[id]
+      },
+      complete: (res) => {
+        if (res.statusCode != 201) {
+          _this.setData({
+            loading: false
+          })
+        } else {
+          let temp=_this.data.msg;
+          temp.splice(id,1);
+          _this.setData({
+            msg:temp,
+            loading: false
+          })
+        }
+      }
+    })
+  },
+  inputTextarea:function(e){
+    let st = "comment[" + e.target.id + "]";
+    this.setData({
+      [st]: e.detail.value
+    })
+  },
+  deleteMsg:function(id){
+    let _this=this;
+    wx.showModal({
+      content: '你真的要删除这条消息？',
+      confirmText: '确定',
+      cancelText: '取消',
+      success(res) {
+        if (res.confirm) {
+          _this.deleteMsgRequest(id);
+        } else if (res.cancel) {
+          console.log('取消按钮')
+        }
+      }
+    })
+  },
+  tagReadRequest:function(id){
+    let _this=this;
+    _this.setData({
+      loading:true
+    })
+    wx.request({
+      url: app.globalData.url+'/message/messages/'+_this.data.msg[id].msg_id+'/set_read/',
+      method:"POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      complete:(res)=>{
+        console.log(res)
+        if(res.statusCode!=200){
+          _this.setData({
+            loading: false
+          })
+        }else{
+          _this.setData({
+            loading: false
+          })
+        }
+      }
+    })
+  },
+  deleteMsgRequest:function(id){
+    
   }
 })
 

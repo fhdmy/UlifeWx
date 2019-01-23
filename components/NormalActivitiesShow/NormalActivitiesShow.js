@@ -24,6 +24,6 @@ Component({
       wx.navigateTo({
         url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
       })
-    }
+    },
   }
 })

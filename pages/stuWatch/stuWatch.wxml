@@ -20,7 +20,7 @@
       <view wx:for="{{watcher}}" wx:key="item" class='watcher-wrapper'>
         <image src='{{item.orgavatar}}' id="{{item.orgid}}" class='org-avatar' bindtap='openOrg'></image>
         <text class='org-name'>{{item.orgname}}</text>
-        <text class='have-watched' bindtap='cancelWatch'>已关注</text>
+        <text class='have-watched' bindtap='cancelWatch' id="{{item.watchId+'-'+index}}">已关注</text>
       </view>
     </view>
   </scroll-view>

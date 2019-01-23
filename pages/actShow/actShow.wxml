@@ -2,7 +2,7 @@
 <view class='view-page'>
   <wxs module="calStars" src="./calStars.wxs"></wxs>  
   <navbar page-name="{{heading}}" pageType="backButton"></navbar>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
@@ -67,5 +67,5 @@
         <text>报名</text>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

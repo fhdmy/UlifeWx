@@ -8,6 +8,7 @@ Page({
     globalUrl: app.globalData.url,
     navH: 0,
     loading: false,
+    scroll: false,
     orgAvatar: "",
     orgName: "",
     orgId: 0,
@@ -31,6 +32,9 @@ Page({
     ended: false,
     link: false,
     comment: [],
+    morecomment:"",
+    presentcomment:0,
+    commentmax:0,
     collected: false,
     collectId:"",
     hasSignUp: false,
@@ -201,6 +205,11 @@ Page({
                     }
                   });
                 }
+                _this.setData({
+                  morecomment : res.data.next,
+                  presentcomment : res.data.results.length,
+                  commentmax : res.data.count
+                })
                 resolve(2);
               }
             }
@@ -361,9 +370,60 @@ Page({
       })
     }
   },
+  scrollBottom: function () {
+    let _this = this;
+    if (_this.data.commentmax == _this.data.presentcomment || _this.data.scroll == true)
+      return;
+    //更多活动
+    _this.setData({
+      loading: true,
+      scroll: true
+    })
+    var pm = new Promise(function (resolve, reject) {
+      wx.request({
+        url: _this.data.morecomment,
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            resolve("pm");
+          }
+          else {
+            for (let k = 0; k < res.data.results.length; k++) {
+              // 设置数组
+              let computeddate = res.data.results[k].commented_at.split('T');
+              let actner = "comment[" + parseInt(_this.data.presentcomment + k) + "]";
+              _this.setData({
+                [actner]: {
+                  index: res.data.results[k].index,
+                  score: res.data.results[k].score,
+                  avatar: app.globalData.url + res.data.results[k].commentator.avatar + '.thumbnail.3.jpg',
+                  nickname: res.data.results[k].commentator.nickname,
+                  id: res.data.results[k].commentator.id,
+                  date: computeddate[0]
+                },
+              })
+            }
+            _this.setData({
+              morecomment: res.data.next,
+              presentcomment: (res.data.results.length + _this.data.presentcomment)
+            })
+            resolve("pm");
+          }
+        }
+      })
+    })
+    pm.then(function (results) {
+      _this.setData({
+        loading: false,
+        scroll: false
+      })
+    })
+  },
   reportAct: function() {
     wx.navigateTo({
-      url: '/pages/actReport/actReport',
+      url: '/pages/actReport/actReport?actId='+this.data.actId,
     })
   },
   openOrg: function(e) {

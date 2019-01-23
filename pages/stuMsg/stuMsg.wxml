@@ -5,7 +5,7 @@
     <!--这里放你的内容-->
     <image wx:if="{{msg.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
     <view wx:for="{{msg}}" wx:key="item" class='msg-wrapper'>
-      <view wx:if="{{item.msg_type=='formal'}}" bindlongtap='tagRead' id="{{item.msg_id}}">
+      <view wx:if="{{item.msg_type=='formal'}}" bindlongtap='chooseLongTap' id="{{index}}">
         <view class='title-wrapper'>
           <image src='{{item.avatar}}' id="{{item.id}}" class='org-avatar' bindtap='openOrg'></image>
           <view class='name-wrapper'>
@@ -13,10 +13,11 @@
             <text class='otext'> 发送了消息</text>
             <text class='msg-date'>{{item.date}}</text>
           </view>
+          <text class='unread' wx:if="{{!item.is_read}}">未读</text>
         </view>
         <text class='msg-index'>{{item.index}}</text>
       </view>
-      <view wx:if="{{item.msg_type=='reminder'}}">
+      <view wx:if="{{item.msg_type=='reminder'}}" bindlongtap='chooseLongTap' id="{{index}}">
         <view class='title-wrapper'>
           <image src='{{item.avatar}}' id="{{item.id}}" class='org-avatar' bindtap='openOrg'></image>
           <view class='name-wrapper'>
@@ -28,11 +29,11 @@
         <view class='msg-index'>您报名的“
           <text id="{{item.reminder_act_id}}" bindtap='openAct' class='act-name'>{{item.reminder_act_name}}</text>”活动已经结束，麻烦耽误您一点时间,请您对它做出评价，谢谢！</view>
         <view class='comment-otext'>评论:</view>
-        <textarea></textarea>
+        <textarea bindinput='inputTextarea' id="{{index}}"></textarea>
         <text class="tag-star">评星:</text>
         <view class='slider-wrapper'>
-          <slider value="2.0" bindchange="sliderchange" show-value step="0.1" min="0" max="5.0" selected-color="red" block-size="20" id="{{item.reminder_act_id}}" />
-          <text class='submit' bindtap='submit' id="{{item.reminder_act_id}}">提交</text>
+          <slider value="2.0" bindchange="sliderchange" show-value step="0.1" min="0" max="5.0" selected-color="red" block-size="20" id="{{index}}" />
+          <text class='submit' bindtap='submit' id="{{index}}">提交</text>
           <view style='clear:both;'></view>
         </view>
       </view>

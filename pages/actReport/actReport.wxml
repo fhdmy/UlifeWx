@@ -1,6 +1,7 @@
 <view class='view-page'>
   <navbar page-name="举报" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <textarea placeholder='有什么意见吗……' bindconfirm='confirm' bindinput='inputContent' value='{{reportContent}}'></textarea>
     <text bindtap='confirm'>提交</text>

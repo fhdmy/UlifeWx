@@ -102,14 +102,70 @@ Page({
     })
   },
   save:function(){
-    wx.navigateBack({
-      delta: 1
+    let _this=this;
+    _this.setData({
+      loading:true
+    })
+    let p1=new Promise(function(resolve,reject){
+      let gender;
+      switch(_this.data.sex){
+        case "男":
+          gender="male";
+          break;
+        case "女":
+          gender="female";
+          break;
+        case "保密":
+          gender="secret";
+          break;
+      }
+      wx.request({
+        method: 'PUT',
+        url: app.globalData.url+'/account/students/' + _this.data.userurl + '/',
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          nickname: _this.data.nickname,
+          realname: _this.data.realname,
+          gender: gender,
+          college: _this.data.college,
+          grade: _this.data.grade,
+          phone_number: _this.data.phone
+        },
+        complete:(res)=>{
+          let err=res.data;
+          let bool=false;
+          console.log(res)
+          resolve(1)
+        }
+      })
+    })
+    p1.then(function(results){
+      _this.setData({
+        loading:false
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     })
   },
   changeAvatar:function(){
     wx.chooseImage({
       success: function(res) {
-        console.log(res)
+        let path=res.tempFilePaths[0];
+        wx.uploadFile({
+          url: app.globalData.url +'/account/user-avatar-upload/',
+          filePath: path,
+          name: 'avatar',
+          header: {
+            'Content-Type': 'multipart/form-data',
+            "Authorization": app.globalData.token
+          },
+          complete:(r)=>{
+            console.log("request:"+r)
+          }
+        })
       },
     })
   },

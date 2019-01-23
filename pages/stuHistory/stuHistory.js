@@ -300,7 +300,30 @@ Page({
     })
   },
   clearAttend:function(){
-
+    let _this = this;
+    _this.setData({
+      loading: true
+    })
+    let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
+    wx.request({
+      url: app.globalData.url + '/activity/ended-participation-wipe/',
+      method: "DELETE",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      data: {
+        'stu_id': stuId
+      },
+      complete: (res) => {
+        console.log(res)
+        _this.setData({
+          activities2: 0,
+          presentsignup2: 0,
+          signupmax2: 0,
+          loading: false
+        })
+      }
+    })
   }
 })
 

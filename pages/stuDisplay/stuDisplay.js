@@ -76,6 +76,25 @@ Page({
       })
     })
     p1.then(function(results){
+      // 添加访客
+      if (app.globalData.token != "" && app.globalData.uid != _this.data.stuId) {
+        wx.request({
+          url: app.globalData.url + '/message/visitings/',
+          method: "POST",
+          header: {
+            "Authorization": app.globalData.token
+          },
+          data: {
+            'watcher': app.globalData.uid,
+            'target': _this.data.stuId
+          },
+          complete: (res) => {
+            if (res.statusCode != 201) {
+
+            }
+          }
+        })
+      }
       _this.setData({
         loading:false
       })
