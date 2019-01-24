@@ -48,6 +48,9 @@ Page({
       this.setData({
         hasSignUp:true
       })
+      wx.showToast({
+        title: '报名成功！',
+      })
       app.globalData.actSignupSuccess="";
     }
   },
@@ -78,6 +81,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1)
           } else {
             let computedstart = res.data.start_at.split('T');
@@ -133,6 +140,10 @@ Page({
               _this.setData({
                 loading:false
               })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
               reject("pp")
             }
             else{
@@ -159,6 +170,10 @@ Page({
             if (res.statusCode != 200) {
               _this.setData({
                 loading: false
+              })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
               })
               reject("pc")
             }
@@ -189,6 +204,10 @@ Page({
             },
             complete: (res) => {
               if (res.statusCode != 200) {
+                wx.showToast({
+                  title: '网络传输故障！',
+                  image: '/images/about.png'
+                })
                 resolve(2)
               } else {
                 for (let k = 0; k < res.data.results.length; k++) {
@@ -296,7 +315,10 @@ Page({
         },
         complete:(res)=>{
           if(res.statusCode!=201){
-            
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
           }
         }
       })
@@ -312,13 +334,11 @@ Page({
     }
     else if (app.globalData.type == 'none') {
       wx.showToast({
-        title: '请先登录！',
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
       })
       return;
     }
-    _this.setData({
-      loading:true
-    })
     //关注
     if(!_this.data.collected){
       wx.request({
@@ -332,15 +352,21 @@ Page({
           target: parseInt(_this.data.actId)
         },
         complete:(res)=>{
-          if(res.statusCode!=201)
-            _this.setData({
-              loading:false
+          if(res.statusCode!=201){
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
             })
-          else
+          }      
+          else{
             _this.setData({
-              loading:false,
+              collectId: res.data.id,
               collected:true
             })
+            wx.showToast({
+              title: '收藏成功！',
+            })
+          }
         }
       })
     }
@@ -357,15 +383,17 @@ Page({
           target: parseInt(_this.data.actId)
         },
         complete: (res) => {
-          if(res.statusCode!=204)
-            _this.setData({
-              loading:false
+          if(res.statusCode!=204){
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
             })
-          else
+          }        
+          else{
             _this.setData({
-              loading:false,
               collected:false
             })
+          }
         }
       })
     }
@@ -387,6 +415,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve("pm");
           }
           else {
@@ -428,7 +460,7 @@ Page({
   },
   openOrg: function(e) {
     wx.navigateTo({
-      url: '/pages/orgDisplay/orgDisplay',
+      url: '/pages/orgDisplay/orgDisplay?orgId='+this.data.orgId,
     })
   },
   openStu: function(e) {
@@ -441,12 +473,21 @@ Page({
     if(app.globalData.type=='org'){
       wx.showToast({
         title: '组织不能报名活动！',
+        image: '/images/about.png'
       })
       return;
     }
     else if (app.globalData.type == 'none') {
       wx.showToast({
-        title: '请先登录！',
+        title: '请先登录Ulife账号！',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    else if(_this.data.ended){
+      wx.showToast({
+        title: '活动已结束！',
+        image: '/images/about.png'
       })
       return;
     }
@@ -458,9 +499,6 @@ Page({
         cancelText: '取消',
         success(res) {
           if (res.confirm) {
-            _this.setData({
-              loading: true
-            })
             wx.request({
               url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/toggle_participation/',
               method: "POST",
@@ -468,10 +506,17 @@ Page({
                 "Authorization": app.globalData.token
               },
               complete: (res) => {
-                console.log(res)
-                _this.setData({
-                  loading:false
-                })
+                if(res.statusCode!=200){
+                  wx.showToast({
+                    title: '网络传输故障！',
+                    image: '/images/about.png'
+                  })
+                }
+                else{
+                  _this.setData({
+                    hasSignUp: false
+                  })
+                }
               }
             })
           } else if (res.cancel) {

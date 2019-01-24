@@ -14,25 +14,10 @@ Page({
   },
   onLoad: function (options) {
     let _this = this;
+    let id = wx.getStorageSync(md5.hex_md5("user_url"));
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    var id = wx.getStorageSync(md5.hex_md5("user_url"))
-    if (id == "") {
-      wx.showModal({
-        title: '未登录Ulife',
-        content: '请登录后再进入此页面。',
-        showCancel: false,
-        confirmText: '确定',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        }
-      })
-    }
     _this.setData({
       loading:true
     })
@@ -44,6 +29,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1)
           }
           else{
@@ -98,6 +87,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve("pm");
           }
           else {

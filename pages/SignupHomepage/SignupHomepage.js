@@ -82,6 +82,10 @@ Page({
             _this.setData({
               loading:false
             })
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             reject(1)
           }
           else{
@@ -165,6 +169,16 @@ Page({
       loading:true
     })
     let temp=_this.data.ifo;
+    switch (_this.data.ifo[2]) {
+      case '女':
+        temp[2] = "female";
+        break;
+      case '男':
+        temp[2] = "male";
+        break;
+      case '保密':
+        temp[2] = "secret";
+        break;
     if(!_this.data.select_name)
       temp[0]="";
     if(!_this.data.select_gender)
@@ -175,6 +189,7 @@ Page({
       temp[3]=""
     if(!_this.data.select_grade)
       temp[4]=""
+    }
     wx.request({
       url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/toggle_participation/',
       method:"POST",
@@ -192,14 +207,12 @@ Page({
           })
           wx.showToast({
             title: '网络传输故障！',
+            image:'/images/about.png'
           })
         }
         else{
           _this.setData({
             loading: false
-          })
-          wx.showToast({
-            title: '报名成功！',
           })
           app.globalData.actSignupSuccess="ok";
           wx.navigateBack({

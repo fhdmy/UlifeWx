@@ -47,7 +47,7 @@ button{
 
 .picker-left-text{
   height: 80rpx;
-  padding-top: 16rpx;
+  padding-top: 22rpx;
   background:white;
   padding-left: 40rpx;
   color:#666666;
@@ -58,7 +58,7 @@ button{
 .picker-right-text{
   height: 80rpx;
   width: 430rpx;
-  padding-top: 16rpx;
+  padding-top: 22rpx;
   background:white;
   padding-left: 40rpx;
   color:#666666;

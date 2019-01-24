@@ -31,25 +31,37 @@ Page({
     })
   },
   signUp:function(){
-    // if(isLogin==false){
-
-    // }
+    if (app.globalData.isLogin == false) {
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/stuSignUp/stuSignUp',
     })
   },
   watch: function () {
-    // if(isLogin==false){
-
-    // }
+    if (app.globalData.isLogin == false) {
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/stuWatch/stuWatch',
     })
   },
   collect: function () {
-    // if(isLogin==false){
-
-    // }
+    if (app.globalData.isLogin == false) {
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/stuCollect/stuCollect',
     })
@@ -65,11 +77,25 @@ Page({
     })
   },
   toStuHistory:function(){
+    if (app.globalData.isLogin == false) {
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/stuHistory/stuHistory',
     })
   },
   toStuMsg:function(){
+    if(app.globalData.isLogin==false){
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image:"/images/about.png"
+      })
+      return;
+    }
     wx.navigateTo({
       url: '/pages/stuMsg/stuMsg',
     })

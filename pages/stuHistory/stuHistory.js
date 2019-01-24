@@ -19,25 +19,10 @@ Page({
   },
   onLoad: function (options) {
     let _this = this;
+    let id = wx.getStorageSync(md5.hex_md5("user_url"));
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    var id = wx.getStorageSync(md5.hex_md5("user_url"))
-    if (id == "") {
-      wx.showModal({
-        title: '未登录Ulife',
-        content: '请登录后再进入此页面。',
-        showCancel: false,
-        confirmText: '确定',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        }
-      })
-    }
     _this.setData({
       loading: true
     })
@@ -49,6 +34,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1)
           }
           else {
@@ -124,6 +113,10 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
               resolve(2)
             }
             else {
@@ -181,6 +174,10 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
               resolve("pm");
             }
             else {
@@ -235,6 +232,10 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
               resolve("pm");
             }
             else {
@@ -289,13 +290,23 @@ Page({
         'stu_id': stuId
       },
       complete: (res) => {
-        console.log(res)
-        _this.setData({
-          activities1: 0,
-          presentsignup1: 0,
-          signupmax1: 0,
-          loading: false
-        })
+        if(res.statusCode!=204){
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        }
+        else{
+          _this.setData({
+            activities1: 0,
+            presentsignup1: 0,
+            signupmax1: 0,
+            loading: false
+          })
+        }
       }
     })
   },

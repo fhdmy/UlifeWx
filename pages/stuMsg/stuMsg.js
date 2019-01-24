@@ -16,25 +16,10 @@ Page({
   },
   onLoad: function (options) {
     let _this = this;
+    let id = wx.getStorageSync(md5.hex_md5("user_url"));
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    var id = wx.getStorageSync(md5.hex_md5("user_url"))
-    if (id == "") {
-      wx.showModal({
-        title: '未登录Ulife',
-        content: '请登录后再进入此页面。',
-        showCancel: false,
-        confirmText: '确定',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        }
-      })
-    }
     _this.setData({
       loading:true
     })
@@ -45,8 +30,13 @@ Page({
           "Authorization": app.globalData.token
         },
         complete:(res)=>{
-          if(res.statusCode!=200)
+          if(res.statusCode!=200){
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1);
+          }
           else{
             for (let k = 0; k < res.data.results.length; k++) {
               var nickname, avatar, id, type, url, msg_id, msg_type, reminder_act_name, reminder_act_id;
@@ -124,6 +114,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve("pm");
           }
           else {
@@ -269,6 +263,10 @@ Page({
           _this.setData({
             loading: false
           })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
         } else {
           let temp=_this.data.msg;
           temp.splice(id,1);
@@ -303,9 +301,6 @@ Page({
   },
   tagReadRequest:function(id){
     let _this=this;
-    _this.setData({
-      loading:true
-    })
     wx.request({
       url: app.globalData.url+'/message/messages/'+_this.data.msg[id].msg_id+'/set_read/',
       method:"POST",
@@ -315,19 +310,42 @@ Page({
       complete:(res)=>{
         console.log(res)
         if(res.statusCode!=200){
-          _this.setData({
-            loading: false
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
           })
         }else{
+          let m="msg["+id+"].is_read";
           _this.setData({
-            loading: false
+            [m]:true
           })
         }
       }
     })
   },
   deleteMsgRequest:function(id){
-    
+    let _this = this;
+    wx.request({
+      url: app.globalData.url + '/message/messages/' + _this.data.msg[id].msg_id + '/set_deleted_by_receiver/',
+      method: "POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      complete: (res) => {
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        } else {
+          let temp=_this.data.msg;
+          temp.splice(id,1);
+          _this.setData({
+            msg:temp
+          })
+        }
+      }
+    })
   }
 })
 

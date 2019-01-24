@@ -47,12 +47,12 @@ Page({
   },
   bindVistorChange(e) {
     this.setData({
-      publishVisitor: this.data.gradeArray[e.detail.value]
+      publishVisitor: this.data.judgeArray[e.detail.value]
     })
   },
   bindCollectChange:function(e){
     this.setData({
-      publishCollect: this.data.collegeArray[e.detail.value]
+      publishCollect: this.data.judgeArray[e.detail.value]
     })
   },
   bindWatchChange: function (e) {
@@ -62,18 +62,95 @@ Page({
   },
   bindHistoryChange: function (e) {
     this.setData({
-      publishHistory: this.data.collegeArray[e.detail.value]
+      publishHistory: this.data.judgeArray[e.detail.value]
     })
   },
   save:function(){
-    wx.navigateBack({
-      delta: 1
+    let _this=this;
+    _this.setData({
+      loading:true
+    })
+    let p1 = new Promise(function (resolve, reject) {
+      wx.request({
+        method: 'PUT',
+        url: app.globalData.url + '/account/students/' + _this.data.userurl + '/',
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          is_fav_public: _this.data.publishCollect=="是"?true:false,
+          is_history_public: _this.data.publishHistory == "是" ? true : false,
+          is_watched_orgs_public: _this.data.publishWatch == "是" ? true : false,
+          is_visitor_public: _this.data.publishVisitor == "是" ? true : false
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            _this.setData({
+              loading: false
+            })
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            reject(1)
+          }
+          else {
+            resolve(1)
+          }
+        }
+      })
+    })
+    let p2 = new Promise(function (resolve, reject) {
+      wx.uploadFile({
+        url: app.globalData.url + '/account/user-bg-img-upload/',
+        filePath: _this.data.headImg,
+        name: 'file',
+        header: {
+          'Content-Type': 'multipart/form-data',
+          "Authorization": app.globalData.token
+        },
+        complete: (r) => {
+          if (r.statusCode != 201) {
+            _this.setData({
+              loading: false
+            })
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            reject(2)
+          }
+          else {
+            resolve(2)
+          }
+        }
+      })
+    })
+    Promise.all([p1,p2]).then(function (results) {
+      _this.setData({
+        loading: false
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     })
   },
   changeHeadImg:function(){
+    let _this = this;
     wx.chooseImage({
-      success: function(res) {
-        console.log(res)
+      count: 1,
+      success: function (res) {
+        let size = res.tempFiles[0].size;
+        if (size > 10485760) {
+          wx.showToast({
+            title: '图片太大了!',
+            image: '/images/about.png'
+          })
+          return;
+        }
+        _this.setData({
+          headImg: res.tempFilePaths[0]
+        })
       },
     })
   },

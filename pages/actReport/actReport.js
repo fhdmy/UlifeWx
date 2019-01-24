@@ -36,6 +36,7 @@ Page({
           })
           wx.showToast({
             title: '网络传输故障！',
+            image: '/images/about.png'
           })
         }
         else{

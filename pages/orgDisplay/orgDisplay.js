@@ -53,6 +53,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1)
           } else {
             _this.setData({
@@ -80,6 +84,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(2)
           } else {
             if (res.data.length == 0) {
@@ -114,7 +122,10 @@ Page({
           },
           complete: (res) => {
             if(res.statusCode!=201){
-              
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
             }
           }
         })
@@ -126,9 +137,13 @@ Page({
   },
   towatch: function() {
     let _this=this;
-    _this.setData({
-      loading:true
-    })
+    if (app.globalData.isLogin==false){
+      wx.showToast({
+        title: '请先登录Ulife账号！',
+        image: "/images/about.png"
+      })
+      return;
+    }
     let p3=new Promise(function(resolve,reject){
       // 取消关注
       if (_this.data.hasWatched == true) {
@@ -141,10 +156,11 @@ Page({
           complete:(res)=>{
             console.log(res)
             if(res.statusCode!=204){
-              reject(3)
-              _this.setData({
-                loading:false
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
               })
+              reject(3)
             }else{
               _this.setData({
                 hasWatched: false
@@ -169,8 +185,9 @@ Page({
           },
           complete:(res)=>{
             if(res.statusCode!=201){
-              _this.setData({
-                loading:false
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
               })
               reject(3)
             }
@@ -179,17 +196,18 @@ Page({
                 watchUrl: res.data.id,
                 hasWatched:true
               })
+              wx.showToast({
+                title: '关注成功！'
+              })
               resolve(3)
             }
           }
         })
       }
     })
-    p3.then(function(results){
-      _this.setData({
-        loading:false
-      })
-    })
+    // p3.then(function(results){
+
+    // })
   },
   toDynamic: function() {
     let _this = this;

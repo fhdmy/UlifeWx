@@ -91,8 +91,13 @@ Page({
           "Authorization": app.globalData.token
         },
         complete:(res)=>{
-          if(res.statusCode!=200)
+          if(res.statusCode!=200){
             resolve(1)
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+          }
           else{
             for (let k = 0; k < res.data.results.length; k++) {
               let computeddate = res.data.results[k].start_at.split('T');
@@ -130,8 +135,13 @@ Page({
             "Authorization": app.globalData.token
           },
           complete:(res)=>{
-            if(res.statusCode!=200)
+            if(res.statusCode!=200){
               resolve(1)
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
+            }
             else{
               for (let k = 0; k < res.data.length; k++) {
                 let sorg ="searchorgs["+k+"]";
@@ -257,6 +267,10 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
               resolve("pm");
             }
             else {

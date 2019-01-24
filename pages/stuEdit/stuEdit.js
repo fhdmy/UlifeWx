@@ -59,6 +59,10 @@ Page({
           _this.setData({
             loading: false
           })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
         }
         else {
           let gender;
@@ -134,14 +138,52 @@ Page({
           phone_number: _this.data.phone
         },
         complete:(res)=>{
-          let err=res.data;
-          let bool=false;
-          console.log(res)
-          resolve(1)
+          if(res.statusCode!=200){
+            _this.setData({
+              loading:false
+            })
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            reject(1)
+          }
+          else{
+            resolve(1)
+          }
         }
       })
     })
-    p1.then(function(results){
+    let p2=new Promise(function(resolve,reject){
+      wx.uploadFile({
+        url: app.globalData.url + '/account/user-avatar-upload/',
+        filePath: _this.data.avatar,
+        name: 'file',
+        header: {
+          'Content-Type': 'multipart/form-data',
+          "Authorization": app.globalData.token
+        },
+        complete: (r) => {
+          if (r.statusCode != 201) {
+            _this.setData({
+              loading:false
+            })
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            reject(2)
+          }
+          else {
+            let data = JSON.parse(r.data) 
+            wx.setStorageSync(md5.hex_md5("avatar"), app.globalData.url + data.avatar)
+            app.globalData.avatar = app.globalData.url + data.avatar
+            resolve(2)
+          }
+        }
+      })
+    })
+    Promise.all([p1,p2]).then(function(results){
       _this.setData({
         loading:false
       })
@@ -151,20 +193,20 @@ Page({
     })
   },
   changeAvatar:function(){
+    let _this=this;
     wx.chooseImage({
+      count:1,
       success: function(res) {
-        let path=res.tempFilePaths[0];
-        wx.uploadFile({
-          url: app.globalData.url +'/account/user-avatar-upload/',
-          filePath: path,
-          name: 'avatar',
-          header: {
-            'Content-Type': 'multipart/form-data',
-            "Authorization": app.globalData.token
-          },
-          complete:(r)=>{
-            console.log("request:"+r)
-          }
+        let size=res.tempFiles[0].size;
+        if (size > 10485760){
+          wx.showToast({
+            title: '图片太大了!',
+            image: '/images/about.png'
+          })
+          return;
+        }
+        _this.setData({
+          avatar: res.tempFilePaths[0]
         })
       },
     })

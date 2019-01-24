@@ -61,6 +61,10 @@ Page({
               _this.setData({
                 loading:false
               })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
             }
             else {
               wx.clearStorageSync();
@@ -98,6 +102,10 @@ Page({
               reject("fail")
               _this.setData({
                 loading: false
+              })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
               })
             }
             else {
@@ -145,6 +153,10 @@ Page({
                 _this.setData({
                   loading: false
                 })
+                wx.showToast({
+                  title: '网络传输故障！',
+                  image: '/images/about.png'
+                })
               } else {
                 app.globalData.isLogin = true;
                 app.globalData.uid = res.data.user;
@@ -179,6 +191,10 @@ Page({
                 reject("fail")
                 _this.setData({
                   loading: false
+                })
+                wx.showToast({
+                  title: '网络传输故障！',
+                  image: '/images/about.png'
                 })
               } else {
                 app.globalData.isLogin = true;

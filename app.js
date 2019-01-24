@@ -4,6 +4,7 @@ App({
   globalData: {
     navbarHeight: 0,
     url: "https://ulife.org.cn/api",
+    // url: "http://27.50.136.70/api",
     stuEditType: "", //学生编辑页面跳转到输入文字的界面（stuArea）数据传递问题，暂时只能用全局变量来解决，不然路由栈会有显示问题
     stuEditContent: "",
     signupType:"",

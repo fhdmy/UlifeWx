@@ -31,6 +31,10 @@ Page({
         complete: (res) => {
           // 网络请求问题
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(1);
           } else {
             for (let k = 0; k < res.data.results.length; k++) {
@@ -69,6 +73,10 @@ Page({
         complete: (res) => {
           // 网络请求问题
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve(2);
           } else {
             for (let k = 0; k < res.data.length; k++) {
@@ -110,6 +118,10 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
             resolve("pm");
           }
           else {
