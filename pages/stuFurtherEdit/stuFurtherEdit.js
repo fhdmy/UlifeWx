@@ -5,13 +5,13 @@ var md5 = require('../../utils/MD5.js')
 Page({
   data: {
     navH: 0,
-    headImg:"",
-    judgeArray:["是","否"],
-    publishWatch:"是",
+    headImg: "",
+    judgeArray: ["是", "否"],
+    publishWatch: "是",
     publishVisitor: "是",
     publishCollect: "是",
     publishHistory: "是",
-    loading:false
+    loading: false
   },
   onLoad: function (options) {
     let _this = this;
@@ -35,7 +35,7 @@ Page({
         else {
           _this.setData({
             headImg: app.globalData.url + res.data.bg_img + '.thumbnail.1.jpg',
-            publishWatch: (res.data.is_watched_orgs_public==true?"是":"否"),
+            publishWatch: (res.data.is_watched_orgs_public == true ? "是" : "否"),
             publishVisitor: (res.data.is_visitor_public == true ? "是" : "否"),
             publishCollect: (res.data.is_fav_public == true ? "是" : "否"),
             publishHistory: (res.data.is_history_public == true ? "是" : "否"),
@@ -50,7 +50,7 @@ Page({
       publishVisitor: this.data.judgeArray[e.detail.value]
     })
   },
-  bindCollectChange:function(e){
+  bindCollectChange: function (e) {
     this.setData({
       publishCollect: this.data.judgeArray[e.detail.value]
     })
@@ -65,10 +65,10 @@ Page({
       publishHistory: this.data.judgeArray[e.detail.value]
     })
   },
-  save:function(){
-    let _this=this;
+  save: function () {
+    let _this = this;
     _this.setData({
-      loading:true
+      loading: true
     })
     let p1 = new Promise(function (resolve, reject) {
       wx.request({
@@ -78,7 +78,7 @@ Page({
           "Authorization": app.globalData.token
         },
         data: {
-          is_fav_public: _this.data.publishCollect=="是"?true:false,
+          is_fav_public: _this.data.publishCollect == "是" ? true : false,
           is_history_public: _this.data.publishHistory == "是" ? true : false,
           is_watched_orgs_public: _this.data.publishWatch == "是" ? true : false,
           is_visitor_public: _this.data.publishVisitor == "是" ? true : false
@@ -101,32 +101,36 @@ Page({
       })
     })
     let p2 = new Promise(function (resolve, reject) {
-      wx.uploadFile({
-        url: app.globalData.url + '/account/user-bg-img-upload/',
-        filePath: _this.data.headImg,
-        name: 'file',
-        header: {
-          'Content-Type': 'multipart/form-data',
-          "Authorization": app.globalData.token
-        },
-        complete: (r) => {
-          if (r.statusCode != 201) {
-            _this.setData({
-              loading: false
-            })
-            wx.showToast({
-              title: '网络传输故障！',
-              image: '/images/about.png'
-            })
-            reject(2)
+      if (_this.data.headImg.substr(0, app.globalData.url.length) == app.globalData.url) {
+        resolve(2)
+      } else {
+        wx.uploadFile({
+          url: app.globalData.url + '/account/user-bg-img-upload/',
+          filePath: _this.data.headImg,
+          name: 'file',
+          header: {
+            'Content-Type': 'multipart/form-data',
+            "Authorization": app.globalData.token
+          },
+          complete: (r) => {
+            if (r.statusCode != 201) {
+              _this.setData({
+                loading: false
+              })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
+              reject(2)
+            }
+            else {
+              resolve(2)
+            }
           }
-          else {
-            resolve(2)
-          }
-        }
-      })
+        })
+      }
     })
-    Promise.all([p1,p2]).then(function (results) {
+    Promise.all([p1, p2]).then(function (results) {
       _this.setData({
         loading: false
       })
@@ -135,7 +139,7 @@ Page({
       })
     })
   },
-  changeHeadImg:function(){
+  changeHeadImg: function () {
     let _this = this;
     wx.chooseImage({
       count: 1,

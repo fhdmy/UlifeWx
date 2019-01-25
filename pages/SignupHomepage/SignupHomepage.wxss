@@ -107,3 +107,26 @@ page {
 .red-icon{
   color: #E03636!important;
 }
+
+.cfm-input{
+  background: white;
+  padding: 10rpx 0 10rpx 20rpx;
+  width: 46%;
+  float: left;
+}
+
+.cfm-button{
+  float: right;
+  background: #E03636;
+  color:white;
+  font-size: 26rpx!important;
+  height: 75rpx!important;
+  width: 230rpx!important;
+  padding:5rpx 13rpx 3rpx 13rpx!important;
+}
+
+.unable-touch{
+  background: #CCCCCC!important;
+  color: #666666!important;
+  pointer-events: none;
+}

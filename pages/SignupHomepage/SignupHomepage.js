@@ -5,12 +5,18 @@ Page({
   data: {
     navH: 0,
     loading:false,
+    hiddenmodalput: true,
+    clock: 0,
+    clo: null,
+    cfmOnlyPhone:"",
+    cfmNumber: "",
     sexArray: ["男", "女", "保密"],
     gradeArray: ["大一", "大二", "大三", "大四", "其他"],
     collegeArray: [
       '理学院', '生命科学学院', '文学院', '法学院', '外国语学院', '社会学院', '计算机工程与科学学院', '机电工程与自动化学院', '通信与信息工程学院', '环境与化学工程学院', '材料科学与工程学院', '中欧工程技术学院', '土木工程系', '材料基因组工程研究院', '经济学院', '管理学院', '图书情报档案系', '悉尼工商学院', '管理教育研究院', '上海电影学院', '上海美术学院', '音乐学院', '数码艺术学院', '上海温哥华电影学院', '社区学院', '钱伟长学院', '体育学院', '其他',
     ],
     ifo: ['', '', '', '', ''],//[realname, phone_number, gender, college, grade]
+    originPhone:"",
     select_name: true,
     select_gender: true,
     select_college: true,
@@ -121,6 +127,16 @@ Page({
       })
     })
   },
+  onUnload: function () {
+    clearInterval(this.data.clo);
+  },
+  watch: {
+    clock: function (newVal) {
+      if (newVal == 0) {
+        clearInterval(this.data.clo);
+      }
+    }
+  },
   bindSexChange:function(e){
     let i="ifo[2]"
     this.setData({
@@ -165,9 +181,6 @@ Page({
   },
   signup:function(){
     let _this=this;
-    _this.setData({
-      loading:true
-    })
     let temp=_this.data.ifo;
     switch (_this.data.ifo[2]) {
       case '女':
@@ -221,6 +234,122 @@ Page({
         }
         }
     })
-  }
+  },
+  // 验证手机号
+  inputConfirm: function (e) {
+    this.setData({
+      cfmNumber: e.detail.value
+    })
+  },
+  cancel: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  getConfirm: function () {
+    let _this = this;
+    wx.request({
+      url: app.globalData.url + '/account/students/phone_number_verification/',
+      method: 'POST',
+      data: {
+        phone_number: _this.data.ifo[1]
+      },
+      complete: (res) => {
+        if (res.data == "Phone number already exists") {
+          wx.showToast({
+            title: '手机号已存在！',
+            image: '/images/about.png'
+          })
+        }
+        else if (res.statusCode != 200) {
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        }
+        else {
+          _this.setData({
+            cfmOnlyPhone:_this.data.ifo[1],
+            clock:60
+          })
+          _this.data.clo = setInterval(function () {
+            _this.setData({
+              clock: _this.data.clock - 1
+            })
+          }, 1000)
+        }
+      }
+    })
+  },
+  //确认  
+  confirm: function () {
+    let _this = this;
+    if (_this.data.cfmOnlyPhone!=_this.data.ifo[1]){
+      wx.showToast({
+        title: '没有获得验证码！',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    _this.setData({
+      loading: true
+    })
+    wx.request({
+      url: app.globalData.url + '/account/students/phone_number_verification/',
+      method: "POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      data: {
+        phone_number: _this.data.ifo[1],
+        vericode: _this.data.cfmNumber
+      },
+      complete: (res) => {
+        if (res.data == "Incorrect vericode") {
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '验证码错误！',
+            image: '/images/about.png'
+          })
+        }
+        else if (res.statusCode != 200) {
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        } else {
+          _this.setData({
+            hiddenmodalput: true
+          })
+          _this.signup();
+        }
+      }
+    })
+  },
+  confirmSave() {
+    let _this = this;
+    if (_this.data.ifo[1].length > 0 && _this.data.ifo[1] != _this.data.originPhone) {
+      const pattern = /^1(3|4|5|7|8)\d{9}$/;
+      if (pattern.test(_this.data.ifo[1]) == false) {
+        wx.showToast({
+          title: '手机号格式错误！',
+          image: '/images/about.png'
+        })
+        return;
+      }
+      else {
+        _this.setData({
+          hiddenmodalput: false
+        })
+      }
+    }else{
+      _this.signup();
+    }
+  },
 })
 

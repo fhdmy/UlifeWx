@@ -2,6 +2,12 @@
   <navbar page-name="个人信息" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <loading hidden="{{!loading}}">加载中...</loading>
+    <modal hidden="{{hiddenmodalput}}" title="验证手机" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+<input type='text'placeholder="请输入验证码" auto-focus bindinput='inputConfirm' class='cfm-input'/>  
+<button class='cfm-button {{clock>0?"unable-touch":""}}' size='mini' bindtap='getConfirm'>获得验证码<text wx:if="{{clock>0}}">({{clock}}s)</text></button>
+<view style='clear:both;'></view>
+</modal>  
+
     <!--这里放你的内容-->
     <view class='inform-sep-wrapper' bindtap='changeAvatar'>
       <text class='inform-sep-title'>头像</text>
@@ -39,7 +45,7 @@
       <view class='inform-sep-val-picker'>{{grade}}</view>
     </picker>
     <text class='further-inform' bindtap='toFurtherInform'>修改背景或隐私设置</text>
-    <button type='default' plain="true" class='save-button' bindtap='save'>保存</button>
+    <button type='default' plain="true" class='save-button' bindtap='confirmSave'>保存</button>
     <text class='remind-text'>报名活动需要填写以上信息</text>
   </view>
 </view>

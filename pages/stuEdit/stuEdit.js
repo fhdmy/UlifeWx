@@ -6,10 +6,16 @@ Page({
   data: {
     navH: 0,
     loading:false,
+    hiddenmodalput:true,
+    clock:0,
+    clo:null,
+    cfmNumber:"",
+    cfmOnlyPhone:"",
     userurl:"",
     avatar:"",
     nickname:"",
     realname:"",
+    originPhone:"",
     phone:"",
     sex:"男",
     college:"社区学院",
@@ -73,6 +79,7 @@ Page({
           else gender = "保密";
           _this.setData({
             phone: res.data.phone_number,
+            originPhone:res.data.phone_number,
             nickname: res.data.nickname,
             realname: res.data.realname,
             college: res.data.college,
@@ -84,6 +91,16 @@ Page({
         }
       }
     })
+  },
+  onUnload:function(){
+    clearInterval(this.data.clo);
+  },
+  watch:{
+    clock:function(newVal){
+      if(newVal==0){
+        clearInterval(this.data.clo);
+      }
+    }
   },
   bindGradeChange(e) {
     this.setData({
@@ -105,11 +122,123 @@ Page({
       url: '/pages/stuFurtherEdit/stuFurtherEdit',
     })
   },
-  save:function(){
+  inputConfirm:function(e){
+    this.setData({
+      cfmNumber: e.detail.value
+    })
+  },
+  cancel: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  getConfirm:function(){
     let _this=this;
+    wx.request({
+      url: app.globalData.url +'/account/students/phone_number_verification/',
+      method: 'POST',
+      data: {
+        phone_number: _this.data.phone
+      },
+      complete:(res)=>{
+        if (res.data =="Phone number already exists"){
+          wx.showToast({
+            title: '手机号已存在！',
+            image: '/images/about.png'
+          })
+        }
+        else if(res.statusCode!=200){
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        } 
+        else{
+          _this.setData({
+            clock: 60,
+            cfmOnlyPhone:_this.data.phone
+          })
+          _this.data.clo = setInterval(function () {
+            _this.setData({
+              clock: _this.data.clock - 1
+            })
+          }, 1000)
+        }
+      }
+    })
+  },
+  //确认  
+  confirm: function () {
+    let _this=this;
+    if (_this.data.cfmOnlyPhone!=_this.data.phone){
+      wx.showToast({
+        title: '没有获得验证码！',
+        image: '/images/about.png'
+      })
+      return;
+    }
     _this.setData({
       loading:true
     })
+    wx.request({
+      url: app.globalData.url +'/account/students/phone_number_verification/',
+      method:"POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      data: {
+        phone_number: _this.data.phone,
+        vericode: _this.data.cfmNumber
+      },
+      complete:(res)=>{
+        if (res.data =="Incorrect vericode"){
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '验证码错误！',
+            image: '/images/about.png'
+          })
+        }
+        else if(res.statusCode!=200){
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        }else{
+          _this.setData({
+            hiddenmodalput: true
+          })
+          _this.save();
+        }
+      }
+    })
+  },
+  confirmSave(){
+    let _this = this;
+    if (_this.data.phone.length > 0 && _this.data.phone != _this.data.originPhone) {
+      const pattern = /^1(3|4|5|7|8)\d{9}$/;
+      if (pattern.test(_this.data.phone) == false) {
+        wx.showToast({
+          title: '手机号格式错误！',
+          image: '/images/about.png'
+        })
+        return;
+      }
+      else {
+        _this.setData({
+          hiddenmodalput: false
+        })
+      }
+    }else{
+      _this.save();
+    }
+  },
+  save:function(){
+    let _this=this;
     let p1=new Promise(function(resolve,reject){
       let gender;
       switch(_this.data.sex){
@@ -149,39 +278,45 @@ Page({
             reject(1)
           }
           else{
+            app.globalData.name=_this.data.nickname;
+            wx.setStorageSync(md5.hex_md5("name"), _this.data.nickname);
             resolve(1)
           }
         }
       })
     })
     let p2=new Promise(function(resolve,reject){
-      wx.uploadFile({
-        url: app.globalData.url + '/account/user-avatar-upload/',
-        filePath: _this.data.avatar,
-        name: 'file',
-        header: {
-          'Content-Type': 'multipart/form-data',
-          "Authorization": app.globalData.token
-        },
-        complete: (r) => {
-          if (r.statusCode != 201) {
-            _this.setData({
-              loading:false
-            })
-            wx.showToast({
-              title: '网络传输故障！',
-              image: '/images/about.png'
-            })
-            reject(2)
+      if (_this.data.avatar.substr(0, app.globalData.url.length) ==app.globalData.url){
+        resolve(2)
+      }else{
+        wx.uploadFile({
+          url: app.globalData.url + '/account/user-avatar-upload/',
+          filePath: _this.data.avatar,
+          name: 'file',
+          header: {
+            'Content-Type': 'multipart/form-data',
+            "Authorization": app.globalData.token
+          },
+          complete: (r) => {
+            if (r.statusCode != 201) {
+              _this.setData({
+                loading: false
+              })
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
+              reject(2)
+            }
+            else {
+              let data = JSON.parse(r.data)
+              wx.setStorageSync(md5.hex_md5("avatar"), app.globalData.url + data.avatar)
+              app.globalData.avatar = app.globalData.url + data.avatar
+              resolve(2)
+            }
           }
-          else {
-            let data = JSON.parse(r.data) 
-            wx.setStorageSync(md5.hex_md5("avatar"), app.globalData.url + data.avatar)
-            app.globalData.avatar = app.globalData.url + data.avatar
-            resolve(2)
-          }
-        }
-      })
+        })
+      }
     })
     Promise.all([p1,p2]).then(function(results){
       _this.setData({

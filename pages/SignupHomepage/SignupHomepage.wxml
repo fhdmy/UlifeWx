@@ -2,6 +2,11 @@
   <navbar page-name="报名" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
+    <modal hidden="{{hiddenmodalput}}" title="验证手机" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+<input type='text'placeholder="请输入验证码" auto-focus bindinput='inputConfirm' class='cfm-input'/>  
+<button class='cfm-button {{clock>0?"unable-touch":""}}' size='mini' bindtap='getConfirm'>获得验证码<text wx:if="{{clock>0}}">({{clock}}s)</text></button>
+<view style='clear:both;'></view>
+</modal>  
     <view class='inform-sep-wrapper' wx:if="{{select_name}}" bindtap='toEditName'>
       <text class='inform-sep-title'>姓名</text>
       <i class="iconfont icon-youjiantou inform-sep-icon {{ifo[0].length>0?'':'red-icon'}}"></i>
@@ -40,6 +45,6 @@
         </view>
       </view>
     </view>
-    <button type='default' plain="true" class='signup-button' bindtap='signup'>报名</button>
+    <button type='default' plain="true" class='signup-button' bindtap='confirmSave'>报名</button>
   </view>
 </view>
