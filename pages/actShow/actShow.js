@@ -40,7 +40,6 @@ Page({
     hasSignUp: false,
     actId:0,
     teststyle:"",
-    testhtml:"",
     routerId:0,
   },
   onShow:function(options){
@@ -235,35 +234,6 @@ Page({
           })
         } else resolve(2)
       })
-      var html = `
-        <!DOCTYPE html>
-<html>
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-    <script nonce="368111801" type="text/javascript">
-        window.logs = {
-            pagetime: {}
-        };
-        window.logs.pagetime['html_begin'] = (+new Date());
-    </script>
-    <style>
-        .a {
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <p class="a">这是一个红色的文字</p>
-    <script>
-      window.logs = {
-            pagetime: {}
-        };
-        window.logs.pagetime['html_begin'] = (+new Date());
-    </script>
-</body>
-</html>
-      ` 
       // wx.request({
       //   url: 'https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html',
       //   complete:(res)=>{
@@ -291,8 +261,25 @@ Page({
       //       var as = linkSplit[i].split(aSplit[0]+"/>");
       //       richText = richText + as[1];
       //     }
-      //     console.log(richText)
-      //     WxParse.wxParse("article",'html',richText,_this,0)
+      //     let a=richText.split("<img")
+      //     var srcText=a[0]
+      //     for (let i = 1; i < a.length; i++) {
+      //       let b = a[i].split(">");   
+      //       let inner=b[0];
+      //       let afi=a[i].split(inner)
+      //       let pattern1 = /data-src=([' "])[^ ' "]*\1/;
+      //       let dataSrc = inner.match(pattern1);
+      //       if(dataSrc==null){
+      //         srcText=srcText+"<img"+inner+afi[1];
+      //       }
+      //       else{
+      //         let d=dataSrc[0]
+      //         let dataInner='src="'+d.substr(10,d.length-11)+'"'
+      //         let replaceInner=inner.replace(/src=([' "])[^ ' "]*\1/g, dataInner);
+      //         srcText=srcText+"<img"+replaceInner+afi[1];
+      //       }
+      //     }
+      //     WxParse.wxParse("article", 'html', srcText,_this,0)
       //   }
       // })
       p2.then(function(results) {
@@ -529,5 +516,12 @@ Page({
       wx.navigateTo({
         url: '/pages/SignupHomepage/SignupHomepage?actId=' + _this.data.actId + "&select_name=" + _this.data.select_name + "&select_phone_number=" + _this.data.select_phone_number + "&select_gender=" + _this.data.select_gender + "&select_college=" + _this.data.select_college + "&select_grade=" + _this.data.select_grade + "&requirement=" + JSON.stringify(_this.data.requirement)
       })
+  },
+  previewImg:function(e){
+    let id = e.target.id
+    wx.previewImage({
+      current: app.globalData.url+this.data.lists[e.target.id].inner, // 当前显示图片的http链接
+      urls: [app.globalData.url + this.data.lists[e.target.id].inner] // 需要预览的图片http链接列表
+    })
   }
 })

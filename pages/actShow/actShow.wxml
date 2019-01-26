@@ -34,12 +34,12 @@
       <view style='clear:both;'></view>
     </view>
     <view class='main-content'>
-    <!-- <rich-text nodes="{{testhtml}}"></rich-text> -->
+    <!-- <web-view src="https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html"></web-view> -->
     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
-        <text wx:if="{{item.type=='title'}}" class='content-title'>{{item.inner}}</text>
-        <text wx:if="{{item.type=='text'}}" style="'color':{{item.color}}!important,'text-align':{{item.align}},'text-decoration':{{item.text_decoration}},'font-weight':{{item.font_weight}},'font-style':{{item.font_style}}"      class='content-text'>{{item.inner}}</text>
-        <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img'></image>
+        <text wx:if="{{item.type=='title'}}" class='content-title' selectable="true">{{item.inner}}</text>
+        <text wx:if="{{item.type=='text'}}" style="'color':{{item.color}}!important,'text-align':{{item.align}},'text-decoration':{{item.text_decoration}},'font-weight':{{item.font_weight}},'font-style':{{item.font_style}}" class='content-text' selectable="true">{{item.inner}}</text>
+        <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img' bindtap='previewImg' id="{{index}}"></image>
       </view>
     </view>
     <view class='report' bindtap='reportAct'>举报</view>
@@ -54,7 +54,7 @@
           </view>
           <view style='clear:both;'></view>
         </view>
-        <text class='comment-index'>{{item.index}}</text>
+        <text class='comment-index' selectable="true">{{item.index}}</text>
       </view>
     </view>
     <view class='buttom-fixed-item'>

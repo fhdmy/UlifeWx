@@ -227,5 +227,12 @@ Page({
     _this.setData({
       scrollTop: 480 + "rpx"
     })
+  },
+  previewImg: function (e) {
+    let id = e.target.id
+    wx.previewImage({
+      current: app.globalData.url + this.data.lists[e.target.id].inner, // 当前显示图片的http链接
+      urls: [app.globalData.url + this.data.lists[e.target.id].inner] // 需要预览的图片http链接列表
+    })
   }
 })
