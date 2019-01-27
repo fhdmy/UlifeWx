@@ -34,6 +34,20 @@
   top: 10rpx;
 }
 
+.act-heading text{
+  white-space:nowrap;
+  overflow:hidden;
+  max-width: 520rpx;
+  text-overflow:ellipsis;
+  display: block;
+  float: left;
+}
+
+.act-heading i{
+  margin-left: 10rpx;
+  float: left;
+}
+
 .act-time-place{
   width:564rpx;
   height: 120rpx;

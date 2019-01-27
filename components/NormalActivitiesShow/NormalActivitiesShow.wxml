@@ -2,9 +2,11 @@
   <view class='activities-wrapper'>
     <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item">
       <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct' id="{{item.acturl}}"></image>
-        <view class='act-heading' bindtap='openAct' id="{{item.acturl}}">{{item.heading}}
+        <view class='act-heading' bindtap='openAct' id="{{item.acturl}}">
+        <text>{{item.heading}}</text>
           <!-- 用pageType判断使用该组件的页面是否是”排行榜“，如果是，显示以下图标，icon-shuzi1,icon-shuzi2等依次为1，2，3..的图标  -->
           <i class="iconfont icon-shuzi{{index+1}} act-rank-icon" wx:if="{{pageType=='actRank'}}"></i>
+          <view style='clear:both;'></view>
         </view>
         <view class='act-time-place' bindtap='openAct' id="{{item.acturl}}">
           <view class="time-place-inner">
