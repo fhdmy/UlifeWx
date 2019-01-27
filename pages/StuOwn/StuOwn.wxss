@@ -115,3 +115,11 @@ page {
   flex-grow:10;
   width: 100rpx;
 }
+
+.un-read-icon{
+  font-size: 20rpx!important;
+  position: absolute;
+  top:5rpx;
+  right:100rpx;
+  color: #E03636;
+}

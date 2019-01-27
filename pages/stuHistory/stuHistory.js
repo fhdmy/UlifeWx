@@ -5,7 +5,7 @@ var md5 = require('../../utils/MD5.js')
 Page({
   data: {
     navH: 0,
-    choosen:0,
+    choosen: 0,
     loading: false,
     activities1: [],
     moresignupacts1: "",
@@ -75,13 +75,13 @@ Page({
       })
     })
   },
-  chooseTab0:function(){
+  chooseTab0: function () {
     this.setData({
-      choosen:0
+      choosen: 0
     })
   },
   chooseTab1: function () {
-    let _this=this;
+    let _this = this;
     _this.setData({
       choosen: 1
     })
@@ -101,7 +101,7 @@ Page({
         }
       })
     }
-    if(_this.data.activities2.length==0){
+    if (_this.data.activities2.length == 0) {
       _this.setData({
         loading: true
       })
@@ -148,7 +148,7 @@ Page({
           }
         })
       })
-      p2.then(function(results){
+      p2.then(function (results) {
         _this.setData({
           loading: false
         })
@@ -158,7 +158,7 @@ Page({
   scrollBottom: function () {
     let _this = this;
     //历史浏览
-    if(_this.data.choosen==0){
+    if (_this.data.choosen == 0) {
       if (_this.data.signupmax1 == _this.data.presentsignup1 || _this.data.scroll == true)
         return;
       //更多活动
@@ -216,7 +216,7 @@ Page({
       })
     }
     // 历史参加
-    else{
+    else {
       if (_this.data.signupmax2 == _this.data.presentsignup2 || _this.data.scroll == true)
         return;
       //更多活动
@@ -274,7 +274,7 @@ Page({
       })
     }
   },
-  clearView:function(){
+  clearView: function () {
     let _this = this;
     _this.setData({
       loading: true
@@ -290,7 +290,11 @@ Page({
         'stu_id': stuId
       },
       complete: (res) => {
-        if(res.statusCode!=204){
+        wx.showToast({
+          title: 'test！',
+          image: '/images/about.png'
+        })
+        if (res.statusCode != 204) {
           _this.setData({
             loading: false
           })
@@ -299,7 +303,7 @@ Page({
             image: '/images/about.png'
           })
         }
-        else{
+        else {
           _this.setData({
             activities1: 0,
             presentsignup1: 0,
@@ -310,7 +314,7 @@ Page({
       }
     })
   },
-  clearAttend:function(){
+  clearAttend: function () {
     let _this = this;
     _this.setData({
       loading: true
@@ -326,13 +330,23 @@ Page({
         'stu_id': stuId
       },
       complete: (res) => {
-        console.log(res)
-        _this.setData({
-          activities2: 0,
-          presentsignup2: 0,
-          signupmax2: 0,
-          loading: false
-        })
+        if (res.statusCode != 204) {
+          _this.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: '网络传输故障！',
+            image: '/images/about.png'
+          })
+        }
+        else {
+          _this.setData({
+            activities2: 0,
+            presentsignup2: 0,
+            signupmax2: 0,
+            loading: false
+          })
+        }
       }
     })
   }

@@ -1,7 +1,7 @@
 //获取应用实例
 const app = getApp()
 var md5 = require('../../utils/MD5.js')
-var WxParse = require('../../utils/wxParse/wxParse.js');
+// var WxParse = require('../../utils/wxParse/wxParse.js');
 
 Page({
   data: {
@@ -28,7 +28,7 @@ Page({
     select_college: true,
     select_grade: true,
     lists: [],
-    linkhtml: "",
+    linkhtml: "https://ulife.org.cn",
     ended: false,
     link: false,
     comment: [],

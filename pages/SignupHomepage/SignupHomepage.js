@@ -99,6 +99,7 @@ Page({
             let ifo = ['', '', '', '', '']
             ifo[0] = res.data.realname;
             ifo[1] = res.data.phone_number;
+            _this.data.originPhone = res.data.phone_number;
             let gender = res.data.gender;
             switch (gender) {
               case 'female':
@@ -255,13 +256,7 @@ Page({
         phone_number: _this.data.ifo[1]
       },
       complete: (res) => {
-        if (res.data == "Phone number already exists") {
-          wx.showToast({
-            title: '手机号已存在！',
-            image: '/images/about.png'
-          })
-        }
-        else if (res.statusCode != 200) {
+        if (res.statusCode != 200) {
           wx.showToast({
             title: '网络传输故障！',
             image: '/images/about.png'

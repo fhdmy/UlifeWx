@@ -54,7 +54,10 @@ App({
             _this.globalData.type = "none";
             wx.clearStorageSync();
           } else if (res.statusCode != 200) {
-            console.log(res)
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
           } else {
             _this.globalData.isLogin=true;
             _this.globalData.uid=res.data.user;
@@ -64,6 +67,11 @@ App({
             wx.setStorageSync(md5.hex_md5("avatar"), _this.globalData.avatar);
             _this.globalData.name = res.data.nickname;
             wx.setStorageSync(md5.hex_md5("name"), res.data.nickname);
+            if(_this.globalData.inbox_count>0){
+              wx.showTabBarRedDot({
+                index: 2,
+              })
+            }
           }
         }
       })
@@ -81,7 +89,10 @@ App({
             _this.globalData.type = "none";
             wx.clearStorageSync();
           } else if (res.statusCode != 200) {
-            console.log(res)
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
           } else {
             _this.globalData.isLogin=true;
             wx.setStorageSync(md5.hex_md5("uid"), res.data.user);
@@ -91,6 +102,11 @@ App({
             wx.setStorageSync(md5.hex_md5("avatar"), _this.globalData.avatar);
             _this.globalData.name = res.data.org_name;
             wx.setStorageSync(md5.hex_md5("name"), _this.globalData.org_name);
+            if (_this.globalData.inbox_count > 0) {
+              wx.showTabBarRedDot({
+                index: 2,
+              })
+            }
           }
         }
       })

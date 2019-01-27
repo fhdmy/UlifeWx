@@ -5,7 +5,7 @@
     <!--这里放你的内容-->
     <text class="recent-activities">每周·组织推荐</text> 
     <view class='org-recommand'>
-      <image src='{{target.avatar}}' bindtap='openOrg' id="{{org_id}}"></image>
+      <image src='{{target.avatar}}' bindtap='openOrg' id="{{target.orgId}}"></image>
       <text>{{target.index}}</text>
       <view style='clear:both;'></view>
     </view>  

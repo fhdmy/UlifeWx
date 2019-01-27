@@ -27,7 +27,8 @@
         <i class="iconfont icon-guanzhu"></i>
         <text>关注</text>
       </view>
-      <view class='tab-item' bindtap='toStuMsg'>
+      <view class='tab-item' bindtap='toStuMsg' style="position:relative;">
+        <i class="iconfont icon-dian un-read-icon" wx:if="{{redDot}}"></i>
         <i class="iconfont icon-wodexiaoxi"></i>
         <text>消息</text>
       </view>
@@ -56,6 +57,11 @@
       <view class='ver-item' bindtap='toAbout'>
         <i class="iconfont icon-guanyuwomen ver-icon1"></i>
         <text>关于</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item' bindtap='websit'>
+        <i class="iconfont icon-wangzhan ver-icon1"></i>
+        <text>网站</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
       </view>
     </view>

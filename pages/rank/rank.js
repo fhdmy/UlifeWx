@@ -5,7 +5,7 @@ Page({
   data: {
     navH: 0,
     target: {
-      org_id: 0,
+      orgId: 0,
       avatar: "",
       index: "",
       org_name: ""
@@ -41,7 +41,7 @@ Page({
             if (res.data != "No recommendation") {
               _this.setData({
                 target: {
-                  org_id: res.data.org.id,
+                  orgId: res.data.org.id,
                   avatar: app.globalData.url + res.data.org.avatar + '.thumbnail.2.jpg',
                   index: res.data.index,
                   org_name: res.data.org_name
@@ -131,7 +131,7 @@ Page({
   },
   openOrg: function(e) {
     wx.navigateTo({
-      url: '/pages/orgDisplay/orgDisplay?orgId='+e.target.id,
+      url: '/pages/orgDisplay/orgDisplay?orgId=' + e.currentTarget.id,
     })
   }
 })

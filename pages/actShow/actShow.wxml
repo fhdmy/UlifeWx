@@ -1,4 +1,4 @@
-<import src="../../utils/wxParse/wxParse.wxml"/>
+<!-- <import src="../../utils/wxParse/wxParse.wxml"/> -->
 <view class='view-page'>
   <wxs module="calStars" src="./calStars.wxs"></wxs>  
   <navbar page-name="{{heading}}" pageType="backButton"></navbar>
@@ -35,7 +35,11 @@
     </view>
     <view class='main-content'>
     <!-- <web-view src="https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html"></web-view> -->
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+      <view wx:if="{{link}}">
+        <text class="link-otext">很抱歉，目前微信推文无法直接显示在小程序内，麻烦复制下方链接在浏览器中打开。</text>   
+        <view class='link-html-text' selectable="true">{{linkhtml}}</view>  
+      </view>
       <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
         <text wx:if="{{item.type=='title'}}" class='content-title' selectable="true">{{item.inner}}</text>
         <text wx:if="{{item.type=='text'}}" style="'color':{{item.color}}!important,'text-align':{{item.align}},'text-decoration':{{item.text_decoration}},'font-weight':{{item.font_weight}},'font-style':{{item.font_style}}" class='content-text' selectable="true">{{item.inner}}</text>

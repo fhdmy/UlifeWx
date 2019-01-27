@@ -1,5 +1,5 @@
 @import"../../iconfont/iconfont.wxss";
-@import"../../utils/wxParse/wxParse.wxss";
+/* @import"../../utils/wxParse/wxParse.wxss"; */
 page {
   height: 100%;
   position: relative;
@@ -255,4 +255,19 @@ page {
   max-width: 100%;
   margin-bottom: 30rpx;
   display: block;
+}
+
+.link-otext{
+  color: #0066FF;
+  display: block;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.link-html-text{
+  color: #484848;
+  font-size: 30rpx;
+  width: 670rpx;
+  display: block;
+  word-break: break-all;
 }

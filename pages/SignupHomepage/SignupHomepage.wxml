@@ -3,7 +3,7 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <modal hidden="{{hiddenmodalput}}" title="验证手机" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
-<input type='text'placeholder="请输入验证码" auto-focus bindinput='inputConfirm' class='cfm-input'/>  
+<input type='text'placeholder="请输入验证码" bindinput='inputConfirm' class='cfm-input'/>  
 <button class='cfm-button {{clock>0?"unable-touch":""}}' size='mini' bindtap='getConfirm'>获得验证码<text wx:if="{{clock>0}}">({{clock}}s)</text></button>
 <view style='clear:both;'></view>
 </modal>  

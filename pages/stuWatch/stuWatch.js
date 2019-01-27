@@ -5,27 +5,27 @@ var md5 = require('../../utils/MD5.js')
 Page({
   data: {
     navH: 0,
-    choosen:0,
+    choosen: 0,
     loading: false,
     activities: [],
     moresignupacts: "",
     presentsignup: 0,
     signupmax: 0,
     scroll: false,
-    watcher:[]
+    watcher: []
   },
   onLoad: function (options) {
     let _this = this;
-    let id = wx.getStorageSync(md5.hex_md5("user_url"));
     _this.setData({
       navH: app.globalData.navbarHeight
     })
     _this.setData({
       loading: true
     })
-    let p1 = new Promise(function (resolve, reject) {
+    let id = wx.getStorageSync(md5.hex_md5("user_url"))
+    let p2 = new Promise(function (resolve, reject) {
       wx.request({
-        url: app.globalData.url + '/activity/activities/?owner__in=' + id,
+        url: app.globalData.url + '/account/watchings/?watcher=' + id,
         header: {
           "Authorization": app.globalData.token
         },
@@ -35,46 +35,87 @@ Page({
               title: '网络传输故障！',
               image: '/images/about.png'
             })
-            resolve(1)
+            resolve(2);
           }
           else {
-            for (let k = 0; k < res.data.results.length; k++) {
-              // 设置数组
-              let computeddate = res.data.results[k].start_at.split('T');
-              let sacts = "activities[" + k + "]";
+            for (let k = 0; k < res.data.length; k++) {
+              let wter = "watcher[" + k + "]";
               _this.setData({
-                [sacts]: {
-                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
-                  heading: res.data.results[k].heading,
-                  date: computeddate[0],
-                  location: res.data.results[k].location,
-                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
-                  isover: false,
-                  acturl: res.data.results[k].id,
-                  org_id: res.data.results[k].owner.id,
-                  is_ended: res.data.results[k].is_ended,
+                [wter]: {
+                  orgavatar: app.globalData.url + res.data[k].target.avatar + '.thumbnail.1.jpg',
+                  orgname: res.data[k].target.org_name,
+                  orgid: res.data[k].target.id,
+                  watchId: res.data[k].id
                 }
               })
             }
-            _this.setData({
-              moresignupacts: res.data.next,
-              presentsignup: res.data.results.length,
-              signupmax: res.data.count
-            })
-            resolve(1)
+            resolve(2);
           }
         }
       })
     })
-    p1.then(function (results) {
-      _this.setData({
-        loading: false
+    p2.then(function(results){
+      let p1 = new Promise(function (resolve, reject) {
+        let ids = "";
+        for (let j = 0; j < _this.data.watcher.length; j++) {
+          if (j == _this.data.watcher.length - 1) {
+            ids = ids + _this.data.watcher[j].orgid;
+            break;
+          }
+          ids = ids + _this.data.watcher[j].orgid + ',';
+        }
+        wx.request({
+          url: app.globalData.url + '/activity/activities/?owner__in=' + ids,
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete: (res) => {
+            if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障！',
+                image: '/images/about.png'
+              })
+              resolve(1)
+            }
+            else {
+              for (let k = 0; k < res.data.results.length; k++) {
+                // 设置数组
+                let computeddate = res.data.results[k].start_at.split('T');
+                let sacts = "activities[" + k + "]";
+                _this.setData({
+                  [sacts]: {
+                    head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                    heading: res.data.results[k].heading,
+                    date: computeddate[0],
+                    location: res.data.results[k].location,
+                    orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                    isover: false,
+                    acturl: res.data.results[k].id,
+                    org_id: res.data.results[k].owner.id,
+                    is_ended: res.data.results[k].is_ended,
+                  }
+                })
+              }
+              _this.setData({
+                moresignupacts: res.data.next,
+                presentsignup: res.data.results.length,
+                signupmax: res.data.count
+              })
+              resolve(1)
+            }
+          }
+        })
+      })
+      p1.then(function (results) {
+        _this.setData({
+          loading: false
+        })
       })
     })
   },
   scrollBottom: function () {
     let _this = this;
-    if (_this.data.signupmax == _this.data.presentsignup || _this.data.scroll == true)
+    if (_this.data.signupmax == _this.data.presentsignup || _this.data.scroll == true || _this.data.choosen==1)
       return;
     //更多活动
     _this.setData({
@@ -130,65 +171,23 @@ Page({
       })
     })
   },
-  chooseTab0:function(){
+  chooseTab0: function () {
     this.setData({
-      choosen:0
+      choosen: 0
     })
   },
   chooseTab1: function () {
-    let _this=this;
+    let _this = this;
     _this.setData({
       choosen: 1
     })
-    if(_this.data.watcher.length==0){
-      _this.setData({
-        loading:true
-      })
-      let id = wx.getStorageSync(md5.hex_md5("user_url"))
-      let p2=new Promise(function(resolve,reject){
-        wx.request({
-          url: app.globalData.url + '/account/watchings/?watcher=' + id,
-          header: {
-            "Authorization": app.globalData.token
-          },
-          complete: (res) => {
-            if(res.statusCode!=200){
-              wx.showToast({
-                title: '网络传输故障！',
-                image: '/images/about.png'
-              })
-              resolve(2);
-            }
-            else{
-              for (let k = 0; k < res.data.length; k++) {
-                let wter = "watcher[" + k + "]";
-                _this.setData({
-                  [wter]: {
-                    orgavatar: app.globalData.url + res.data[k].target.avatar + '.thumbnail.1.jpg',
-                    orgname: res.data[k].target.org_name,
-                    orgid: res.data[k].target.id,
-                    watchId:res.data[k].id
-                  }
-                })
-              }
-              resolve(2);
-            }
-          }
-        })
-      })
-      p2.then(function(results){
-        _this.setData({
-          loading:false
-        })
-      })
-    }
   },
-  cancelWatch:function(e){
-    let _this=this;
-    let id=e.target.id;
-    let spt=id.split("-");
-    let index=spt[1];
-    let watchId=spt[0];
+  cancelWatch: function (e) {
+    let _this = this;
+    let id = e.target.id;
+    let spt = id.split("-");
+    let index = spt[1];
+    let watchId = spt[0];
     wx.showModal({
       content: '你真的想取消关注吗？',
       confirmText: '确定',
@@ -203,11 +202,11 @@ Page({
       }
     })
   },
-  cancelWatchRequest:function(index,watchId){
-   let _this=this;
-   _this.setData({
-     loading:false
-   })
+  cancelWatchRequest: function (index, watchId) {
+    let _this = this;
+    _this.setData({
+      loading: false
+    })
     wx.request({
       url: app.globalData.url + '/account/watchings/' + watchId,
       method: "DELETE",
@@ -224,17 +223,17 @@ Page({
             image: '/images/about.png'
           })
         } else {
-          let temp=_this.data.watcher;
-          temp.splice(index,1);
+          let temp = _this.data.watcher;
+          temp.splice(index, 1);
           _this.setData({
             watcher: temp,
-            loading:false
+            loading: false
           })
         }
       }
     })
   },
-  openOrg:function(e){
+  openOrg: function (e) {
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
     })

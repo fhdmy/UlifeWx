@@ -60,6 +60,7 @@ Page({
               if (res.data.results[k].sender.is_staff == true) {
                 nickname = '系统消息';
                 avatar = '/images/system_message.png';
+                id=-1;
               }
               let computeddate = res.data.results[k].sent_at.split('T');
               msg_id = res.data.results[k].id;
@@ -143,6 +144,7 @@ Page({
               if (res.data.results[k].sender.is_staff == true) {
                 nickname = '系统消息';
                 avatar = '/images/system_message.png';
+                id=-1;
               }
               let computeddate = res.data.results[k].sent_at.split('T');
               msg_id = res.data.results[k].id;
@@ -181,6 +183,8 @@ Page({
     })
   },
   openOrg: function (e) {
+    if(e.target.id==-1)
+      return;
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
     })
@@ -202,31 +206,23 @@ Page({
       })
     }
     else{
+      let list = (_this.data.msg[id].is_read == true) ? ['删除'] : ['标记已读', '删除']
       wx.showActionSheet({
-        itemList: ['标记已读', '删除'],
+        itemList: list,
         success(e) {
-          if (e.tapIndex == 0)
-            _this.tagRead(id);
-          else
-            _this.deleteMsg(id);
+          if (_this.data.msg[id].is_read==true){
+            if (e.tapIndex == 0)
+              _this.deleteMsg(id);
+          }
+          else{
+            if (e.tapIndex == 0)
+              _this.tagReadRequest(id);
+            else
+              _this.deleteMsg(id);
+          }
         }
       })  
     }
-  },
-  tagRead:function(id){
-    let _this=this;
-    wx.showModal({
-      content: '标记为已读吗？',
-      confirmText: '确定',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          _this.tagReadRequest(id);
-        } else if (res.cancel) {
-          console.log('取消按钮')
-        }
-      }
-    })
   },
   sliderchange:function(e){
     let st ="setStar["+e.target.id+"]";
@@ -270,6 +266,7 @@ Page({
         } else {
           let temp=_this.data.msg;
           temp.splice(id,1);
+          app.globalData.inbox_count--;
           _this.setData({
             msg:temp,
             loading: false
@@ -308,7 +305,6 @@ Page({
         "Authorization": app.globalData.token
       },
       complete:(res)=>{
-        console.log(res)
         if(res.statusCode!=200){
           wx.showToast({
             title: '网络传输故障！',
@@ -319,6 +315,7 @@ Page({
           _this.setData({
             [m]:true
           })
+          app.globalData.inbox_count--;
         }
       }
     })
@@ -343,6 +340,9 @@ Page({
           _this.setData({
             msg:temp
           })
+          if (!_this.data.msg[id].is_read){
+            app.globalData.inbox_count--;
+          }
         }
       }
     })

@@ -9,7 +9,8 @@ Page({
     studentAvatar:"",
     isLogin:false,
     qrUrl:"",
-    loading:false
+    loading:false,
+    redDot:false
   },
   onShow: function (options) {
     let _this=this;
@@ -19,6 +20,22 @@ Page({
       studentAvatar:app.globalData.avatar,
       nickName:app.globalData.name
     })
+    if (app.globalData.inbox_count>0){
+      wx.showTabBarRedDot({
+        index: 2,
+      })
+      _this.setData({
+        redDot:true
+      })
+    }
+    else{
+      wx.hideTabBarRedDot({
+        index: 2,
+      })
+      _this.setData({
+        redDot: false
+      })
+    }
   },
   editInform:function(){
     wx.navigateTo({
@@ -103,6 +120,13 @@ Page({
   qrCodeMsg:function(e){
     this.setData({
       qrUrl:e.detail.qrCode
+    })
+  },
+  websit:function(e){
+    wx.showModal({
+      title: 'Ulife网站',
+      content: 'https://ulife.org.cn（建议在pc上打开）',
+      showCancel:false
     })
   }
 })

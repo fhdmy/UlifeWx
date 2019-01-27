@@ -17,7 +17,7 @@ Component({
   methods: {
     openAct:function(e){  //打开活动界面
       wx.navigateTo({
-        url: '/pages/actShow/actShow?actId='+e.target.id,
+        url: '/pages/actShow/actShow?actId=' + e.currentTarget.id,
       })
     },
     openOrg:function(e){  //打开组织界面

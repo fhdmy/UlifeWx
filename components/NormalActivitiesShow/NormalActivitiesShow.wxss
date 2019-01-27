@@ -39,6 +39,7 @@
   height: 120rpx;
   float: left;
   margin-top: 8rpx;
+  position: relative;
 }
 
 .date-place{
@@ -74,4 +75,12 @@
 
 .act-rank-icon{
   color: #FE9246;
+}
+
+.finish-img{
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  bottom: 15rpx;
+  right: 20rpx;
 }
