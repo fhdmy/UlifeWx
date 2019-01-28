@@ -328,6 +328,24 @@ Page({
   },
   confirmSave() {
     let _this = this;
+    if (_this.data.answer.length != _this.data.requirement.length) {
+      wx.showToast({
+        title: '信息未填写完整！',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    for (let k = 0; k < _this.data.requirement.length; k++) {
+      if (_this.data.requirement[k].type == 'text') {
+        if (_this.data.answer[k] == null || _this.data.answer[k] == "" || _this.data.answer[k] == undefined) {
+          wx.showToast({
+            title: '信息未填写完整！',
+            image: '/images/about.png'
+          })
+          return;
+        }
+      }
+    }
     if (_this.data.ifo[1].length > 0 && _this.data.ifo[1] != _this.data.originPhone) {
       const pattern = /^1(3|4|5|7|8)\d{9}$/;
       if (pattern.test(_this.data.ifo[1]) == false) {
