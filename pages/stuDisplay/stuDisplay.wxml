@@ -1,6 +1,6 @@
 <view class='view-page'>
   <navbar page-name="{{stu}}的个人空间" pageType="stuDisplay" displayAvatar="{{stuAvatar}}"></navbar>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
@@ -26,7 +26,7 @@
           <view style='clear:both;'></view>
         </view>
         <view class='dynamic' wx:if="{{showItem}}">
-          <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+          <NormalActivitiesShow activities="{{activities1}}"></NormalActivitiesShow>
         </view>
         <view class='abstract-title' wx:if="{{!showItem}}">
           <text class='abstract-title-left'>TA参与的活动</text>
@@ -34,8 +34,8 @@
           <view style='clear:both;'></view>
         </view>
       <view class='dynamic' wx:if="{{!showItem}}">
-        <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+        <NormalActivitiesShow activities="{{activities2}}"></NormalActivitiesShow>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

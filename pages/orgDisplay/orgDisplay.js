@@ -17,25 +17,12 @@ Page({
     star: 2,
     actNum: 0,
     lists: [],
-    activities: [{
-        head_img: "/test/3.jpg",
-        heading: "ISHARE真人图书馆",
-        date: "2018年1月5日",
-        time: "15:00",
-        location: "东区平台",
-        orgAvatar: "/test/suselogo.jpg"
-      },
-      {
-        head_img: "/test/5.jpg",
-        heading: "ISHARE真人图书馆",
-        date: "2018年1月5日",
-        time: "15:00",
-        location: "东区平台",
-        orgAvatar: "/test/suselogo.jpg"
-      }
-    ],
+    activities:[],
     hasWatched: false,
-    watchUrl:""
+    watchUrl:"",
+    moremyacts: "",
+    presentmyacts: 0,
+    myactsmax: 0
   },
   onLoad: function(options) {
     let _this = this;
@@ -107,7 +94,47 @@ Page({
         }
       })
     })
-    Promise.all([p1,p2]).then(function(results) {
+    let p3=new Promise(function(resolve,reject){
+      wx.request({
+        url: app.globalData.url + '/activity/activities/?owner=' + options.orgId + '&is_published=True',
+        header: {
+          "Authorization": app.globalDatatoken
+        },
+        complete:(res)=>{
+          if(res.statusCode!=200){
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            resolve(3)
+          }else{
+            for (let k = 0; k < res.data.results.length; k++) {
+              let computeddate = res.data.results[k].start_at.split('T');
+              let ac="activities["+k+"]";
+              _this.setData({
+                [ac]:{
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
+                  heading: res.data.results[k].heading,
+                  date: computeddate[0],
+                  location: res.data.results[k].location,
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
+                  isover: false,
+                  acturl: res.data.results[k].id,
+                  is_ended: res.data.results[k].is_ended,
+                }
+              })
+            }
+            _this.setData({
+              moremyacts : res.data.next,
+              presentmyacts : res.data.results.length,
+              myactsmax : res.data.count
+            })
+            resolve(3)
+          }
+        }
+      })
+    })
+    Promise.all([p1,p2,p3]).then(function(results) {
       // 添加访客
       if (app.globalData.token != "" && app.globalData.uid != _this.data.orgId) {
         wx.request({
@@ -234,5 +261,62 @@ Page({
       current: app.globalData.url + this.data.lists[e.target.id].inner, // 当前显示图片的http链接
       urls: [app.globalData.url + this.data.lists[e.target.id].inner] // 需要预览的图片http链接列表
     })
-  }
+  },
+  scrollBottom: function () {
+    let _this = this;
+    if (_this.data.myactsmax == _this.data.presentmyacts || _this.data.scroll == true)
+      return;
+    //更多活动
+    _this.setData({
+      loading: true,
+      scroll: true
+    })
+    var pm = new Promise(function (resolve, reject) {
+      wx.request({
+        url: _this.data.moremyacts,
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障！',
+              image: '/images/about.png'
+            })
+            resolve("pm");
+          }
+          else {
+            for (let k = 0; k < res.data.results.length; k++) {
+              // 设置数组
+              var computeddate = res.data.results[k].start_at.split('T');
+              let actner = "activities[" + parseInt(_this.data.presentmyacts + k) + "]";
+              _this.setData({
+                [actner]: {
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
+                  heading: res.data.results[k].heading,
+                  date: computeddate[0],
+                  location: res.data.results[k].location,
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
+                  isover: false,
+                  acturl: res.data.results[k].id,
+                  is_ended: res.data.results[k].is_ended,
+                },
+              })
+            }
+            _this.setData({
+              moremyacts: res.data.next,
+              presentmyacts: (res.data.results.length + _this.data.presentmyacts)
+            })
+            resolve("pm");
+          }
+        }
+      })
+    })
+    pm.then(function (results) {
+      _this.setData({
+        loading: false,
+        scroll: false
+      })
+    })
+  },
 })

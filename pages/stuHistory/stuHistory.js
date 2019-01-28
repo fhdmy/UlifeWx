@@ -47,11 +47,11 @@ Page({
               let sacts = "activities1[" + k + "]";
               _this.setData({
                 [sacts]: {
-                  head_img: app.globalData.url + res.data.results[k].target.head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data.results[k].target.head_img + '.thumbnail.2.jpg',
                   heading: res.data.results[k].target.heading,
                   date: computeddate[0],
                   location: res.data.results[k].target.location,
-                  orgavatar: app.globalData.url + res.data.results[k].target.owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data.results[k].target.owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].target.id,
                   org_id: res.data.results[k].target.owner.id,
@@ -126,11 +126,11 @@ Page({
                 let sacts = "activities2[" + k + "]";
                 _this.setData({
                   [sacts]: {
-                    head_img: app.globalData.url + res.data.results[k].activity.head_img + '.thumbnail.0.jpg',
+                    head_img: app.globalData.url + res.data.results[k].activity.head_img + '.thumbnail.2.jpg',
                     heading: res.data.results[k].activity.heading,
                     date: computeddate[0],
                     location: res.data.results[k].activity.location,
-                    orgavatar: app.globalData.url + res.data.results[k].activity.owner.avatar + '.thumbnail.2.jpg',
+                    orgavatar: app.globalData.url + res.data.results[k].activity.owner.avatar,
                     isover: false,
                     acturl: res.data.results[k].activity.id,
                     org_id: res.data.results[k].activity.owner.id,
@@ -187,11 +187,11 @@ Page({
                 let actner = "activities1[" + parseInt(_this.data.presentsignup1 + k) + "]";
                 _this.setData({
                   [actner]: {
-                    head_img: app.globalData.url + res.data.results[k].target.head_img + '.thumbnail.0.jpg',
+                    head_img: app.globalData.url + res.data.results[k].target.head_img + '.thumbnail.2.jpg',
                     heading: res.data.results[k].target.heading,
                     date: computeddate[0],
                     location: res.data.results[k].target.location,
-                    orgavatar: app.globalData.url + res.data.results[k].target.owner.avatar + '.thumbnail.2.jpg',
+                    orgavatar: app.globalData.url + res.data.results[k].target.owner.avatar,
                     isover: false,
                     acturl: res.data.results[k].target.id,
                     org_id: res.data.results[k].target.owner.id,
@@ -245,11 +245,11 @@ Page({
                 let actner = "activities2[" + parseInt(_this.data.presentsignup2 + k) + "]";
                 _this.setData({
                   [actner]: {
-                    head_img: app.globalData.url + res.data.results[k].activity.head_img + '.thumbnail.0.jpg',
+                    head_img: app.globalData.url + res.data.results[k].activity.head_img + '.thumbnail.2.jpg',
                     heading: res.data.results[k].activity.heading,
                     date: computeddate[0],
                     location: res.data.results[k].activity.location,
-                    orgavatar: app.globalData.url + res.data.results[k].activity.owner.avatar + '.thumbnail.2.jpg',
+                    orgavatar: app.globalData.url + res.data.results[k].activity.owner.avatar,
                     isover: false,
                     acturl: res.data.results[k].activity.id,
                     org_id: res.data.results[k].activity.owner.id,

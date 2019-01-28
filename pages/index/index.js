@@ -43,11 +43,11 @@ Page({
               var acontainer = "actcontainer[" + k + ']';
               _this.setData({
                 [acontainer]: {
-                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                   heading: res.data.results[k].heading,
                   date: computeddate[0],
                   location: res.data.results[k].location,
-                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
                   org_id: res.data.results[k].owner.id,
@@ -83,7 +83,7 @@ Page({
               var ccontainer = "carouselcontainer[" + k + "]";
               _this.setData({
                 [ccontainer]: {
-                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.1.jpg',
+                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.2.jpg',
                   number: k,
                   acturl: res.data[k].id,
                   heading: res.data[k].heading
@@ -131,11 +131,11 @@ Page({
               let actner = "actcontainer[" + parseInt(_this.data.presentacts + k) + "]";
               _this.setData({
                 [actner]: {
-                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                   heading: res.data.results[k].heading,
                   date: computeddate[0],
                   location: res.data.results[k].location,
-                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
                   org_id: res.data.results[k].owner.id,

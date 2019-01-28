@@ -42,7 +42,7 @@ Page({
               let wter = "watcher[" + k + "]";
               _this.setData({
                 [wter]: {
-                  orgavatar: app.globalData.url + res.data[k].target.avatar + '.thumbnail.1.jpg',
+                  orgavatar: app.globalData.url + res.data[k].target.avatar,
                   orgname: res.data[k].target.org_name,
                   orgid: res.data[k].target.id,
                   watchId: res.data[k].id
@@ -84,11 +84,11 @@ Page({
                 let sacts = "activities[" + k + "]";
                 _this.setData({
                   [sacts]: {
-                    head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                    head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                     heading: res.data.results[k].heading,
                     date: computeddate[0],
                     location: res.data.results[k].location,
-                    orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                    orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                     isover: false,
                     acturl: res.data.results[k].id,
                     org_id: res.data.results[k].owner.id,
@@ -143,11 +143,11 @@ Page({
               let actner = "activities[" + parseInt(_this.data.presentsignup + k) + "]";
               _this.setData({
                 [actner]: {
-                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                   heading: res.data.results[k].heading,
                   date: computeddate[0],
                   location: res.data.results[k].location,
-                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
                   org_id: res.data.results[k].owner.id,

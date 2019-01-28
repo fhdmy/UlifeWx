@@ -42,7 +42,7 @@ Page({
               _this.setData({
                 target: {
                   orgId: res.data.org.id,
-                  avatar: app.globalData.url + res.data.org.avatar + '.thumbnail.2.jpg',
+                  avatar: app.globalData.url + res.data.org.avatar,
                   index: res.data.index,
                   org_name: res.data.org_name
                 }
@@ -75,7 +75,7 @@ Page({
                 [orank]: {
                   org_name: res.data[j].org_name,
                   stars: res.data[j].stars,
-                  avatar: app.globalData.url + res.data[j].avatar + '.thumbnail.3.jpg',
+                  avatar: app.globalData.url + res.data[j].avatar,
                   org_id: res.data[j].id
                 }
               });
@@ -106,11 +106,11 @@ Page({
               let acrank = "activity_rank[" + k + "]";
               _this.setData({
                 [acrank]: {
-                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data[k].head_img + '.thumbnail.2.jpg',
                   heading: res.data[k].heading,
                   date: computeddate[0],
                   location: res.data[k].location,
-                  orgavatar: app.globalData.url + res.data[k].owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data[k].owner.avatar,
                   isover: false,
                   acturl: res.data[k].id,
                   org_id: res.data[k].owner.id,

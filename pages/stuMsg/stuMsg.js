@@ -129,14 +129,14 @@ Page({
               reminder_act_id = (res.data.results[k]._type == 'reminder') ? res.data.results[k].reminder_act_id : null;
               // 组织
               if (res.data.results[k].sender.org != null) {
-                avatar = app.globalData.url + res.data.results[k].sender.org.avatar + '.thumbnail.2.jpg';
+                avatar = app.globalData.url + res.data.results[k].sender.org.avatar;
                 nickname = res.data.results[k].sender.org.org_name;
                 id = res.data.results[k].sender.org.id;
                 type = 'org';
               }
               // 学生
               else if (res.data.results[k].sender.student != null) {
-                avatar = app.globalData.url + res.data.results[k].sender.student.avatar + '.thumbnail.2.jpg';
+                avatar = app.globalData.url + res.data.results[k].sender.student.avatar;
                 nickname = res.data.results[k].sender.student.nickname;
                 id = res.data.results[k].sender.student.id;
                 type = 'user';

@@ -1,6 +1,6 @@
 <view class='view-page'>
   <navbar page-name="{{org}}" pageType="orgDisplay" displayAvatar="{{orgAvatar}}" hasWatched="{{hasWatched}}" bind:towatch="towatch"></navbar>
-  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y scroll-top="{{scrollTop}}" scroll-with-animation="true">
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y scroll-top="{{scrollTop}}" scroll-with-animation="true" bindscrolltolower="scrollBottom">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image src='{{headImg}}' class='head-img'></image>
