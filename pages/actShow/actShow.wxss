@@ -105,6 +105,12 @@ page {
   font-weight: bold;
   padding-top: 15rpx;
   text-align: center;
+  white-space:nowrap;
+  overflow:hidden;
+  width: 554rpx;
+  position: relative;
+  left: 38rpx;
+  text-overflow:ellipsis;
 }
 
 .describe-text{
@@ -270,4 +276,16 @@ page {
   width: 670rpx;
   display: block;
   word-break: break-all;
+}
+
+.download-file{
+  color: #484848;
+  font-size: 30rpx;
+  margin-bottom: 5rpx;
+}
+
+.filename{
+  color: #E03636;
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
 }

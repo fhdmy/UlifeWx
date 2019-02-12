@@ -104,11 +104,11 @@ Page({
               let sact="activities["+k+"]";
               _this.setData({
                 [sact]:{
-                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                  head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                   heading: res.data.results[k].heading,
                   date: computeddate[0],
                   location: res.data.results[k].location,
-                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                  orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
                   org_id: res.data.results[k].owner.id,
@@ -124,6 +124,9 @@ Page({
             resolve(1)
           }
         }
+      })
+      _this.setData({
+        searchorgs:[]
       })
       }
       // 搜索组织
@@ -159,6 +162,9 @@ Page({
               resolve(1)
             }
           }
+        })
+        _this.setData({
+          activities: []
         })
       }
     })
@@ -211,8 +217,10 @@ Page({
       })
     else
       this.setData({
-        swiper:!this.data.swiper
+        swiper:!this.data.swiper,
+        searchType: 0
       })
+    this.searchRequest();
   },
   chooseType:function(e){
     // console.log(e._relatedInfo.anchorTargetText)
@@ -280,11 +288,11 @@ Page({
                 let sacts="activities["+parseInt(_this.data.presentacts+k)+"]";
                 _this.setData({
                   [sacts]:{
-                    head_img: global_.BASE_URL + res.data.results[k].head_img + '.thumbnail.0.jpg',
+                    head_img: app.globalData.url + res.data.results[k].head_img + '.thumbnail.2.jpg',
                     heading: res.data.results[k].heading,
                     date: computeddate[0],
                     location: res.data.results[k].location,
-                    orgavatar: global_.BASE_URL + res.data.results[k].owner.avatar + '.thumbnail.2.jpg',
+                    orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                     isover: false,
                     acturl: res.data.results[k].id,
                     is_ended: res.data.results[k].is_ended,
@@ -308,4 +316,9 @@ Page({
       })
     }
   },
+  openOrg:function(e){
+    wx.navigateTo({
+      url: '/pages/orgDisplay/orgDisplay?orgId=' + e.currentTarget.id,
+    })
+  }
 })

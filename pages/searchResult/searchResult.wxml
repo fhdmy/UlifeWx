@@ -63,7 +63,7 @@
     <NormalActivitiesShow activities="{{activities}}" wx:if="{{searchType==0}}"></NormalActivitiesShow>
     <view wx:if="{{searchType==1}}">
       <image wx:if="{{searchorgs.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
-      <view wx:for="{{searchorgs}}" wx:key="item" class='org-wrapper' id="{{item.id}}">
+      <view wx:for="{{searchorgs}}" wx:key="item" class='org-wrapper' id="{{item.id}}" bindtap='openOrg'>
         <image src='{{item.avatar}}' class='org-img'></image>
         <view class='org-right-wrapper'>
           <text class='org-top-text'>{{item.org_name}}</text>

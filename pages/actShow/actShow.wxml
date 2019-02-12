@@ -45,6 +45,12 @@
         <text wx:if="{{item.type=='text'}}" style="color:{{item.color}}!important;text-align:{{item.align}};text-decoration:{{item.text_decoration}};font-weight:{{item.font_weight}};font-style:{{item.font_style}}" class='content-text' selectable="true">{{item.inner}}</text>
         <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img' bindtap='previewImg' id="{{index}}"></image>
       </view>
+      <view wx:if="{{filename.length>0}}">
+        <view class='download-file'>文件下载</view>
+        <view wx:for="{{filename}}" wx:key="item">
+          <view class='filename' bindtap='openFile' id="{{index}}">{{filename}}</view>
+        </view>
+      </view>
     </view>
     <view class='report' bindtap='reportAct'>举报</view>
     <view class='comment-wrapper' wx:if="{{ended==true}}">
