@@ -120,6 +120,7 @@ Page({
                   orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
+                  org_id: res.data.results[k].owner.id,
                   is_ended: res.data.results[k].is_ended,
                 }
               })
@@ -299,6 +300,7 @@ Page({
                   orgavatar: app.globalData.url + res.data.results[k].owner.avatar,
                   isover: false,
                   acturl: res.data.results[k].id,
+                  org_id: res.data.results[k].owner.id,
                   is_ended: res.data.results[k].is_ended,
                 },
               })

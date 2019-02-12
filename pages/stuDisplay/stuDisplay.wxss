@@ -89,3 +89,11 @@ page {
   font-size: 32rpx;
   color: #484848;
 }
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin:0rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}
