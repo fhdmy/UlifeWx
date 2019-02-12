@@ -23,8 +23,8 @@
     "pages/SignupHomepage/SignupHomepage" 
   ], 
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarTextStyle": "dark",
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "white",
     "navigationStyle":"custom",
     "backgroundColor": "white"
   },
