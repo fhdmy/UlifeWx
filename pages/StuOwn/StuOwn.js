@@ -8,7 +8,6 @@ Page({
     nickName:"",
     studentAvatar:"",
     isLogin:false,
-    qrUrl:"",
     loading:false,
     redDot:false
   },
@@ -118,8 +117,19 @@ Page({
     })
   },
   qrCodeMsg:function(e){
-    this.setData({
-      qrUrl:e.detail.qrCode
+    let url = e.detail.qrCode;
+    let urlJudge=url.split("/");
+    if (urlJudge[0] != 'https:' || urlJudge[2] != 'ulife.org.cn' || urlJudge[3] !='activity'){
+      wx.showToast({
+        title: '只能扫描站内二维码！',
+        image: "/images/about.png"
+      })
+      return;
+    }
+    let urlSpit = url.split("https://ulife.org.cn/activity/");
+    let id=urlSpit[1];
+    wx.navigateTo({
+      url: '/pages/actShow/actShow?actId='+id,
     })
   },
   websit:function(e){
