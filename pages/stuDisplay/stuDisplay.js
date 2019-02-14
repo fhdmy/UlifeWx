@@ -12,6 +12,7 @@ Page({
     stuAvatar: "",
     stuId: 0,
     headImg: "",
+    shareImg:"",
     watch: 0,
     participate: 0,
     credit: "100%",
@@ -28,8 +29,33 @@ Page({
     presentatt: 0,
     thattmax: 0
   },
+  onShareAppMessage: function (options) {
+    return {
+      title: this.data.stu,  // 转发标题（默认：当前小程序名称）
+      path: '/pages/stuDisplay/stuDisplay?stuId=' + this.data.stuId, // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
+      imageUrl: this.data.shareImg,
+      success(e) {
+        // shareAppMessage: ok,
+        // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
+        // 需要在页面onLoad()事件中实现接口
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+      },
+      fail(e) {
+        console.log(e)
+        // shareAppMessage:fail cancel
+        // shareAppMessage:fail(detail message) 
+      },
+      complete() { }
+    }
+  },
   onLoad: function (options) {
     let _this = this;
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     _this.setData({
       navH: app.globalData.navbarHeight
     })
@@ -54,6 +80,7 @@ Page({
           else {
             _this.setData({
               headImg: app.globalData.url + res.data.bg_img + '.thumbnail.2.jpg',
+              shareImg: app.globalData.url + res.data.bg_img + '.thumbnail.0.jpg',
               stuAvatar: app.globalData.url + res.data.avatar + '.thumbnail.3.jpg',
               stu: res.data.nickname,
               watch: res.data.watching_count,
