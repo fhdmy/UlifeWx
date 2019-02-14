@@ -1,5 +1,4 @@
 <view class='view-page'>
-<web-view src="{{qrUrl}}" wx:if="{{qrUrl!=''}}"></web-view>
   <navbar page-name="个人中心" pageType="StuOwn" bind:qrCodeMsg="qrCodeMsg"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <loading hidden="{{!loading}}">加载中...</loading>
