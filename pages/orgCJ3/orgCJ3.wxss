@@ -7,17 +7,6 @@
   font-size: 36rpx;
   color:#484848;
 }
-.nextbtn{
-  width: 100%;
-  padding-left: 28%;
-}
-.nxtbtn{
-  background-color: #FE9246;
-  border-radius: 0;
-  color:white;
-  width: 28%;
-  font-size: 40rpx;
-}
 .checkbox1{
   margin-right: 20rpx;
   color: #484848;
@@ -109,6 +98,7 @@
   padding: 18rpx 40rpx;
   background-color: #FE9246;
   float: right;
+  margin-bottom: 150rpx;
 }
 .option-wrapper{
   margin-top: 10rpx;

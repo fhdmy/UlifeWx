@@ -28,7 +28,8 @@
     "pages/createAct/createAct",
     "pages/orgCJ1/orgCJ1",
     "pages/orgCJ2/orgCJ2",
-    "pages/orgCJ3/orgCJ3"
+    "pages/orgCJ3/orgCJ3",
+    "pages/orgCJLink/orgCJLink"
   ], 
   "window": {
     "backgroundTextStyle": "light",

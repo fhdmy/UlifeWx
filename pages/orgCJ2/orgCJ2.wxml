@@ -1,6 +1,6 @@
 <!--pages/OrgCJ II/chuangjianII.wxml-->
 <view class='view-page'>
-  <navbar page-name="创建活动" pageType="backButton"></navbar>
+  <navbar page-name="第二步" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <view class='inform-sep-wrapper' bindtap='changeHeadImg'>
       <text class='inform-sep-title'>头图</text>

@@ -1,6 +1,6 @@
 <!--pages/OrgCJ III/chuangjianIII.wxml-->
 <view class='view-page'>
-  <navbar page-name="创建活动" pageType="backButton"></navbar>
+  <navbar page-name="第三步" pageType="backButton"></navbar>
   <view class="text1">报名需求</view>
   <view class='choices'>
     <label class="checkbox1">
@@ -21,16 +21,16 @@
     <view>
       <view wx:for="{{requires}}" wx:key="item" class='inPut'>
         <view wx:if="{{item.type=='text'}}">
-          <input placeholder-class='plctxt' placeholder='在这里输入简答框内容' id="{{index}}" bindinput='inputTextValue' class='text-input'></input>
+          <input placeholder-class='plctxt' placeholder='在这里输入简答框内容' id="{{index}}" bindinput='inputTextValue' class='text-input' value="{{item.inner}}"></input>
           <view class='delete' bindtap='clearInputEvent' id="{{index}}">删除</view>
         </view>
         <view wx:if="{{item.type=='select'}}">
-          <input placeholder-class='plctxt' placeholder='在这里输入选择框标题' id="{{index}}" bindinput='inputTitleValue' class='select-input'></input>
+          <input placeholder-class='plctxt' placeholder='在这里输入选择框标题' id="{{index}}" bindinput='inputTitleValue' class='select-input' value="{{item.title}}"></input>
           <view class='delete' bindtap='clearInputEvent' id="{{index}}">删除</view>
           <view class='add-option' bindtap='addOption' id="{{index}}">添加选项</view>
           <view wx:for="{{item.inner}}" wx:key="itm" wx:for-item="itm" wx:for-index="idx" class='option-wrapper'>
             <view class="option-text">选项{{idx+1}}:</view>
-            <input placeholder-class='plctxt' placeholder='在这里输入选项' id="{{index}}{{idx}}" bindinput='inputOptionValue' class='option-input'></input>
+            <input placeholder-class='plctxt' placeholder='在这里输入选项' id="{{index}}{{idx}}" bindinput='inputOptionValue' class='option-input' value="{{itm}}"></input>
             <view class='delete' bindtap='clearOptionEvent' id="{{index}}{{idx}}">删除</view>
           </view>
         </view>

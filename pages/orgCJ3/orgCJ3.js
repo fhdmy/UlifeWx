@@ -18,6 +18,16 @@ Page({
   },
   onShow: function (options) {
     let _this = this;
+    if (app.globalData.createRequires!=""){
+      this.setData({
+        requires:app.globalData.createRequires
+      })
+    }
+    if(app.globalData.createSelectArray!=""){
+      this.setData({
+        selectArray: app.globalData.createSelectArray
+      })
+    }
     _this.setData({
       navH: app.globalData.navbarHeight,
       isLogin: app.globalData.isLogin,
@@ -29,16 +39,16 @@ Page({
     this.data.type = options.type;
   },
   toNext: function () {
-    wx.navigateTo({
-      url: '/pages/OrgCJ IV/chuangjianIV'
-    })
+    app.globalData.createRequires=this.data.requires;
+    app.globalData.createSelectArray=this.data.selectArray;
+    if(this.data.type=="link")
+      wx.navigateTo({
+        url: '/pages/orgCJLink/orgCJLink'
+      })
   },
   clearInputEvent: function (e) {
     let temp=this.data.requires;
-    console.log(temp)
-    console.log(e.target.id)
     temp.splice(e.target.id,1);
-    console.log(temp)
     this.setData({
       requires:temp
     })
@@ -103,15 +113,12 @@ Page({
     let index=e.target.id[0]
     let idx=e.target.id[1]
     let temp = this.data.requires;
-    console.log(idx)
-    console.log(temp[index].inner)
     temp[index].inner.splice(idx, 1);
     this.setData({
       requires: temp
     })
   },
   checkboxChange:function(e){
-    console.log(e)
     let items = this.data.selectArray
     let values = e.detail.value
     for (let i = 0; i < items.length; ++i) {

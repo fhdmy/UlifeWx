@@ -29,6 +29,9 @@ Page({
     app.globalData.createType = "";
     app.globalData.createHobby = "";
     app.globalData.createDescribe = "";
+    app.globalData.createRequires = [];
+    app.globalData.createSelectArray = [];
+    app.globalData.createLink="";
   },
   bindInput: function (e) {
     this.setData({

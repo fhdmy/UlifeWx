@@ -1,6 +1,6 @@
 <!--pages/OrgCJ I/chuangjianI.wxml-->
 <view class='view-page'>
-  <navbar page-name="创建活动" pageType="backButton"></navbar>
+  <navbar page-name="第一步" pageType="backButton"></navbar>
   <view class="text1">
     <input placeholder='请输入活动名称' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput'></input>
   </view>

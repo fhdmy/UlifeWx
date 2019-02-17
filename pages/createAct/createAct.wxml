@@ -1,5 +1,5 @@
 <view class='view-page'>
-  <navbar page-name="创建" pageType="backButton"></navbar>
+  <navbar page-name="创建活动" pageType="backButton"></navbar>
   <view class="btn-area" id="buttonContainer">
     <button class="btn1" bindtap='createEdit'>创建编辑活动</button>
     <view class="ActText">

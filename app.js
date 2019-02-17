@@ -29,7 +29,10 @@ App({
     createLocation:"",
     createType:"",
     createHobby:"",
-    createDescribe:""
+    createDescribe:"",
+    createRequires: "",
+    createSelectArray: "",
+    createLink:""
   },
   onLaunch: function() {
     let _this = this;
