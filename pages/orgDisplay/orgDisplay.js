@@ -67,7 +67,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(1)
@@ -99,7 +99,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(2)
@@ -130,7 +130,7 @@ Page({
         complete:(res)=>{
           if(res.statusCode!=200){
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(3)
@@ -178,7 +178,7 @@ Page({
           complete: (res) => {
             if(res.statusCode!=201){
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
             }
@@ -194,8 +194,16 @@ Page({
     let _this=this;
     if (app.globalData.isLogin==false){
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
+      })
+      return;
+    }
+    if(app.globalData.type=='org'){
+      wx.showModal({
+        title: '关注无效',
+        content: '组织不能进行关注',
+        showCancel: false
       })
       return;
     }
@@ -212,7 +220,7 @@ Page({
             console.log(res)
             if(res.statusCode!=204){
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject(3)
@@ -241,7 +249,7 @@ Page({
           complete:(res)=>{
             if(res.statusCode!=201){
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject(3)
@@ -252,7 +260,7 @@ Page({
                 hasWatched:true
               })
               wx.showToast({
-                title: '关注成功！'
+                title: '关注成功'
               })
               resolve(3)
             }
@@ -308,7 +316,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve("pm");

@@ -32,7 +32,7 @@ Page({
         complete:(res)=>{
           if(res.statusCode!=200){
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(1);
@@ -116,7 +116,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve("pm");
@@ -237,7 +237,7 @@ Page({
     let comment = (_this.data.comment[id] == undefined || _this.data.comment[id] == null) ? '' : _this.data.comment[id];//为空对应为''
     if (comment == "") {
       wx.showToast({
-        title: '不能为空！',
+        title: '不能为空',
       })
       return;
     }
@@ -260,7 +260,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         } else {
@@ -307,7 +307,7 @@ Page({
       complete:(res)=>{
         if(res.statusCode!=200){
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         }else{
@@ -331,7 +331,7 @@ Page({
       complete: (res) => {
         if (res.statusCode != 200) {
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         } else {

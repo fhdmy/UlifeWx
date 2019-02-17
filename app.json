@@ -20,7 +20,15 @@
     "pages/stuMsg/stuMsg", 
     "pages/stuFurtherEdit/stuFurtherEdit", 
     "pages/actReport/actReport",
-    "pages/SignupHomepage/SignupHomepage" 
+    "pages/SignupHomepage/SignupHomepage",
+    "pages/terms/terms",
+    "pages/myActs/myActs",
+    "pages/draft/draft",
+    "pages/orgSignup/orgSignup",
+    "pages/createAct/createAct",
+    "pages/orgCJ1/orgCJ1",
+    "pages/orgCJ2/orgCJ2",
+    "pages/orgCJ3/orgCJ3"
   ], 
   "window": {
     "backgroundTextStyle": "light",

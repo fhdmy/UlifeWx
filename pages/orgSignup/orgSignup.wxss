@@ -1,0 +1,31 @@
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}

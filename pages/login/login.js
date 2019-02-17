@@ -26,7 +26,7 @@ Page({
     let _this = this;
     if (this.data.number == "" || this.data.pwd == "") {
       this.setData({
-        alert: "不能为空！"
+        alert: "不能为空"
       })
       return;
     }
@@ -50,7 +50,7 @@ Page({
           complete: (res) => {
             if (res.data == 'SNO verification failed') {
               _this.setData({
-                alert: "账号或密码错误！",
+                alert: "账号或密码错误",
                 loading: false
               })
               reject("fail")
@@ -62,7 +62,7 @@ Page({
                 loading:false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
             }
@@ -73,7 +73,10 @@ Page({
               wx.removeStorageSync(md5.hex_md5("org_url"));
               if (res.data.is_ulife_your_daddy == 'yes') {
                 wx.setStorageSync(md5.hex_md5("admin"), "true");
+                app.globalData.type = "admin";
               }
+              else
+                app.globalData.type = "student";
               app.globalData.isLogin = true;
               resolve("success")
             }
@@ -92,7 +95,7 @@ Page({
           complete: (res) => {
             if (res.data.non_field_errors == "Unable to log in with provided credentials.") {
               _this.setData({
-                alert: "账号或密码错误！",
+                alert: "账号或密码错误",
                 loading:false
               })
               reject("fail")
@@ -104,7 +107,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
             }
@@ -113,6 +116,7 @@ Page({
               wx.setStorageSync(md5.hex_md5("token"), res.data.token);
               wx.setStorageSync(md5.hex_md5("org_url"), res.data.profile_url);
               wx.removeStorageSync(md5.hex_md5("user_url"));
+              app.globalData.type="org";
               app.globalData.isLogin = true;
               resolve("success")
             }
@@ -154,7 +158,7 @@ Page({
                   loading: false
                 })
                 wx.showToast({
-                  title: '网络传输故障！',
+                  title: '网络传输故障',
                   image: '/images/about.png'
                 })
               } else {
@@ -193,7 +197,7 @@ Page({
                   loading: false
                 })
                 wx.showToast({
-                  title: '网络传输故障！',
+                  title: '网络传输故障',
                   image: '/images/about.png'
                 })
               } else {

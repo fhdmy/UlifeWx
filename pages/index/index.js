@@ -42,6 +42,10 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    _this.sendRequest();
+  },
+  sendRequest(){
+    let _this=this;
     // 获得近期活动
     _this.setData({
       loading: true
@@ -56,7 +60,7 @@ Page({
           // 网络请求问题
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(1);
@@ -98,7 +102,7 @@ Page({
           // 网络请求问题
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(2);
@@ -143,7 +147,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve("pm");
@@ -187,5 +191,5 @@ Page({
     wx.navigateTo({
       url: '/pages/actShow/actShow?actId=' + e.target.id,
     })
-  }
+  },
 })

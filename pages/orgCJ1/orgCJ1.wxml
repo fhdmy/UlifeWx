@@ -1,0 +1,16 @@
+<!--pages/OrgCJ I/chuangjianI.wxml-->
+<view class='view-page'>
+  <navbar page-name="创建活动" pageType="backButton"></navbar>
+  <view class="text1">
+    <input placeholder='请输入活动名称' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput'></input>
+  </view>
+  <view class="nextbtn">
+    <button class="nxtbtn" bindtap='toNext'>下一步</button>
+  </view>
+  <view class='notice'>
+    <view class='txt1'>提示\n</view>
+    <view class='txt2'>1.一个好的名称会给你带来更多阅读噢。 \n</view>
+    <view class='txt2'>2.您也可以在后续编辑中返回此步重新编辑。 \n</view>
+    <view class='txt2'>3.设计好名称后，可以通过点击“下一步”来编辑活动信息等。\n</view>
+  </view>
+</view>

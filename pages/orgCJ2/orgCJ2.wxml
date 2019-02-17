@@ -1,0 +1,38 @@
+<!--pages/OrgCJ II/chuangjianII.wxml-->
+<view class='view-page'>
+  <navbar page-name="创建活动" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <view class='inform-sep-wrapper' bindtap='changeHeadImg'>
+      <text class='inform-sep-title'>头图</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <image src='{{headImg}}'></image>
+    </view>
+    <picker mode="date" bindchange="bindDateChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>日期</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{date}}</view>
+    </picker>
+    <picker mode="time" bindchange="bindTimeChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>时间</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{time}}</view>
+    </picker>
+    <view class='inform-sep-wrapper' bindtap='toEditAreaLocation'>
+      <text class='inform-sep-title'>地点</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{location}}</text>
+    </view>
+    <picker range='{{array1}}' bindchange="bindTypeChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>形式</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{actType}}</view>
+    </picker>
+    <picker range='{{array2}}' bindchange="bindHobbyChange" class='inform-sep-wrapper-picker'>
+      <text class='inform-sep-title-picker'>兴趣</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
+      <view class='inform-sep-val-picker'>{{hobby}}</view>
+    </picker>
+    <textarea placeholder="这里输入活动简介" bindconfirm='confirm' bindinput='inputDescribe' value='{{describe}}'/>
+    <text bindtap='toNext' class='nextButton'>下一步</text>
+  </view>
+</view>

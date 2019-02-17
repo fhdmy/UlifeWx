@@ -1,0 +1,7 @@
+<!--pages/relevantTerms/terms.wxml-->
+<view class='view-page'>
+  <navbar page-name="推荐规则" pageType="backButton"></navbar>
+  <view>
+    <text>{{txt}}</text>
+  </view>
+</view>

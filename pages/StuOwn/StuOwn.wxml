@@ -1,6 +1,6 @@
 <view class='view-page'>
   <navbar page-name="个人中心" pageType="StuOwn" bind:qrCodeMsg="qrCodeMsg"></navbar>
-  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)' wx:if="{{type!='org'}}">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <view class='Student-inform' wx:if="{{isLogin}}">
@@ -48,11 +48,73 @@
         <text>新版本介绍</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
       </view>
-      <!-- <view class='ver-item'>
-        <i class="iconfont icon-navicon-yjjy ver-icon1"></i>
-        <text>给开发者的建议</text>
+      <view class='ver-item' bindtap='toAbout'>
+        <i class="iconfont icon-guanyuwomen ver-icon1"></i>
+        <text>关于</text>
         <i class="iconfont icon-youjiantou ver-icon2"></i>
-      </view> -->
+      </view>
+      <view class='ver-item' bindtap='websit'>
+        <i class="iconfont icon-wangzhan ver-icon1"></i>
+        <text>网站</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+    </view>
+  </view>
+
+  <!-- org -->
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)' wx:if="{{type=='org'}}">
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--这里放你的内容-->
+    <view class='Student-inform' wx:if="{{isLogin}}">
+      <view class='inform-left'>
+        <text class='nickName'>{{nickName}}</text>
+        <text class='edit-student-inform' bindtap='editInform'>查看并编辑简介</text>
+      </view>
+      <image src='{{studentAvatar}}' class='student-avatar'></image>
+    </view>
+    <view class='Student-inform' wx:if="{{!isLogin}}">
+      <view class='inform-left'>
+        <text class='nickName' bindtap='login'>登录</text>
+        <text class='edit-student-inform'>登录后可查看关注动态等</text>
+      </view>
+      <image src='/images/passenger.png' class='passenger-avatar'></image>
+    </view>
+    <view class='tab-item-wrapper'>
+      <view class='tab-item' bindtap='createAct'>
+        <i class="iconfont icon-chuangjianv"></i>
+        <text>创建</text>
+      </view>
+      <view class='tab-item' bindtap='draft'>
+        <i class="iconfont icon-guanzhu"></i>
+        <text>草稿</text>
+      </view>
+      <view class='tab-item' bindtap='toStuMsg' style="position:relative;">
+        <i class="iconfont icon-dian un-read-icon" wx:if="{{redDot}}"></i>
+        <i class="iconfont icon-wodexiaoxi"></i>
+        <text>消息</text>
+      </view>
+    </view>
+    <view class='ver-item-wrapper'>
+      <view class='ver-item' bindtap='myAct'>
+        <i class="iconfont icon-huodong ver-icon1"></i>
+        <text>我的活动</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item' bindtap='orgSignup'>
+        <i class="iconfont icon-baoming ver-icon1"></i>
+        <text>报名</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item' bindtap='toRules'>
+        <i class="iconfont icon-guize ver-icon1"></i>
+        <text>了解每周推荐的规则</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
+      <view class='ver-item' bindtap='toNewVersion'>
+        <i class="iconfont icon-jieshao ver-icon1"></i>
+        <text>新版本介绍</text>
+        <i class="iconfont icon-youjiantou ver-icon2"></i>
+      </view>
       <view class='ver-item' bindtap='toAbout'>
         <i class="iconfont icon-guanyuwomen ver-icon1"></i>
         <text>关于</text>

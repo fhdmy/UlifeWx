@@ -38,6 +38,10 @@ page {
   display: block;
   margin-bottom: 30rpx;
   font-weight: bold;
+  white-space:nowrap;
+  overflow:hidden;
+  max-width: 460rpx;
+  text-overflow:ellipsis;
 }
 
 .edit-student-inform{

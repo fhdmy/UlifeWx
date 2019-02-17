@@ -64,6 +64,13 @@ Page({
         delta: 1
       })
     }
+    else if (this.data.pageFrom == 'orgCJ2'){
+      app.globalData.createCJ2Type = this.data.pageType;
+      app.globalData.createCJ2Content = this.data.content;
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   inputContent:function(e){
     this.setData({

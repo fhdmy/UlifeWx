@@ -94,7 +94,7 @@ Page({
           if(res.statusCode!=200){
             resolve(1)
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
           }
@@ -141,7 +141,7 @@ Page({
             if(res.statusCode!=200){
               resolve(1)
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
             }
@@ -276,7 +276,7 @@ Page({
           complete: (res) => {
             if (res.statusCode != 200) {
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               resolve("pm");

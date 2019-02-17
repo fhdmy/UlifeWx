@@ -33,7 +33,7 @@ Page({
           // 网络请求问题
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(1);
@@ -64,7 +64,7 @@ Page({
           // 网络请求问题
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(2);
@@ -96,7 +96,7 @@ Page({
           // 网络请求问题
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(3);

@@ -47,6 +47,8 @@ Page({
         phone:app.globalData.stuEditContent
       })
     }
+    app.globalData.stuEditContent="";
+    app.globalData.stuEditType="";
   },
   onLoad:function(){
     let _this=this;
@@ -66,7 +68,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         }
@@ -143,13 +145,13 @@ Page({
       complete:(res)=>{
         if (res.data =="Phone number already exists"){
           wx.showToast({
-            title: '手机号已存在！',
+            title: '手机号已存在',
             image: '/images/about.png'
           })
         }
         else if(res.statusCode!=200){
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         } 
@@ -172,7 +174,7 @@ Page({
     let _this=this;
     if (_this.data.cfmOnlyPhone!=_this.data.phone){
       wx.showToast({
-        title: '没有获得验证码！',
+        title: '没有获得验证码',
         image: '/images/about.png'
       })
       return;
@@ -196,7 +198,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '验证码错误！',
+            title: '验证码错误',
             image: '/images/about.png'
           })
         }
@@ -205,7 +207,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         }else{
@@ -223,7 +225,7 @@ Page({
       const pattern = /^1(3|4|5|7|8)\d{9}$/;
       if (pattern.test(_this.data.phone) == false) {
         wx.showToast({
-          title: '手机号格式错误！',
+          title: '手机号格式错误',
           image: '/images/about.png'
         })
         return;
@@ -272,7 +274,7 @@ Page({
               loading:false
             })
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             reject(1)
@@ -303,7 +305,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject(2)
@@ -335,7 +337,7 @@ Page({
         let size=res.tempFiles[0].size;
         if (size > 10485760){
           wx.showToast({
-            title: '图片太大了!',
+            title: '图片太大了',
             image: '/images/about.png'
           })
           return;

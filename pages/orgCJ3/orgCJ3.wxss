@@ -1,0 +1,115 @@
+/* pages/OrgCJ III/chuangjianIII.wxss */
+@import"../../iconfont/iconfont.wxss";
+.text1{
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  margin-left: 40rpx;
+  font-size: 36rpx;
+  color:#484848;
+}
+.nextbtn{
+  width: 100%;
+  padding-left: 28%;
+}
+.nxtbtn{
+  background-color: #FE9246;
+  border-radius: 0;
+  color:white;
+  width: 28%;
+  font-size: 40rpx;
+}
+.checkbox1{
+  margin-right: 20rpx;
+  color: #484848;
+}
+.checkbox2{
+  margin-right: 20rpx;
+  color: #FE9246;
+}
+.choices{
+  margin-left: 40rpx;
+  margin-bottom: 80rpx;
+}
+.changeable .wx-checkbox-input.wx-checkbox-input {
+  border: 1px solid #FE9246!important;
+}
+.changeable .wx-checkbox-input.wx-checkbox-input-checked {
+  border: 1px solid #FE9246!important;
+  color: #FE9246!important;
+}
+.changeable{
+  color: #FE9246;
+  margin-top: 40rpx;
+}
+.II{
+  flex-direction: row;
+}
+.inPut{
+  padding-bottom: 10rpx;
+  margin-left: 40rpx;
+  align-items: center;
+}
+.text-input{
+  width: 500rpx;
+  display: inline-block;
+  border-bottom: 1px solid #cccccc;
+  color:#484848;
+}
+.select-input{
+  width: 400rpx;
+  display: inline-block;
+  border-bottom: 1px solid #cccccc;
+  color:#484848;
+}
+.option-input{
+  width: 300rpx;
+  display: inline-block;
+  border-bottom: 1px solid #cccccc;
+  color:#484848;
+}
+.plctxt{
+  font-size:35rpx;
+}
+.delete{
+  float: right;
+  margin-right: 40rpx;
+  color: #FE9246;
+}
+.option-text{
+  color: #484848;
+  display: inline-block;
+  position: relative;
+  bottom: 16rpx;
+  margin-right: 40rpx;
+}
+.add-option{
+  float: right;
+  margin-right: 22rpx;
+  color: #FE9246;
+}
+.addbtn{
+  margin-left: 40rpx;
+  margin-bottom: 100rpx;
+  margin-top: 10rpx;
+}
+.addbtn i{
+  color: #FE9246;
+  font-size: 48rpx;
+}
+.add{
+  margin-left: 20rpx;
+  color:#484848;
+  font-size: 40rpx;
+}
+.nextButton{
+  color: white;
+  font-size: 36rpx;
+  margin-right: 40rpx;
+  margin-top: 40rpx;
+  padding: 18rpx 40rpx;
+  background-color: #FE9246;
+  float: right;
+}
+.option-wrapper{
+  margin-top: 10rpx;
+}

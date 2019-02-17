@@ -1,0 +1,9 @@
+<view class='view-page'>
+  <navbar page-name="草稿箱" pageType="backButton"></navbar>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--这里放你的内容-->
+    <image wx:if="{{activities.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+  </scroll-view>
+</view>

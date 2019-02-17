@@ -1,0 +1,30 @@
+/* pages/OrgChuangjian/OrgChuangJian.wxss */
+.btn1 {
+  margin-top: 200rpx;
+  margin-bottom: 30rpx;
+  background-color: #E03636;
+  color:white;
+  border-radius: 30rpx;
+  width: 400rpx;
+  height: 140rpx;
+  align-items: center;
+  font-size: 40rpx;
+  padding-top: 20rpx;
+}
+.btn2 {
+  margin-top: 200rpx;
+  margin-bottom: 30rpx;
+  background-color: #FE9246;
+  color:white;
+  border-radius: 30rpx;
+  width: 400rpx;
+  height: 140rpx;
+  font-size: 40rpx;
+  align-items: center;
+  padding-top: 20rpx;
+}
+.ActText{
+  color:rgb(0, 119, 255);
+  font-size: 24rpx;
+  text-align: center;
+}

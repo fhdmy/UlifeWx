@@ -89,7 +89,7 @@ Page({
               loading: false
             })
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             reject(1)
@@ -118,7 +118,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject(2)
@@ -147,7 +147,7 @@ Page({
         let size = res.tempFiles[0].size;
         if (size > 10485760) {
           wx.showToast({
-            title: '图片太大了!',
+            title: '图片太大了',
             image: '/images/about.png'
           })
           return;

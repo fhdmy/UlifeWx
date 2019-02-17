@@ -1,0 +1,13 @@
+<view class='view-page'>
+  <navbar page-name="创建" pageType="backButton"></navbar>
+  <view class="btn-area" id="buttonContainer">
+    <button class="btn1" bindtap='createEdit'>创建编辑活动</button>
+    <view class="ActText">
+      <text>创建新的活动，使用Ulife编辑器进行编辑</text>
+    </view>
+    <button class="btn2" bindtap='createLink'>创建推文链接</button>
+    <view class="ActText">
+      <text>输入微信公众号推文的链接，快速创建活动</text>
+    </view>
+  </view>
+</view>

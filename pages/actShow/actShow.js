@@ -53,7 +53,7 @@ Page({
         hasSignUp: true
       })
       wx.showToast({
-        title: '报名成功！',
+        title: '报名成功',
       })
       app.globalData.actSignupSuccess = "";
     }
@@ -106,7 +106,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve(1)
@@ -182,7 +182,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject("pp")
@@ -213,7 +213,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '网络传输故障！',
+                title: '网络传输故障',
                 image: '/images/about.png'
               })
               reject("pc")
@@ -246,7 +246,7 @@ Page({
             complete: (res) => {
               if (res.statusCode != 200) {
                 wx.showToast({
-                  title: '网络传输故障！',
+                  title: '网络传输故障',
                   image: '/images/about.png'
                 })
                 resolve(2)
@@ -276,54 +276,6 @@ Page({
           })
         } else resolve(2)
       })
-      // wx.request({
-      //   url: 'https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html',
-      //   complete:(res)=>{
-      //     var html=res.data;
-      //     var body="";
-      //     var bodySplit = html.split("<body");
-      //     var nextBodySplit=bodySplit[1].split(">");
-      //     var before = nextBodySplit[0];
-      //     var wb=bodySplit[1].split(before+">");
-      //     var hBody = wb[1].split("</body>");
-      //     body = hBody[0]
-      //     var scriptSplit=body.split("<script");
-      //     var beforeScript = scriptSplit[0];
-      //     var linkText=beforeScript;
-      //     for(let i=1;i<scriptSplit.length;i++){
-      //       var afterSplit = scriptSplit[i].split("</script>");
-      //       var afterScript=afterSplit[1];
-      //       linkText=linkText+afterScript;
-      //     }
-      //     var linkSplit=linkText.split("<link")
-      //     var beforeLink=linkSplit[0];
-      //     var richText=beforeLink;
-      //     for (let i = 1; i < linkSplit.length; i++) {
-      //       var aSplit = linkSplit[i].split("/>");
-      //       var as = linkSplit[i].split(aSplit[0]+"/>");
-      //       richText = richText + as[1];
-      //     }
-      //     let a=richText.split("<img")
-      //     var srcText=a[0]
-      //     for (let i = 1; i < a.length; i++) {
-      //       let b = a[i].split(">");   
-      //       let inner=b[0];
-      //       let afi=a[i].split(inner)
-      //       let pattern1 = /data-src=([' "])[^ ' "]*\1/;
-      //       let dataSrc = inner.match(pattern1);
-      //       if(dataSrc==null){
-      //         srcText=srcText+"<img"+inner+afi[1];
-      //       }
-      //       else{
-      //         let d=dataSrc[0]
-      //         let dataInner='src="'+d.substr(10,d.length-11)+'"'
-      //         let replaceInner=inner.replace(/src=([' "])[^ ' "]*\1/g, dataInner);
-      //         srcText=srcText+"<img"+replaceInner+afi[1];
-      //       }
-      //     }
-      //     WxParse.wxParse("article", 'html', srcText,_this,0)
-      //   }
-      // })
       p2.then(function (results) {
         _this.setData({
           loading: false
@@ -343,9 +295,9 @@ Page({
           target: parseInt(options.actId)
         },
         complete: (res) => {
-          if (res.statusCode != 201) {
+          if (res.statusCode != 201 && res.statusCode!=200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
           }
@@ -356,14 +308,16 @@ Page({
   toCollect: function () {
     let _this = this;
     if (app.globalData.type == 'org') {
-      wx.showToast({
-        title: '组织不能收藏活动！',
+      wx.showModal({
+        title: '收藏无效',
+        content: '组织不能收藏活动',
+        showCancel: false
       })
       return;
     }
     else if (app.globalData.type == 'none') {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
       })
       return;
@@ -383,7 +337,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 201) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
           }
@@ -393,7 +347,7 @@ Page({
               collected: true
             })
             wx.showToast({
-              title: '收藏成功！',
+              title: '收藏成功',
             })
           }
         }
@@ -414,7 +368,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 204) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
           }
@@ -445,7 +399,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             resolve("pm");
@@ -500,22 +454,23 @@ Page({
   toSignup: function () {
     let _this = this;
     if (app.globalData.type == 'org') {
-      wx.showToast({
-        title: '组织不能报名活动！',
-        image: '/images/about.png'
+      wx.showModal({
+        title: '报名无效',
+        content: '组织不能报名活动',
+        showCancel: false
       })
       return;
     }
     else if (app.globalData.type == 'none') {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: '/images/about.png'
       })
       return;
     }
     else if (_this.data.ended) {
       wx.showToast({
-        title: '活动已结束！',
+        title: '活动已结束',
         image: '/images/about.png'
       })
       return;
@@ -537,7 +492,7 @@ Page({
               complete: (res) => {
                 if (res.statusCode != 200) {
                   wx.showToast({
-                    title: '网络传输故障！',
+                    title: '网络传输故障',
                     image: '/images/about.png'
                   })
                 }
@@ -583,7 +538,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         }
@@ -601,7 +556,7 @@ Page({
                 loading: false
               })
               wx.showToast({
-                title: '打开文件失败！',
+                title: '打开文件失败',
                 image: '/images/about.png'
               })
             }

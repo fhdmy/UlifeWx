@@ -89,7 +89,7 @@ Page({
               loading:false
             })
             wx.showToast({
-              title: '网络传输故障！',
+              title: '网络传输故障',
               image: '/images/about.png'
             })
             reject(1)
@@ -220,7 +220,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image:'/images/about.png'
           })
         }
@@ -258,7 +258,7 @@ Page({
       complete: (res) => {
         if (res.statusCode != 200) {
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         }
@@ -281,7 +281,7 @@ Page({
     let _this = this;
     if (_this.data.cfmOnlyPhone!=_this.data.ifo[1]){
       wx.showToast({
-        title: '没有获得验证码！',
+        title: '未获得验证码',
         image: '/images/about.png'
       })
       return;
@@ -305,7 +305,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '验证码错误！',
+            title: '验证码错误',
             image: '/images/about.png'
           })
         }
@@ -314,7 +314,7 @@ Page({
             loading: false
           })
           wx.showToast({
-            title: '网络传输故障！',
+            title: '网络传输故障',
             image: '/images/about.png'
           })
         } else {
@@ -330,7 +330,7 @@ Page({
     let _this = this;
     if (_this.data.answer.length != _this.data.requirement.length) {
       wx.showToast({
-        title: '信息未填写完整！',
+        title: '信息未填写完整',
         image: '/images/about.png'
       })
       return;
@@ -339,7 +339,7 @@ Page({
       if (_this.data.requirement[k].type == 'text') {
         if (_this.data.answer[k] == null || _this.data.answer[k] == "" || _this.data.answer[k] == undefined) {
           wx.showToast({
-            title: '信息未填写完整！',
+            title: '信息未填写完整',
             image: '/images/about.png'
           })
           return;
@@ -350,7 +350,7 @@ Page({
       const pattern = /^1(3|4|5|7|8)\d{9}$/;
       if (pattern.test(_this.data.ifo[1]) == false) {
         wx.showToast({
-          title: '手机号格式错误！',
+          title: '手机号格式错误',
           image: '/images/about.png'
         })
         return;

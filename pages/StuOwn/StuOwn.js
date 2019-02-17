@@ -9,7 +9,8 @@ Page({
     studentAvatar:"",
     isLogin:false,
     loading:false,
-    redDot:false
+    redDot:false,
+    type:"none"
   },
   onShow: function (options) {
     let _this=this;
@@ -17,7 +18,8 @@ Page({
       navH:app.globalData.navbarHeight,
       isLogin:app.globalData.isLogin,
       studentAvatar:app.globalData.avatar,
-      nickName:app.globalData.name
+      nickName:app.globalData.name,
+      type:app.globalData.type
     })
     if (app.globalData.inbox_count>0){
       wx.showTabBarRedDot({
@@ -37,9 +39,16 @@ Page({
     }
   },
   editInform:function(){
-    wx.navigateTo({
-      url: '/pages/stuEdit/stuEdit',
-    })
+    if (this.data.type != 'org' && this.data.type != 'none')
+      wx.navigateTo({
+        url: '/pages/stuEdit/stuEdit',
+      })
+    else 
+      wx.showModal({
+        title: '功能未完善',
+        content: '请登录Ulife网页版进行操作',
+        showCancel:false
+      })
   },
   login:function(){
     wx.navigateTo({
@@ -49,7 +58,7 @@ Page({
   signUp:function(){
     if (app.globalData.isLogin == false) {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
       })
       return;
@@ -61,7 +70,7 @@ Page({
   watch: function () {
     if (app.globalData.isLogin == false) {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
       })
       return;
@@ -73,7 +82,7 @@ Page({
   collect: function () {
     if (app.globalData.isLogin == false) {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
       })
       return;
@@ -95,7 +104,7 @@ Page({
   toStuHistory:function(){
     if (app.globalData.isLogin == false) {
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image: "/images/about.png"
       })
       return;
@@ -107,7 +116,7 @@ Page({
   toStuMsg:function(){
     if(app.globalData.isLogin==false){
       wx.showToast({
-        title: '请先登录Ulife账号！',
+        title: '请先登录账号',
         image:"/images/about.png"
       })
       return;
@@ -120,9 +129,10 @@ Page({
     let url = e.detail.qrCode;
     let urlJudge=url.split("/");
     if (urlJudge[0] != 'https:' || urlJudge[2] != 'ulife.org.cn' || urlJudge[3] !='activity'){
-      wx.showToast({
-        title: '只能扫描站内二维码！',
-        image: "/images/about.png"
+      wx.showModal({
+        title: '二维码无效',
+        content: '只能扫描站内二维码',
+        showCancel: false
       })
       return;
     }
@@ -137,6 +147,31 @@ Page({
       title: 'Ulife网站',
       content: 'https://ulife.org.cn（建议在pc上打开）',
       showCancel:false
+    })
+  },
+  toRules:function(){
+    wx.navigateTo({
+      url: '/pages/terms/terms',
+    })
+  },
+  myAct:function(){
+    wx.navigateTo({
+      url: '/pages/myActs/myActs',
+    })
+  },
+  orgSignup:function(){
+    wx.navigateTo({
+      url: '/pages/orgSignup/orgSignup',
+    })
+  },
+  draft:function(){
+    wx.navigateTo({
+      url: '/pages/draft/draft',
+    })
+  },
+  createAct:function(){
+    wx.navigateTo({
+      url: '/pages/createAct/createAct',
     })
   }
 })

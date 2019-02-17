@@ -1,6 +1,6 @@
 <view>
   <view class='activities-wrapper'>
-    <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item">
+    <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item" bindlongpress='excuse' id="{{index}}">
       <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct' id="{{item.acturl}}"></image>
         <view class='act-heading' bindtap='openAct' id="{{item.acturl}}">
         <text>{{item.heading}}</text>

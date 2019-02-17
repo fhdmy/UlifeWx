@@ -9,7 +9,7 @@ Component({
     pageType:String
   },
   data: {
-
+   
   },
   lifetimes: {
     
@@ -25,5 +25,13 @@ Component({
         url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
       })
     },
+    excuse:function(e){
+      if(this.properties.pageType=="myActs"){
+        this.triggerEvent('myActs',e.currentTarget.id, {})
+      }
+      else if (this.properties.pageType == "draft"){
+        this.triggerEvent('draft', e.currentTarget.id, {})
+      }
+    }
   }
 })

@@ -1,0 +1,8 @@
+/* pages/relevantTerms/terms.wxss */
+
+text{
+  font-size: 32rpx;
+  color: #484848;
+  padding: 40rpx 40rpx 120rpx 40rpx;
+  display: block;
+}

@@ -7,6 +7,8 @@ App({
     // url: "http://27.50.136.70/api",
     stuEditType: "", //学生编辑页面跳转到输入文字的界面（stuArea）数据传递问题，暂时只能用全局变量来解决，不然路由栈会有显示问题
     stuEditContent: "",
+    createCJ2Type:"",
+    createCJ2Content:"上海大学",
     signupType:"",
     signupContent:"",
     signupItem:"",
@@ -19,7 +21,15 @@ App({
     avatar: "",
     user_url: "",
     inbox_count: 0,
-    type: "none"
+    type: "none",
+    createHeading:"",
+    createHeadImg:"",
+    createDate:"",
+    createTime:"",
+    createLocation:"",
+    createType:"",
+    createHobby:"",
+    createDescribe:""
   },
   onLaunch: function() {
     let _this = this;
@@ -81,7 +91,7 @@ App({
       _this.globalData.type="org";
       wx.request({
         url: _this.globalData.url + '/account/orgs/get_toolbar/',
-        headers: {
+        header: {
           "Authorization":_this.globalData.token
         },
         complete:function(res){

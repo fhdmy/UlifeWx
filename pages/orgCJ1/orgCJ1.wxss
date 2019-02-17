@@ -1,0 +1,34 @@
+/* pages/OrgCJ I/chuangjianI.wxss */
+.text1{
+  margin-top: 95rpx;
+  margin-bottom: 95rpx;
+  margin-left: 40rpx;
+  font-weight: bold;
+  font-size: 50rpx;
+  color:rgb(70, 66, 66);
+}
+.nextbtn{
+  width: 100%;
+  padding-left: 28%;
+}
+.nxtbtn{
+  background-color: #FE9246;
+  border-radius: 0;
+  color:white;
+  width: 28%;
+  font-size: 40rpx;
+}
+.notice{
+  margin-top: 30%;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  font-size: 36rpx;
+  color: #484848;
+}
+.txt1{
+  margin-bottom: 30rpx;
+}
+.txt2{
+  margin-bottom: 30rpx;
+  font-size: 35rpx;
+}
