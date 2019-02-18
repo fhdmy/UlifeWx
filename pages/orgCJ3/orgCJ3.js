@@ -39,8 +39,8 @@ Page({
     this.data.type = options.type;
   },
   toNext: function () {
-    app.globalData.createRequires=this.data.requires;
-    app.globalData.createSelectArray=this.data.selectArray;
+    app.globalData.createRequires = this.data.requires
+    app.globalData.createSelectArray = this.data.selectArray
     if(this.data.type=="link")
       wx.navigateTo({
         url: '/pages/orgCJLink/orgCJLink'
@@ -52,6 +52,7 @@ Page({
     this.setData({
       requires:temp
     })
+    app.globalData.createRequires=this.data.requires
   },
   addchoice: function(){
     let _this=this;
@@ -67,6 +68,7 @@ Page({
           _this.setData({
             requires:temp
           })
+          app.globalData.createRequires = _this.data.requires
         }
         else {
           let temp = _this.data.requires;
@@ -78,6 +80,7 @@ Page({
           _this.setData({
             requires: temp
           })
+          app.globalData.createRequires = _this.data.requires
         }
       }
     })
@@ -87,12 +90,14 @@ Page({
     this.setData({
       [ip]:e.detail.value
     })
+    app.globalData.createRequires = this.data.requires
   },
   inputTitleValue:function(e){
     let ip = "requires[" + e.target.id + "].title";
     this.setData({
       [ip]: e.detail.value
     })
+    app.globalData.createRequires = this.data.requires
   },
   addOption:function(e){
     let temp = this.data.requires;
@@ -100,6 +105,7 @@ Page({
     this.setData({
       requires: temp
     })
+    app.globalData.createRequires = this.data.requires
   },
   inputOptionValue:function(e){
     let index = e.target.id[0]
@@ -108,6 +114,7 @@ Page({
     this.setData({
       [ip]: e.detail.value
     })
+    app.globalData.createRequires = this.data.requires
   },
   clearOptionEvent:function(e){
     let index=e.target.id[0]
@@ -117,6 +124,7 @@ Page({
     this.setData({
       requires: temp
     })
+    app.globalData.createRequires = this.data.requires
   },
   checkboxChange:function(e){
     let items = this.data.selectArray
@@ -133,5 +141,6 @@ Page({
     this.setData({
       selectArray:items
     })
+    app.globalData.createSelectArray=this.data.selectArray
   }
 })

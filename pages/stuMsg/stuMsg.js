@@ -336,13 +336,13 @@ Page({
           })
         } else {
           let temp=_this.data.msg;
+          if (!_this.data.msg[id].is_read) {
+            app.globalData.inbox_count--;
+          }
           temp.splice(id,1);
           _this.setData({
             msg:temp
           })
-          if (!_this.data.msg[id].is_read){
-            app.globalData.inbox_count--;
-          }
         }
       }
     })

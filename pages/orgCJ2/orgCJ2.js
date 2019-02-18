@@ -36,13 +36,13 @@ Page({
       _this.setData({ date: app.globalData.createDate })
     if (app.globalData.createTime != "")
       _this.setData({ time: app.globalData.createTime })
-    if (app.globalData.createHeadImg != "")
+    if (app.globalData.createLocation != "")
       _this.setData({ location: app.globalData.createLocation })
-    if (app.globalData.createHeadImg != "")
+    if (app.globalData.createType != "")
       _this.setData({ actType: app.globalData.createType })
-    if (app.globalData.createHeadImg != "")
+    if (app.globalData.createHobby != "")
       _this.setData({ hobby: app.globalData.createHobby })
-    if (app.globalData.createHeadImg != "")
+    if (app.globalData.createDescribe != "")
       _this.setData({ describe: app.globalData.createDescribe })
     app.globalData.createCJ2Content ="上海大学";
     app.globalData.createCJ2Type="";
@@ -51,11 +51,13 @@ Page({
     this.setData({
       date: e.detail.value
     })
+    app.globalData.createDate = this.data.date
   },
   bindTimeChange(e) {
     this.setData({
       time: e.detail.value
     })
+    app.globalData.createTime = this.data.time
   },
   toEditAreaLocation(){
     wx.navigateTo({
@@ -66,21 +68,24 @@ Page({
     this.setData({
       actType: this.data.array1[e.detail.value]
     })
+    app.globalData.createType = this.data.actType
   },
   bindHobbyChange(e) {
     this.setData({
       hobby: this.data.array2[e.detail.value]
     })
+    app.globalData.createHobby = this.data.hobby
   },
   toNext:function(){
     wx.navigateTo({
-      url: '/pages/OrgCJ III/chuangjianIII'
+      url: '/pages/orgCJ3/orgCJ3?type='+this.data.type
     })
   },
   inputDescribe:function(e){
     this.setData({
       describe: e.detail.value
     })
+    app.globalData.createDescribe = this.data.describe
   },
   changeHeadImg:function(){
     let _this = this;
@@ -98,17 +103,18 @@ Page({
         _this.setData({
           headImg: res.tempFilePaths[0]
         })
+        app.globalData.createHeadImg = _this.data.headImg
       },
     })
   },
   toNext:function(){
-    app.globalData.createHeadImg=this.data.headImg;
-    app.globalData.createDate=this.data.date;
-    app.globalData.createTime=this.data.time;
-    app.globalData.createLocation=this.data.location;
-    app.globalData.createType=this.data.actType;
-    app.globalData.createHobby=this.data.hobby;
-    app.globalData.createDescribe=this.data.describe;
+    app.globalData.createHeadImg = this.data.headImg;
+    app.globalData.createDate = this.data.date;
+    app.globalData.createTime = this.data.time;
+    app.globalData.createLocation = this.data.location;
+    app.globalData.createType = this.data.actType;
+    app.globalData.createHobby = this.data.hobby;
+    app.globalData.createDescribe = this.data.describe;
     wx.navigateTo({
       url: '/pages/orgCJ3/orgCJ3?type=' + this.data.type,
     })

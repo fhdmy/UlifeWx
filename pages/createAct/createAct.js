@@ -17,7 +17,7 @@ Page({
   },
   createLink: function () {
     wx.navigateTo({
-      url: '/pages/orgCJ3/orgCJ3?type=link',
+      url: '/pages/orgCJ1/orgCJ1?type=link',
     })
   },
 })

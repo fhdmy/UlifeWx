@@ -28,7 +28,7 @@ input{
   height: 96rpx;
   background:white;
   padding-left: 40rpx;
-  margin-bottom: 80rpx;
+  margin-bottom: 30rpx;
   color:#666666;
 }
 
@@ -43,4 +43,21 @@ button{
   background: #FE9246;
   color: white;
   margin-bottom: 60rpx;
+}
+
+.upload-file{
+  margin-bottom: 80rpx;
+  margin-left: 40rpx;
+}
+
+.upload-file text{
+  color:#484848;
+  font-size: 40rpx;
+}
+
+.upload-file i{
+  color:#FE9246;
+  font-size: 52rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }

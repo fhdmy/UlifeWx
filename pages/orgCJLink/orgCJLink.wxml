@@ -2,7 +2,12 @@
   <navbar page-name="链接" pageType="backButton"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
+    <loading hidden="{{!loading}}">加载中...</loading>
     <input placeholder='请在这里输入微信推文链接' bindconfirm='save' bindinput='inputContent' value='{{content}}' focus='{{focus}}'></input>
+    <view class='upload-file'>
+      <text>上传文件</text> 
+      <i class="iconfont icon-jiahao-fill" bindtap="uploadFile"></i>
+    </view>
     <button bindtap='save' class="save-button">保存</button>
     <button bindtap='upload'>上传</button>
   </view>
