@@ -16,14 +16,22 @@ Component({
   },
   methods: {
     openAct:function(e){  //打开活动界面
-      wx.navigateTo({
-        url: '/pages/actShow/actShow?actId=' + e.currentTarget.id,
-      })
+      if (this.properties.pageType =='orgSignup')
+        wx.navigateTo({
+          url: '/pages/orgSignupShow/orgSignupShow?actId=' + e.currentTarget.id,
+        })
+      else
+        wx.navigateTo({
+          url: '/pages/actShow/actShow?actId=' + e.currentTarget.id,
+        })
     },
     openOrg:function(e){  //打开组织界面
-      wx.navigateTo({
-        url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
-      })
+      if (this.properties.pageType == 'orgSignup')
+        return;
+      else
+        wx.navigateTo({
+          url: '/pages/orgDisplay/orgDisplay?orgId=' + e.target.id,
+        })
     },
     excuse:function(e){
       if(this.properties.pageType=="myActs"){

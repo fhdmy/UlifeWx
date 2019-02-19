@@ -34,8 +34,6 @@
       <view style='clear:both;'></view>
     </view>
     <view class='main-content'>
-    <!-- <web-view src="https://ulife.org.cn/static/weixin/vpij7tdrdd3c7i0yt6w9d148y57dl2da/entry.html"></web-view> -->
-    <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
       <view wx:if="{{link}}">
         <text class="link-otext">很抱歉，目前微信推文无法直接显示在小程序内，麻烦复制下方链接在浏览器中打开。</text>   
         <text class='link-html-text' selectable="true">{{linkhtml}}</text>  

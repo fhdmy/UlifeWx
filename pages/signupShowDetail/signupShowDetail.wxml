@@ -1,0 +1,25 @@
+<view class='view-page'>
+  <navbar page-name="{{formItem}}" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--这里放你的内容-->
+    <view class='form-wrapper'>
+      <view class='form-item' style='flex:1'>
+        <view>昵称</view>
+        <view wx:for="{{participants}}" wx:key="item" style='color:#E03636;' id="{{item.id}}" bindtap='openStu'>{{item.nickname}}</view>
+      </view>
+      <view class='form-item' style='flex:1'>
+        <view>姓名</view>
+        <view wx:for="{{participants}}" wx:key="item">{{item.realname}}</view>
+      </view>
+      <view class='form-item' style='flex:2'>
+        <view>学号</view>
+        <view wx:for="{{participants}}" wx:key="item">{{item.student_no}}</view>
+      </view>
+      <view class='form-item' style='flex:2'>
+        <view>手机号</view>
+        <view wx:for="{{participants}}" wx:key="item">{{item.phone_number}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,143 @@
+<view class='view-page'>
+  <navbar page-name="报名" pageType="backButton"></navbar>
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--这里放你的内容-->
+    <view class='swiper-wrapper'>
+      <swiper duration="100" display-multiple-items="3" bindchange="swiperChange">
+        <block wx:for="{{signupOptions}}" wx:key="item">
+          <swiper-item bindtap='swiperTap' id="{{index}}">
+            <view class="swiper-item {{currentOption==index?'swiper-choosen':''}}">
+              {{item}}
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!-- 报名统计 -->
+    <view wx:if="{{currentOption==0}}">
+      <!-- 报名人数 -->
+      <view class='signup-npeople-wrapper'>
+        <view class='signup-npeople-item'>
+          <view>人数</view>
+          <view>{{signup_npeople[0].count}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>男</view>
+          <view>{{signup_npeople[0].male}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>女</view>
+          <view>{{signup_npeople[0].female}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>大一</view>
+          <view>{{signup_npeople[0].freshman}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>大二</view>
+          <view>{{signup_npeople[0].sophomore}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>大三</view>
+          <view>{{signup_npeople[0].junior}}</view>
+        </view>
+        <view class='signup-npeople-item'>
+          <view>大四</view>
+          <view>{{signup_npeople[0].senior}}</view>
+        </view>
+      </view>
+      <!-- 所属院系 -->
+      <view class='college-wrapper' wx:if="{{college_judge}}">
+        <view class='college-item' style='flex:3'>
+          <view>报名学生所属院系</view>
+          <view wx:for="{{collegetable}}" wx:key="item">{{item.college}}</view>
+        </view>
+        <view class='college-item' style='flex:1'>
+          <view>人数</view>
+          <view wx:for="{{collegetable}}" wx:key="item" style='color:#E03636;' bindtap='openCollegeDetail' id="{{index}}">{{item.count}}</view>
+        </view>
+      </view>
+      <!-- 选项 -->
+      <view class='select-wrapper' wx:for="{{statistics_items}}" wx:key="item">
+        <view class='select-item' style='flex:3'>
+          <view>{{item.headers[0].text}}</view>
+          <view wx:for="{{item.choices}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm">{{itm.item}}</view>
+        </view>
+        <view class='college-item' style='flex:1'>
+          <view>{{item.headers[1].text}}</view>
+          <view wx:for="{{item.choices}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm" style='color:#E03636;' id="{{index}}{{idx}}" bindtap='openItemDetail'>{{itm.npeople}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 个人数据 -->
+    <view wx:if="{{currentOption==1}}">
+      <view wx:for="{{personal_data}}" wx:key="item" style='margin-bottom: 60rpx;'>
+        <view class='personal-form-wrapper'>
+          <view class='personal-form-item' style="flex:1;">
+            <view>昵称:
+              <text class="nickname" bindtap='tapNickname' id="{{item.id}}">{{item.nickname}}</text>
+            </view>
+            <view>姓名:
+              <text>{{item.realname}}</text>
+            </view>
+            <view>年级:
+              <text>{{item.grade}}</text>
+            </view>
+          </view>
+          <view class='personal-form-item' style="flex:2">
+            <view>院系:
+              <text>{{item.college}}</text>
+            </view>
+            <view>学号:
+              <text>{{item.student_no}}</text>
+            </view>
+            <view>手机号:
+              <text>{{item.phone_number}}</text>
+            </view>
+          </view>
+          <view class='personal-form-item' style="flex:1">
+            <view>性别:
+              <text>{{item.gender}}</text>
+            </view>
+            <view>信誉:
+              <text>{{item.credit}}%</text>
+            </view>
+            <view style="text-align: center;">/</view>
+          </view>
+        </view>
+        <view wx:for="{{question}}" wx:key="itm" wx:for-item="itm" wx:for-index="idx" class='question-wrapper'>
+          <view wx:if="{{itm.type=='text'}}">{{itm.inner}}: <text>{{item.answer[idx]}}</text></view>
+          <view wx:if="{{itm.type=='select'}}">{{itm.title}}: <text>{{item.answer[idx]}}</text></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 发布消息 -->
+    <view wx:if="{{currentOption==2}}">
+
+    </view>
+
+    <!-- 消息历史 -->
+    <view wx:if="{{currentOption==3}}">
+
+    </view>
+
+    <!-- 群发短信 -->
+    <view wx:if="{{currentOption==4}}">
+
+    </view>
+
+    <!-- 短信历史 -->
+    <view wx:if="{{currentOption==5}}">
+
+    </view>
+
+    <!-- 二维码 -->
+    <view wx:if="{{currentOption==6}}">
+
+    </view>
+  </scroll-view>
+</view>

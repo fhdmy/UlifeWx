@@ -32,7 +32,9 @@ App({
     createDescribe:"",
     createRequires: "",
     createSelectArray: "",
-    createLink:""
+    createLink:"",
+    signupDetail:[],
+    formItem:"详细信息"
   },
   onLaunch: function() {
     let _this = this;

@@ -1,0 +1,38 @@
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.form-wrapper{
+  display: flex;
+  width: 748rpx;
+  border-left: 1px solid #484848;
+  border-top: 1px solid hsl(0, 0%, 28%);
+}
+
+.form-item view{
+  color: #484848;
+  font-size:28rpx;
+  border-right: 1px solid #484848;
+  border-bottom: 1px solid #484848;
+  text-align: center;
+}

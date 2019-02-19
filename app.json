@@ -29,7 +29,9 @@
     "pages/orgCJ1/orgCJ1",
     "pages/orgCJ2/orgCJ2",
     "pages/orgCJ3/orgCJ3",
-    "pages/orgCJLink/orgCJLink"
+    "pages/orgCJLink/orgCJLink",
+    "pages/orgSignupShow/orgSignupShow",
+    "pages/signupShowDetail/signupShowDetail"
   ], 
   "window": {
     "backgroundTextStyle": "light",

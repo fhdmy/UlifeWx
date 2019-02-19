@@ -4,6 +4,6 @@
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <image wx:if="{{activities.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
-    <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+    <NormalActivitiesShow activities="{{activities}}" pageType="orgSignup"></NormalActivitiesShow>
   </scroll-view>
 </view>
