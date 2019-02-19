@@ -129,3 +129,138 @@ swiper-item{
   border-bottom: 1px solid #484848;
   text-align: center;
 }
+
+.msg-top-wrapper{
+  font-size: 32rpx;
+  margin: 40rpx 0 20rpx 40rpx;
+}
+
+.msg-text1{
+  float: left;
+  color: #484848;
+}
+
+.msg-input{
+  border: 1px solid #484848;
+  color: #484848;
+  float: left;
+  margin-left: 40rpx;
+  width: 250rpx;
+  padding-left: 20rpx;
+  position: relative;
+  bottom: 4rpx;
+}
+
+.msg-text2{
+  color: #FE9246;
+  float: left;
+  margin-left: 20rpx;
+}
+
+.content-txt{
+  color: #484848;
+  font-size: 32rpx;
+  margin-left: 40rpx;
+}
+
+.msg-textarea{
+  font-size: 32rpx;
+  color: #484848;
+  margin: 20rpx 40rpx 70rpx 40rpx;
+  display: block;
+  width: 670rpx;
+  height: 600rpx;
+  border: 1px solid #484848;
+}
+
+.msg-confirm{
+  color: #484848;
+  font-size: 32rpx;
+  margin-right: 40rpx;
+  padding: 15rpx 40rpx;
+  border: 1px solid #484848;
+  float: right;
+}
+
+.phone-txt{
+  color: black;
+  font-size: 32rpx;
+  margin-left: 40rpx;
+}
+
+.phone-name{
+  font-size: 32rpx;
+  color: #FE9246;
+  margin-left: 20rpx;
+}
+
+.phone-org-phone{
+  font-size: 32rpx;
+  color: #FE9246;
+  margin-left: 20rpx;
+}
+
+.etc{
+  color: #0066FF;
+  font-size: 28rpx;
+  margin: 0 40rpx 40rpx; 
+  display: block;
+}
+
+.no-acts{
+  width: 500rpx;
+  height: 500rpx;
+  margin: 250rpx 205rpx 0 145rpx;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.msg-wrapper{
+  min-height: 120rpx;
+  width: 670rpx;
+  padding: 0 40rpx;
+  border-bottom: 1px solid #cccccc;
+}
+
+.title-wrapper{
+  height: 90rpx;
+  margin-top: 16rpx;
+  width: 100%;
+}
+
+.org-avatar{
+  float: left;
+  width: 90rpx;
+  height: 90rpx;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+}
+
+.name-wrapper{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.org-name{
+  font-size: 30rpx;
+  color: #E03636;
+}
+
+.otext{
+  font-size: 30rpx;
+  color: #484848;
+}
+.msg-date{
+  display: block;
+  font-size: 24rpx;
+  color: #aaaaaa;
+}
+
+.msg-index{
+  display: block;
+  margin-top: 25rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  color: #484848;
+}

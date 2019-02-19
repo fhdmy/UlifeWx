@@ -22,7 +22,19 @@ Page({
     morehistory_phone_msg:"",
     presenthistory_phone:0,
     history_phone_max:0,
-    college_judge:false
+    college_judge:false,
+    msgContent:"",
+    msgTarget:"",
+    phoneContent: "",
+    phoneTarget: "",
+    orgPhone:"",
+    etc:`示例:
+
+    输入:
+    亲爱的$name(点击"姓名")同学，您成功报名我们的活动。若有疑问，可通过拨打电话或发送短信至13912345678(点击"组织手机号")联系我们。
+    
+    输出:
+    亲爱的小张同学，您成功报名我们的活动。若有疑问，可通过拨打电话或发送短信至13912345678联系我们。`
   },
   onLoad: function (options) {
     let _this = this;
@@ -496,6 +508,227 @@ Page({
     app.globalData.formItem = this.data.statistics_items[index].choices[idx].item
     wx.navigateTo({
       url: "/pages/signupShowDetail/signupShowDetail",
+    })
+  },
+  msgChangeToAll:function(){
+    this.setData({
+      msgTarget:"全体报名者"
+    })
+  },
+  inputMsgContent:function(e){
+    this.setData({
+      msgContent: e.detail.value
+    })
+  },
+  inputMsgTarget:function(e){
+    this.setData({
+      msgTarget: e.detail.value
+    })
+  },
+  inputOrgPhone:function(e){
+    this.setData({
+      orgPhone: e.detail.value
+    })
+  },
+  inputPhoneContent: function (e) {
+    this.setData({
+      phoneContent: e.detail.value,
+    })
+  },
+  inputPhoneTarget: function (e) {
+    this.setData({
+      phoneTarget: e.detail.value
+    })
+  },
+  phoneChangeToAll: function () {
+    this.setData({
+      phoneTarget: "全体报名者"
+    })
+  },
+  phoneInsertName:function(){
+    let s = this.data.phoneContent +"$name";
+    this.setData({
+      phoneContent:s
+    })
+  },
+  phoneInsertOrgPhone:function(){
+    let s = this.data.phoneContent + this.data.orgPhone;
+    this.setData({
+      phoneContent: s
+    })
+  },
+  msgConfirm:function(){
+    let _this=this;
+    if (_this.data.msgTarget !="全体报名者"){
+      wx.request({
+        url: app.globalData.url +'/message/messages/',
+        method:"POST",
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          receiver:_this.data.msgTarget,
+          index:_this.data.msgContent
+        },
+        complete:(res)=>{
+          if (res.data =="Username not registered"){
+            wx.showToast({
+              title: '用户不存在',
+              image: '/images/about.png'
+            })
+          }
+          else if(res.statusCode!=201){
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else{
+            wx.showToast({
+              title: '发送成功',
+            })
+          }
+        }
+      })
+    }
+    else{
+      wx.request({
+        url: app.globalData.url + '/activity/activities/' + _this.data.actId +'/group_send/',
+        method: "POST",
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          index: _this.data.msgContent
+        },
+        complete: (res) => {
+          if (res.statusCode != 201) {
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else {
+            wx.showToast({
+              title: '发送成功',
+            })
+          }
+        }
+      })
+    }
+  },
+  phoneConfirm:function(){
+    let _this = this;
+    if (_this.data.phoneTarget != "全体报名者") {
+      wx.request({
+        url: app.globalData.url + '/activity/activities/' + _this.data.actId +'/send_sms/',
+        method: "POST",
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          template_param: _this.data.phoneContent,
+          phone_numbers: _this.data.phoneTarget
+        },
+        complete: (res) => {
+          if (res.data == "Username not registered") {
+            wx.showToast({
+              title: '手机号不存在',
+              image: '/images/about.png'
+            })
+          }
+          else if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else {
+            wx.showToast({
+              title: '发送成功',
+            })
+          }
+        }
+      })
+    }
+    else {
+      wx.request({
+        url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/send_sms_batch/',
+        method: "POST",
+        header: {
+          "Authorization": app.globalData.token
+        },
+        data: {
+          template_param: _this.data.phoneContent
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else {
+            wx.showToast({
+              title: '发送成功',
+            })
+          }
+        }
+      })
+    }
+  },
+  openTarget:function(e){
+    wx.navigateTo({
+      url: '/pages/stuDisplay/stuDisplay?stuId=' + e.target.id,
+    })
+  },
+  chooseLongTap:function(e){
+    let id = e.currentTarget.id;
+    let _this = this;
+    wx.showActionSheet({
+      itemList: ['删除'],
+      success(e) {
+        _this.deleteMsg(id);
+      }
+    })
+  },
+  deleteMsg: function (id) {
+    let _this = this;
+    wx.showModal({
+      content: '你真的要删除这条消息？',
+      confirmText: '确定',
+      cancelText: '取消',
+      success(res) {
+        if (res.confirm) {
+          _this.deleteMsgRequest(id);
+        } else if (res.cancel) {
+          console.log('取消按钮')
+        }
+      }
+    })
+  },
+  deleteMsgRequest: function (id) {
+    let _this = this;
+    wx.request({
+      url: app.globalData.url + '/message/messages/' + _this.data.history_msg[id].msg_id + '/set_deleted_by_sender/',
+      method: "POST",
+      header: {
+        "Authorization": app.globalData.token
+      },
+      complete: (res) => {
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '网络传输故障',
+            image: '/images/about.png'
+          })
+        } else {
+          let temp = _this.data.history_msg;
+          temp.splice(id, 1);
+          _this.setData({
+            history_msg: temp
+          })
+        }
+      }
     })
   }
 })

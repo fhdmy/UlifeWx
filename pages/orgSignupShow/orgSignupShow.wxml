@@ -109,30 +109,82 @@
           </view>
         </view>
         <view wx:for="{{question}}" wx:key="itm" wx:for-item="itm" wx:for-index="idx" class='question-wrapper'>
-          <view wx:if="{{itm.type=='text'}}">{{itm.inner}}: <text>{{item.answer[idx]}}</text></view>
-          <view wx:if="{{itm.type=='select'}}">{{itm.title}}: <text>{{item.answer[idx]}}</text></view>
+          <view wx:if="{{itm.type=='text'}}">{{itm.inner}}:
+            <text>{{item.answer[idx]}}</text>
+          </view>
+          <view wx:if="{{itm.type=='select'}}">{{itm.title}}:
+            <text>{{item.answer[idx]}}</text>
+          </view>
         </view>
       </view>
     </view>
 
     <!-- 发布消息 -->
     <view wx:if="{{currentOption==2}}">
-
+      <view class='msg-top-wrapper'>
+        <text class='msg-text1'>目标账号:</text>
+        <input class='msg-input' bindinput='inputMsgTarget' value='{{msgTarget}}'></input>
+        <text class='msg-text2' bindtap='msgChangeToAll'>全体报名者</text>
+        <view style='clear:both;'></view>
+      </view>
+      <view class='content-txt'>内容: </view>
+      <textarea placeholder='有什么意见吗……' bindinput='inputMsgContent' value='{{msgContent}}' class='msg-textarea'></textarea>
+      <text bindtap='msgConfirm' class='msg-confirm'>提交</text>
     </view>
 
     <!-- 消息历史 -->
     <view wx:if="{{currentOption==3}}">
-
+      <image wx:if="{{history_msg.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+      <view wx:for="{{history_msg}}" wx:key="item" class='msg-wrapper'>
+        <view bindlongpress='chooseLongTap' id="{{index}}">
+          <view class='title-wrapper'>
+            <image src='{{item.avatar}}' id="{{item.id}}" class='org-avatar' bindtap='openTarget'></image>
+            <view class='name-wrapper'>
+              <text class='org-name' bindtap='openTarget' id="{{item.id}}">{{item.nickname}}</text>
+              <text class='otext'> 接受了消息</text>
+              <text class='msg-date'>{{item.date}}</text>
+            </view>
+          </view>
+          <text class='msg-index'>{{item.index}}</text>
+        </view>
+      </view>
     </view>
 
     <!-- 群发短信 -->
     <view wx:if="{{currentOption==4}}">
-
+      <view class='msg-top-wrapper'>
+        <text class='msg-text1'>目标手机号：</text>
+        <input class='msg-input' bindinput='inputPhoneTarget' value='{{phoneTarget}}'></input>
+        <text class='msg-text2' bindtap='phoneChangeToAll'>全体报名者</text>
+        <view style='clear:both;'></view>
+      </view>
+      <view class='msg-top-wrapper'>
+        <text class='msg-text1'>组织(您)的联系手机号:</text>
+        <input class='msg-input' bindinput='inputOrgPhone' value='{{orgPhone}}'></input>
+        <view style='clear:both;'></view>
+      </view>
+      <view class='content-txt'>内容:
+        <text class='phone-txt'>输入变量</text>
+        <text class='phone-name' bindtap='phoneInsertName'>姓名</text>
+        <text class='phone-org-phone' bindtap='phoneInsertOrgPhone'>组织手机号</text>
+      </view>
+      <textarea placeholder='有什么意见吗……' bindinput='inputPhoneContent' value='{{phoneContent}}' class='msg-textarea' style="margin-bottom:20rpx;"></textarea>
+      <text class='etc'>{{etc}}</text>
+      <text bindtap='phoneConfirm' class='msg-confirm' style='margin-bottom:80rpx;'>提交</text>
     </view>
 
     <!-- 短信历史 -->
     <view wx:if="{{currentOption==5}}">
-
+      <image wx:if="{{history_phone_msg.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+      <view wx:for="{{history_phone_msg}}" wx:key="item" class='msg-wrapper'>
+        <view>
+            <view>
+              <text class='org-name'>{{item.phone_numbers}}</text>
+              <text class='otext'> 接受了短信</text>
+            </view>
+          <text class='msg-index'>{{item.template_param}}</text>
+        </view>
+      </view>
     </view>
 
     <!-- 二维码 -->

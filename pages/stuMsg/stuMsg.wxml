@@ -5,7 +5,7 @@
     <!--这里放你的内容-->
     <image wx:if="{{msg.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
     <view wx:for="{{msg}}" wx:key="item" class='msg-wrapper'>
-      <view wx:if="{{item.msg_type=='formal'}}" bindlongtap='chooseLongTap' id="{{index}}">
+      <view wx:if="{{item.msg_type=='formal'}}" bindlongpress='chooseLongTap' id="{{index}}">
         <view class='title-wrapper'>
           <image src='{{item.avatar}}' id="{{item.id}}" class='org-avatar' bindtap='openOrg'></image>
           <view class='name-wrapper'>
@@ -17,7 +17,7 @@
         </view>
         <text class='msg-index'>{{item.index}}</text>
       </view>
-      <view wx:if="{{item.msg_type=='reminder'}}" bindlongtap='chooseLongTap' id="{{index}}">
+      <view wx:if="{{item.msg_type=='reminder'}}" bindlongpress='chooseLongTap' id="{{index}}">
         <view class='title-wrapper'>
           <image src='{{item.avatar}}' id="{{item.id}}" class='org-avatar' bindtap='openOrg'></image>
           <view class='name-wrapper'>
