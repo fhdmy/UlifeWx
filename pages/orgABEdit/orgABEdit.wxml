@@ -1,0 +1,43 @@
+<view class='view-page'>
+  <navbar page-name="编辑活动" pageType="orgABEdit" bind:sort="sort" bind:save="toSave" ></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--头图-->
+    <image src='{{headImg}}' class='head-img'></image>
+    <view class='change-headimg' bindtap='changeHeadImg'>更换头图</view>
+    <view class='abstract'>简介:</view>
+    <!-- 主体部分 -->
+    <view class='main-content-wrapper'>
+      <view wx:for="{{computeddata}}" wx:key="item">
+        <view class='main-wrapper'>
+          <image src='{{item.inner}}' class='main-img' wx:if="{{item.type=='img'}}" bindlongpress='showImageActionSheet' id="{{index}}" mode="widthFix"></image>
+          <view wx:if="{{item.type=='title'}}" class='main-title-wrapper' bindlongpress='showTitleActionSheet' id="{{index}}">
+            <view class='main-title'>{{item.inner}}</view>
+          </view>
+          <view wx:if="{{item.type=='text'}}" class='main-text-wrapper' bindlongpress='showTextActionSheet' id="{{index}}">
+            <view class='main-text' style='color:{{item.color}};text-align:{{item.align}};text-decoration:{{item.text_decoration}};font-weight:{{item.font_weight}};font-style:{{item.font_style}};'>{{item.inner}}</view>
+          </view>
+        </view>
+      </view>
+
+    <!-- 添加按钮 -->
+    <view class='add-wrapper'>
+      <view class='add-item-wrapper'>
+        <view class='add-item' bindtap="addText">
+          <i class="iconfont icon-wenzi"></i>
+          <text>文本</text>
+        </view>
+        <view class='add-item' bindtap="addImg">
+          <i class="iconfont icon-tupian"></i>
+          <text>图片</text>
+        </view>
+        <view class='add-item' bindtap="addTitle">
+          <i class="iconfont icon-duanluo"></i>
+          <text>标题</text>
+        </view>
+        <view style='clear:both;'></view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>

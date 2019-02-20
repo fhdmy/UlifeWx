@@ -40,6 +40,13 @@ Page({
           }
         }
       }
+      else if (options.from =='orgCJEdit'){
+        if (app.globalData.orgCJEditContent!="")
+          _this.setData({
+            content: app.globalData.orgCJEditContent
+          })
+        app.globalData.orgCJEditContent=""
+      }
     }
   },
   save:function(){
@@ -67,6 +74,13 @@ Page({
     else if (this.data.pageFrom == 'orgCJ2'){
       app.globalData.createCJ2Type = this.data.pageType;
       app.globalData.createCJ2Content = this.data.content;
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+    else if (this.data.pageFrom == 'orgCJEdit'){
+      app.globalData.orgCJEditType = this.data.pageType;
+      app.globalData.orgCJEditContent = this.data.content;
       wx.navigateBack({
         delta: 1
       })

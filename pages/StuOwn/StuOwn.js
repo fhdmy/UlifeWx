@@ -44,10 +44,13 @@ Page({
         url: '/pages/stuEdit/stuEdit',
       })
     else 
-      wx.showModal({
-        title: '功能未完善',
-        content: '请登录Ulife网页版进行操作',
-        showCancel:false
+      // wx.showModal({
+      //   title: '功能未完善',
+      //   content: '请登录Ulife网页版进行操作',
+      //   showCancel:false
+      // })
+      wx.navigateTo({
+        url: '/pages/orgEdit/orgEdit',
       })
   },
   login:function(){

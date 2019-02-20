@@ -41,7 +41,7 @@
       <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
         <text wx:if="{{item.type=='title'}}" class='content-title' selectable="true">{{item.inner}}</text>
         <text wx:if="{{item.type=='text'}}" style="color:{{item.color}}!important;text-align:{{item.align}};text-decoration:{{item.text_decoration}};font-weight:{{item.font_weight}};font-style:{{item.font_style}}" class='content-text' selectable="true">{{item.inner}}</text>
-        <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img' bindtap='previewImg' id="{{index}}"></image>
+        <image src='{{globalUrl+item.inner}}' wx:if="{{item.type=='img'}}" class='content-img' bindtap='previewImg' id="{{index}}" mode="widthFix"></image>
       </view>
       <view wx:if="{{filename.length>0}}">
         <view class='download-file'>文件下载</view>

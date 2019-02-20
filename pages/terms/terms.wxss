@@ -1,5 +1,5 @@
 /* pages/relevantTerms/terms.wxss */
-
+@import"../../iconfont/iconfont.wxss";
 text{
   font-size: 32rpx;
   color: #484848;

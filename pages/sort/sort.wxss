@@ -1,0 +1,103 @@
+@import "../../iconfont/iconfont.wxss";
+
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 300px;
+  position: relative;
+}
+
+.main {
+  width: 670rpx;
+  height: 100rpx;
+  background: #eee;
+  border: 1px solid #ccc;
+  margin: 10rpx 40rpx;
+  text-align: center;
+  line-height: 100rpx;
+  overflow: hidden;
+}
+
+.mainmove {
+  position: absolute;
+  opacity: 0.7;
+}
+
+.maind {
+  background: #fff;
+  border: 1px dashed #efefef;
+}
+
+.mainend {
+  position: static;
+  opacity: 1;
+}
+
+.savebtn {
+  background-color: #fe9246;
+  color: white;
+  width: 150rpx;
+  padding: 15rpx 30rpx;
+  font-size: 40rpx;
+  float: right;
+  margin-right: 40rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}
+
+.main-wrapper{
+  margin-top: 40rpx;
+}
+
+image{
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align:top;
+}
+
+.inner-text{
+  font-size: 32rpx;
+}
+
+.inner-title{
+  font-size: 48rpx;
+  font-weight: bolder;
+}
+
+.double-height{
+  height: 200rpx;
+}

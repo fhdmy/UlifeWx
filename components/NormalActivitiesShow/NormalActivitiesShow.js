@@ -18,15 +18,30 @@ Component({
     openAct:function(e){  //打开活动界面
       if (this.properties.pageType =='orgSignup')
         wx.navigateTo({
-          url: '/pages/orgSignupShow/orgSignupShow?actId=' + e.currentTarget.id,
+          url: '/pages/orgSignupShow/orgSignupShow?actId=' + this.properties.activities[e.currentTarget.id].acturl,
         })
+      else if (this.properties.pageType == 'draft'){
+        app.globalData.createActId = this.properties.activities[e.currentTarget.id].acturl
+        // 链接活动
+        if (this.properties.activities[e.currentTarget.id].link){
+          wx.navigateTo({
+            url: '/pages/orgCJ1/orgCJ1?type=link&reedit=true',
+          })
+        }
+        // 编辑活动
+        else{
+          wx.navigateTo({
+            url: '/pages/orgCJ1/orgCJ1?type=edit&reedit=true',
+          })
+        }
+      }
       else
         wx.navigateTo({
-          url: '/pages/actShow/actShow?actId=' + e.currentTarget.id,
+          url: '/pages/actShow/actShow?actId=' + this.properties.activities[e.currentTarget.id].acturl,
         })
     },
     openOrg:function(e){  //打开组织界面
-      if (this.properties.pageType == 'orgSignup')
+      if (this.properties.pageType == 'orgSignup' || this.properties.pageType == 'myActs' || this.properties.pageType == 'draft')
         return;
       else
         wx.navigateTo({

@@ -1,0 +1,26 @@
+<view class='view-page'>
+  <navbar page-name="个人信息" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <modal hidden="{{hiddenmodalput}}" title="更换密码" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+<input type='password' placeholder="请输入旧密码" bindinput='inputOldPwd' class='cfm-input'/> 
+<view style='width:100%;height:10rpx;'></view>
+<input type='password' placeholder="请输入新密码" bindinput='inputNewPwd' class='cfm-input'/> 
+<view style='width:100%;height:10rpx;'></view>
+<input type='password' placeholder="请确认密码" bindinput='inputConfirm' class='cfm-input'/> 
+<view style='width:100%;height:30rpx;'></view>
+</modal>  
+    <!--这里放你的内容-->
+    <view class='inform-sep-wrapper' bindtap='changeAvatar'>
+      <text class='inform-sep-title'>头像</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <image src='{{avatar}}'></image>
+    </view>
+    <view class='inform-sep-wrapper' bindtap='toEditAreaNewPwd'>
+      <text class='inform-sep-title'>设置新密码</text>
+      <i class="iconfont icon-youjiantou inform-sep-icon"></i>
+      <text class='inform-sep-val'>{{password}}</text>
+    </view>
+    <text class='further-inform' bindtap='toFurtherInform'>修改背景或简介</text>
+  </view>
+</view>

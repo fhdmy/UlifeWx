@@ -31,7 +31,12 @@
     "pages/orgCJ3/orgCJ3",
     "pages/orgCJLink/orgCJLink",
     "pages/orgSignupShow/orgSignupShow",
-    "pages/signupShowDetail/signupShowDetail"
+    "pages/signupShowDetail/signupShowDetail",
+    "pages/orgCJEdit/orgCJEdit",
+    "pages/orgCJText/orgCJText",
+    "pages/sort/sort",
+    "pages/orgEdit/orgEdit",
+    "pages/orgABEdit/orgABEdit"
   ], 
   "window": {
     "backgroundTextStyle": "light",

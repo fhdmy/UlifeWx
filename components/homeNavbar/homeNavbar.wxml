@@ -3,14 +3,14 @@
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='home'}}"
    bindtap='search'>
     <i class="iconfont icon-sousuo"></i>
-  </view>
+  </view> 
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='StuOwn'}}" bindtap='getQRCode'>
     <i class="iconfont icon-saomiao"></i>
   </view>
   <view class="navbar-action-wrap2 row item-center" wx:if="{{pageType=='StuOwn'}}" bindtap='changeaccount'>
     <i class="iconfont icon-icon-qihuan"></i>
   </view>
-  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='backButton' || pageType=='orgDisplay' || pageType=='stuDisplay'}}" bindtap='back'>
+  <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='backButton' || pageType=='orgDisplay' || pageType=='stuDisplay' || pageType=='orgCJEdit' || pageType=='orgABEdit'}}" bindtap='back'>
     <i class="iconfont icon-zuojiantou"></i>
   </view>
   <view class="navbar-action-wrap3 row item-center" wx:if="{{pageType=='searchEntry'}}" bindtap='back'>
@@ -19,7 +19,7 @@
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='searchResult'}}" bindtap='searchChoose'>
     <i class="iconfont icon-funnel"></i>
   </view>
-  <view class='navbar-title' wx:if="{{pageType!='orgDisplay' && pageType!='stuDisplay'}}">
+  <view class='navbar-title' wx:if="{{pageType!='orgDisplay' && pageType!='stuDisplay' && pageType!='orgCJEdit' && pageType!='orgABEdit'}}">
     {{pageName}}
   </view>
   <view class='display-wrapper' wx:if="{{pageType=='orgDisplay' || pageType=='stuDisplay'}}">
@@ -27,5 +27,22 @@
     <text>{{pageName}}</text>
     <i class="iconfont icon-stars watch-icon" wx:if="{{hasWatched && pageType=='orgDisplay'}}" bindtap="toWatch"></i>
     <i class="iconfont icon-xingxingxianmiao watch-icon" wx:if="{{!hasWatched && pageType=='orgDisplay'}}" bindtap="toWatch"></i>
+  </view>
+  <!-- orgCJEdit -->
+  <view wx:if="{{pageType=='orgCJEdit' || pageType=='orgABEdit'}}" class='editAct-wrapper'>
+    <view bindtap='sort'>
+      <i class="iconfont icon-Group-"></i>
+      <text class='edit-text'>排序</text>
+    </view>
+    <text class='edit-divide'>|</text>
+    <view bindtap='save'>
+      <i class="iconfont icon-fuzhi"></i>
+      <text class='edit-text'>保存</text>
+    </view>
+    <text class='edit-divide' wx:if="{{pageType=='orgCJEdit'}}">|</text>
+    <view bindtap='upload' wx:if="{{pageType=='orgCJEdit'}}">
+      <i class="iconfont icon-fabiaoyouji"></i>
+      <text class='edit-text'>发表</text>
+    </view>
   </view>
 </view>

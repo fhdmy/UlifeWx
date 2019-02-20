@@ -167,6 +167,20 @@ Page({
   },
   editAct: function (i){
     let _this = this;
+    let link = _this.data.activities[i].link; _this.data.activities[i].acturl
+    app.globalData.createActId = _this.data.activities[i].acturl
+    // 链接活动
+    if (link) {
+      wx.navigateTo({
+        url: '/pages/orgCJ1/orgCJ1?type=link&reedit=true',
+      })
+    }
+    // 编辑活动
+    else {
+      wx.navigateTo({
+        url: '/pages/orgCJ1/orgCJ1?type=edit&reedit=true',
+      })
+    }
   },
   stopAct: function (i){
     let _this = this;

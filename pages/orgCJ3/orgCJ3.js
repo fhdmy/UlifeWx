@@ -45,6 +45,10 @@ Page({
       wx.navigateTo({
         url: '/pages/orgCJLink/orgCJLink'
       })
+    else
+      wx.navigateTo({
+        url: '/pages/orgCJEdit/orgCJEdit',
+      })
   },
   clearInputEvent: function (e) {
     let temp=this.data.requires;

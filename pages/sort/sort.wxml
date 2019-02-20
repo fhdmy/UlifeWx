@@ -1,0 +1,14 @@
+<view class='view-page'>
+  <navbar page-name="排序" pageType="backButton"></navbar>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <view class='main-wrapper'>
+    <view disable-scroll="true" wx:for="{{computeddata}}" bindtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" data-index="{{item.number}}" data-main="{{mainx}}" class="main {{mainx == (item.number)? 'mainmove':'mainend'}} {{item.type=='img'?'double-height':''}}" style="left:{{start.x}}px; top:{{start.y}}px" wx:key="item">
+    <image src='{{item.inner}}' wx:if="{{item.type=='img'}}"></image>
+    <text wx:if="{{item.type=='text'}}" class='inner-text'>{{item.inner}}</text>
+    <text wx:if="{{item.type=='title'}}" class='inner-title'>{{item.inner}}</text>
+    </view>
+    </view>
+    <text class="savebtn" bindtap="save">完成</text>
+  </view>
+</view>

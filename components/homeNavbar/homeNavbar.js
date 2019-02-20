@@ -68,6 +68,15 @@ Component({
     },
     toWatch:function(){
       this.triggerEvent('towatch', {}, {})
-    }
+    },
+    sort:function(){
+      this.triggerEvent('sort', {}, {})
+    },
+    save: function () {
+      this.triggerEvent('save', {}, {})
+    },
+    upload: function () {
+      this.triggerEvent('upload', {}, {})
+    },
   }
 })

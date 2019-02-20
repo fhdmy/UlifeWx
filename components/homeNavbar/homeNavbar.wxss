@@ -116,3 +116,44 @@
   position: relative;
   top: 6rpx; 
 }
+
+.editAct-wrapper{
+  position: absolute;
+  left: 80rpx;
+  padding: 20rpx 20rpx 20rpx 0;
+  bottom: 0rpx;
+  z-index: 100;
+}
+
+.editAct-wrapper view{
+  float: left;
+  position: relative;
+  bottom: 4rpx;
+}
+
+.edit-text{
+  color: white;
+  font-size: 32rpx;
+  padding:0;
+  border: none;
+  margin-left: 5rpx;
+  margin-right: 0;
+  padding-right:20rpx;
+}
+
+.editAct-wrapper i{
+  color: white;
+  font-size: 36rpx;
+  padding-left: 20rpx;
+}
+
+.edit-divide{
+  color: white;
+  font-size: 32rpx;
+  padding:0;
+  border: none;
+  margin: 0;
+  float: left;
+  position: relative;
+  top: 4rpx;
+}

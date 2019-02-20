@@ -33,8 +33,18 @@ App({
     createRequires: "",
     createSelectArray: "",
     createLink:"",
+    createDemonstration:"",
+    createCal:-1,
+    createKey:-1,
+    createActId:-1,
+    createIsPublish:"",
     signupDetail:[],
-    formItem:"详细信息"
+    formItem:"详细信息",
+    orgCJEditType:"",
+    orgCJEditContent:"",
+    orgCJEditSetting:"",
+    computeddata:"",
+    reeditIndex:-1
   },
   onLaunch: function() {
     let _this = this;

@@ -22,7 +22,7 @@ Page({
     orgId: 0,
     linkhtml: "",
     p_info: [true, true, true, true, true],
-    actId: 0,
+    actId: -1,
     fileUrl: [],
     fileName: []
   },
@@ -42,9 +42,18 @@ Page({
     this.data.createRequires = app.globalData.createRequires
     this.data.createSelectArray = app.globalData.createSelectArray
     this.data.createLink = app.globalData.createLink
-    this.data.p_info[2] = app.globalData.createSelectArray[0].checked
-    this.data.p_info[3] = app.globalData.createSelectArray[1].checked
-    this.data.p_info[4] = app.globalData.createSelectArray[2].checked
+    if (app.globalData.createSelectArray){
+      this.data.p_info[2] = app.globalData.createSelectArray[0].checked
+      this.data.p_info[3] = app.globalData.createSelectArray[1].checked
+      this.data.p_info[4] = app.globalData.createSelectArray[2].checked
+    }
+    if (app.globalData.createActId != -1)
+      this.data.actId = app.globalData.createActId
+    if (this.data.actId == -1)
+      this.save(true,false,false);
+    else
+      this.save(true,false,true);
+    app.globalData.actId = -1;
   },
   onLoad: function (options) {
     let _this = this;
@@ -53,7 +62,7 @@ Page({
       orgId: wx.getStorageSync(md5.hex_md5("org_url"))
     })
   },
-  save: function (upLoad) {
+  save: function (autoSave,upLoad,hasActId) {
     let _this = this;
     if (_this.data.createHeading.length > 20 || _this.data.createHeading.length == 0) {
       wx.showToast({
@@ -63,40 +72,49 @@ Page({
       return;
     }
     let p1 = new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/activity/activities/weixin_scrapper/',
-        method: "POST",
-        header: {
-          "Authorization": app.globalData.token
-        },
-        data: {
-          url: _this.data.content
-        },
-        complete: (res) => {
-          if (res.data == "Pls give me an url of Wechat Blog") {
-            wx.showToast({
-              title: '请输入微信推文的链接',
-              image: '/images/about.png'
-            })
-            return;
+      if(hasActId==true){
+        wx.request({
+          url: app.globalData.url + '/activity/activities/weixin_scrapper/',
+          method: "POST",
+          header: {
+            "Authorization": app.globalData.token
+          },
+          data: {
+            url: _this.data.content
+          },
+          complete: (res) => {
+            if (res.data == "Pls give me an url of Wechat Blog") {
+              wx.showToast({
+                title: '请输入微信推文的链接',
+                image: '/images/about.png'
+              })
+              return;
+            }
+            else if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障',
+                image: '/images/about.png'
+              })
+              return;
+            } else {
+              _this.data.linkhtml = 'https://ulife.org.cn' + res.data.entry;
+              resolve(1)
+            }
           }
-          else if (res.statusCode != 200) {
-            wx.showToast({
-              title: '网络传输故障',
-              image: '/images/about.png'
-            })
-            return;
-          } else {
-            _this.data.linkhtml = 'https://ulife.org.cn' + res.data.entry;
-            resolve(1)
-          }
-        }
-      })
+        })
+      }
+      else resolve(1)
     })
     p1.then(function () {
+      let a = _this.data.createHeadImg.split("/")
       if (_this.data.createHeadImg == "/images/createdefault.jpg") {
         let head_img_url = "/static/default/createdefault.jpg";
-        _this.saveMain(head_img_url,upLoad);
+        _this.saveMain(autoSave,head_img_url, upLoad, hasActId);
+      }
+      else if (a[2] == 'ulife.org.cn') {
+        let b = _this.data.createHeadImg.split(app.globalData.url)
+        let head_img_url = b[1]
+        _this.saveMain(head_img_url, upLoad, autoSave);
       }
       else {
         wx.uploadFile({
@@ -122,20 +140,33 @@ Page({
             } else {
               let bgImg = JSON.parse(res.data)
               let head_img_url = bgImg.bg_img;
-              _this.saveMain(head_img_url, upLoad);
+              _this.saveMain(autoSave,head_img_url, upLoad, hasActId);
             }
           }
         })
       }
     })
   },
-  saveMain: function (head_img_url, upLoad) {
+  saveMain: function (autoSave,head_img_url, upLoad, hasActId) {
     let _this = this;
     // 正文
     let p3 = new Promise(function (resolve, reject) {
+      let actId,actMethod;
+      if (hasActId==true){
+        actId = _this.data.actId+"/";
+        actMethod="PUT"
+      }
+      else if (hasActId == false){
+        actId ="";
+        actMethod = "POST"
+      }
+      else{
+        actId = _this.data.actId + "/";
+        actMethod = "PUT"
+      }
       wx.request({
-        url: app.globalData.url + '/activity/activities/',
-        method: "POST",
+        url: app.globalData.url + '/activity/activities/'+actId,
+        method: actMethod,
         header: {
           "Authorization": app.globalData.token
         },
@@ -160,7 +191,7 @@ Page({
           version: '1.0.0',
         },
         complete: (res) => {
-          if (res.statusCode != 201) {
+          if (res.statusCode != 201 && res.statusCode!=200) {
             wx.showToast({
               title: '网络传输故障',
               image: '/images/about.png'
@@ -171,6 +202,7 @@ Page({
             if (upLoad==true)
               _this.uploadMain(head_img_url);
             else{
+              if(autoSave==true)return;
               wx.showToast({
                 title: '保存成功',
               })
@@ -211,9 +243,21 @@ Page({
       }
     }
     // 草稿箱发表活动
+    let publishUrl,puMethod;
+    if (app.globalData.createIsPublish==true){
+      publishUrl="/"
+      puMethod="PUT"
+    } else if (app.globalData.createIsPublish == false){
+      publishUrl = "/want_to_be_allowed_to_publish/"
+      puMethod="POST"
+    }
+    else{
+      publishUrl = "/want_to_be_allowed_to_publish/"
+      puMethod = "POST"
+    }
     wx.request({
-      url: app.globalData.url + '/activity/activities/' + _this.data.actId +'/want_to_be_allowed_to_publish/',
-      method:"POST",
+      url: app.globalData.url + '/activity/activities/' + _this.data.actId +publishUrl,
+      method:puMethod,
       header: {
         "Authorization": app.globalData.token
       },
@@ -266,13 +310,15 @@ Page({
       return;
     }
     let upLoad=true;
-    _this.save(upLoad);
+    let hasActId=true;
+    let autoSave=true;
+    _this.save(autoSave,upLoad, hasActId);
   },
   inputContent: function (e) {
     this.setData({
       content: e.detail.value
     })
     app.globalData.createLink=this.data.content;
-  }
+  },
 })
 

@@ -1,8 +1,9 @@
 <!--pages/OrgCJ I/chuangjianI.wxml-->
 <view class='view-page'>
   <navbar page-name="第一步" pageType="backButton"></navbar>
+  <loading hidden="{{!loading}}">加载中...</loading>
   <view class="text1">
-    <input placeholder='请输入活动名称' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput'></input>
+    <input placeholder='请输入活动名称' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput' value='{{heading}}'></input>
   </view>
   <view class="nextbtn">
     <button class="nxtbtn" bindtap='toNext'>下一步</button>
