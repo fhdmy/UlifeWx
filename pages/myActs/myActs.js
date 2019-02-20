@@ -137,12 +137,12 @@ Page({
     let i = e.detail;
     if(_this.data.activities[i].is_ended){
       wx.showActionSheet({
-        itemList: ['编辑', '删除'],
+        itemList: ['编辑', '删除','取消'],
         success(e) {
           if (e.tapIndex == 0) {
             _this.editAct(i);
           }
-          else {
+          else if (e.tapIndex == 1){
             _this.deleteAct(i);
           }
         }
@@ -150,7 +150,7 @@ Page({
     }
     else{
       wx.showActionSheet({
-        itemList: ['编辑', '结束', '删除'],
+        itemList: ['编辑', '结束', '删除', '取消'],
         success(e) {
           if (e.tapIndex == 0) {
             _this.editAct(i);
@@ -158,7 +158,7 @@ Page({
           else if (e.tapIndex == 1) {
             _this.stopAct(i);
           }
-          else {
+          else if(e.tapIndex == 2) {
             _this.deleteAct(i);
           }
         }

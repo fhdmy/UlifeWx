@@ -29,10 +29,11 @@ Page({
       navH: app.globalData.navbarHeight,
       orgId: wx.getStorageSync(md5.hex_md5("org_url"))
     })
-    if (app.globalData.createDemonstration!=""){
+    if (app.globalData.createDemonstration != "") {
       let demon = app.globalData.createDemonstration
       for (let j = 0; j < demon.length; j++) {
-        if (demon[j].type == 'img') {
+        let a = demon[j].inner.split("/")
+        if (demon[j].type == 'img' && a[2] != 'ulife.org.cn') {
           demon[j].inner = app.globalData.url + demon[j].inner
         }
       }
@@ -481,7 +482,7 @@ Page({
     let _this = this;
     let index = e.currentTarget.id;
     wx.showActionSheet({
-      itemList: ['编辑', '删除'],
+      itemList: ['编辑', '删除','取消'],
       success: (e) => {
         if (e.tapIndex == 0) {
           wx.chooseImage({
@@ -504,7 +505,7 @@ Page({
               _this.save(autoSave, upLoad);
             },
           })
-        } else {
+        } else if (e.tapIndex == 1){
           let temp = _this.data.computeddata;
           temp.splice(index, 1);
           _this.setData({
@@ -522,7 +523,7 @@ Page({
     let _this = this;
     let index = e.currentTarget.id;
     wx.showActionSheet({
-      itemList: ['编辑', '删除'],
+      itemList: ['编辑', '删除','取消'],
       success: (e) => {
         if (e.tapIndex == 0) {
           app.globalData.orgCJEditSetting = _this.data.computeddata[index]
@@ -530,7 +531,7 @@ Page({
           wx.navigateTo({
             url: '/pages/orgCJText/orgCJText',
           })
-        } else {
+        } else if (e.tapIndex == 1){
           let temp = _this.data.computeddata;
           temp.splice(index, 1);
           _this.setData({
@@ -545,7 +546,7 @@ Page({
     let _this = this;
     let index = e.currentTarget.id;
     wx.showActionSheet({
-      itemList: ['编辑', '删除'],
+      itemList: ['编辑', '删除','取消'],
       success: (e) => {
         if (e.tapIndex == 0) {
           app.globalData.orgCJEditContent = _this.data.computeddata[index].inner
@@ -553,7 +554,7 @@ Page({
           wx.navigateTo({
             url: '/pages/editArea/editArea?from=orgCJEdit&type=title',
           })
-        } else {
+        } else if (e.tapIndex == 1){
           let temp = _this.data.computeddata;
           temp.splice(index, 1);
           _this.setData({

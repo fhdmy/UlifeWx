@@ -6,13 +6,8 @@
       <i class="iconfont icon-biangengcheliangyanse" bindtap="openColorActionSheet"></i>
       <i class="iconfont icon-youduiqi" bindtap="openAlignActionSheet"></i>
     </view>
-  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y>
-    <loading hidden="{{!loading}}">加载中...</loading>
-
-    <!-- 颜色选择器 -->
-    <view hidden='{{!showModel}}' class='model-bg'>
-    <view style='position:relative;width: 600rpx;height: 720rpx;'>
-      <view style='background:{{setColor}};' class='model-show-color'></view>
+    <modal wx:if="{{showModel}}" title="选择颜色" confirm-text="保存" cancel-text="取消" bindcancel="cancelColor" bindconfirm="confirmColor">  
+  <view style='background:{{setColor}};' class='model-show-color'></view>
       <slider value="{{R}}" bindchange="sliderRchange" min="0" max="255" block-size="12" block-color="#E03636" activeColor="#E03636"/>
       <slider value="{{G}}" bindchange="sliderGchange" min="0" max="255" block-size="12" block-color="#E03636" activeColor="#E03636"/>
       <slider value="{{B}}" bindchange="sliderBchange" min="0" max="255" block-size="12" block-color="#E03636" activeColor="#E03636"/>
@@ -24,13 +19,9 @@
       <text>B: </text>
       <input value='{{B}}' maxlength="3" type="number" bindinput='sliderBchange'></input>
       </view>
-      <view class='model-button-wrapper'>
-        <button type="warn" size='mini' bindtap='confirmColor'>确认</button>
-        <button type="primary" size="mini" bindtap='cancelColor'>取消</button>
-      </view>
-      </view>
-    </view>
-
+</modal>  
+  <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y wx:if="{{!showModel}}">
+    <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <textarea placeholder='在这里输入文本……' bindconfirm='confirm' bindinput='inputContent' value='{{content}}' style='color:{{other.color}};text-align:{{other.textAlign}};text-decoration:{{other.textDecoration}};font-weight:{{other.fontWeight}};font-style:{{other.fontStyle}};'></textarea>
     <view class='attention-txt'>注意：斜体、下划线、删除线在此处不能有效显示。</view>

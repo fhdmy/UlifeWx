@@ -95,13 +95,18 @@ Page({
             image: '/images/about.png'
           })
         }else{
-          _this.setData({
-            hiddenmodalput: true,
-            newPwd: "",
-            oldPwd: "",
-            cfmPwd: ""
+          wx.showToast({
+            title: '更换成功',
           })
-        }
+          let timer=setTimeout(function(){
+            _this.setData({
+              hiddenmodalput: true,
+              newPwd: "",
+              oldPwd: "",
+              cfmPwd: ""
+            })
+          },2000)
+        } 
       }
     })
   },

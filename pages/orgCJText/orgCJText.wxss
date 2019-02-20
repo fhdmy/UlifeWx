@@ -72,11 +72,13 @@ textarea{
 .model-show-color{
   width: 400rpx;
   height: 200rpx;
-  margin: 80rpx 100rpx;
+  margin: 80rpx auto;
 }
 
 .model-input-wrapper{
-  margin: 20rpx 0 20rpx 40rpx;
+  margin: 40rpx 20rpx;
+  position: relative;
+  left: 16rpx;
 }
 
 .model-input-wrapper text{
@@ -87,13 +89,17 @@ textarea{
   margin-right: 10rpx;
 }
 
+slider{
+  margin-bottom: 80rpx;
+}
+
 .model-input-wrapper input{
   border: 1px solid #999999;
   font-size: 30rpx;
   width: 63rpx;
   height: 30rpx;
   display: inline-block;
-  margin-right: 50rpx;
+  margin-right: 35rpx;
   text-align: center;
   color: #484848;
 }

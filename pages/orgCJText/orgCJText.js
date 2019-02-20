@@ -63,7 +63,7 @@ Page({
   openCutiActionSheet:function(){
     let _this=this;
     wx.showActionSheet({
-      itemList: ['粗体','斜体','无'],
+      itemList: ['粗体','斜体','无','取消'],
       success:(e)=>{
         if (e.tapIndex == 0){
           let m ="other.fontWeight"
@@ -81,7 +81,7 @@ Page({
             [l]: 'italic'
           })
         }
-        else{
+        else if(e.tapIndex == 2){
           let m = "other.fontWeight";
           let l = "other.fontStyle";
           _this.setData({
@@ -95,7 +95,7 @@ Page({
   openUnderlineActionSheet:function(){
     let _this = this;
     wx.showActionSheet({
-      itemList: ['下划线', '删除线', '无'],
+      itemList: ['下划线', '删除线', '无', '取消'],
       success: (e) => {
         if (e.tapIndex == 0) {
           let m = "other.textDecoration"
@@ -109,7 +109,7 @@ Page({
             [m]: 'line-through'
           })
         }
-        else {
+        else if (e.tapIndex == 2){
           let m = "other.textDecoration"
           _this.setData({
             [m]: 'none'
@@ -127,7 +127,7 @@ Page({
   openAlignActionSheet:function(){
     let _this = this;
     wx.showActionSheet({
-      itemList: ['左对齐', '居中', '右对齐'],
+      itemList: ['左对齐', '居中', '右对齐', '取消'],
       success: (e) => {
         if (e.tapIndex == 0) {
           let m = "other.textAlign"
@@ -141,7 +141,7 @@ Page({
             [m]: 'center'
           })
         }
-        else {
+        else if (e.tapIndex == 2){
           let m = "other.textAlign"
           _this.setData({
             [m]: 'right'

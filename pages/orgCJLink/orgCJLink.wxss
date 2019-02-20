@@ -61,3 +61,10 @@ button{
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
+
+.txt{
+  display: block;
+  color: #0099FF;
+  font-size: 26rpx;
+  margin:10rpx 0 20rpx 40rpx;
+}

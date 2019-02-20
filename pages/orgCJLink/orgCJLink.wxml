@@ -4,6 +4,7 @@
     <!--这里放你的内容-->
     <loading hidden="{{!loading}}">加载中...</loading>
     <input placeholder='请在这里输入微信推文链接' bindconfirm='save' bindinput='inputContent' value='{{content}}' focus='{{focus}}'></input>
+    <text class='txt'>请点击微信右上角“复制链接”获取推文链接</text>
     <view class='upload-file'>
       <text>上传文件</text> 
       <i class="iconfont icon-jiahao-fill" bindtap="uploadFile"></i>

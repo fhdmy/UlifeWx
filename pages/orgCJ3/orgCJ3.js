@@ -61,7 +61,7 @@ Page({
   addchoice: function(){
     let _this=this;
     wx.showActionSheet({
-      itemList: ['简答框','选择框'],
+      itemList: ['简答框','选择框','取消'],
       success(e) {
         if (e.tapIndex == 0) {
           let temp=_this.data.requires;
@@ -74,7 +74,7 @@ Page({
           })
           app.globalData.createRequires = _this.data.requires
         }
-        else {
+        else if (e.tapIndex == 1){
           let temp = _this.data.requires;
           temp[temp.length] = {
             type: "select",

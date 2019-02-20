@@ -199,14 +199,15 @@ Page({
     let _this=this;
     if(_this.data.msg[id].msg_type=='reminder'){
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['删除','取消'],
         success(e) {
-          _this.deleteMsg(id);
+          if(e.tapIndex==0)
+            _this.deleteMsg(id);
         }
       })
     }
     else{
-      let list = (_this.data.msg[id].is_read == true) ? ['删除'] : ['标记已读', '删除']
+      let list = (_this.data.msg[id].is_read == true) ? ['删除', '取消'] : ['标记已读', '删除','取消']
       wx.showActionSheet({
         itemList: list,
         success(e) {
@@ -217,7 +218,7 @@ Page({
           else{
             if (e.tapIndex == 0)
               _this.tagReadRequest(id);
-            else
+            else if(e.tapIndex==1)
               _this.deleteMsg(id);
           }
         }

@@ -132,7 +132,7 @@ Page({
     let _this = this;
     let i = e.detail;
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList: ['删除','取消'],
       success(e) {
         if (e.tapIndex == 0) {
           _this.deleteDraft(i);

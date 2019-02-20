@@ -3,11 +3,11 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <loading hidden="{{!loading}}">加载中...</loading>
     <modal hidden="{{hiddenmodalput}}" title="更换密码" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
-<input type='password' placeholder="请输入旧密码" bindinput='inputOldPwd' class='cfm-input'/> 
+<input type='password' placeholder="请输入旧密码" bindinput='inputOldPwd' class='cfm-input' value="{{oldPwd}}"/> 
 <view style='width:100%;height:10rpx;'></view>
-<input type='password' placeholder="请输入新密码" bindinput='inputNewPwd' class='cfm-input'/> 
+<input type='password' placeholder="请输入新密码" bindinput='inputNewPwd' class='cfm-input' value="{{newPwd}}"/> 
 <view style='width:100%;height:10rpx;'></view>
-<input type='password' placeholder="请确认密码" bindinput='inputConfirm' class='cfm-input'/> 
+<input type='password' placeholder="请确认密码" bindinput='inputConfirm' class='cfm-input' value='{{cfmPwd}}'/> 
 <view style='width:100%;height:30rpx;'></view>
 </modal>  
     <!--这里放你的内容-->
