@@ -2,7 +2,5 @@
   "usingComponents": {
     "navbar":"/components/homeNavbar/homeNavbar",
     "NormalActivitiesShow":"/components/NormalActivitiesShow/NormalActivitiesShow"
-  },
-  "enablePullDownRefresh":true,
-  "onReachBottomDistance":0
+  }
 }

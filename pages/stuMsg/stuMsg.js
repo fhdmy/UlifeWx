@@ -20,9 +20,9 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    _this.setData({
-      loading:true
-    })
+    // _this.setData({
+    //   loading:true
+    // })
     let p1=new Promise(function(resolve,reject){
       wx.request({
         url: app.globalData.url+'/message/messages/my_inbox/',
@@ -93,9 +93,9 @@ Page({
       })
     })
     p1.then(function(results){
-      _this.setData({
-        loading:false
-      })
+      // _this.setData({
+      //   loading:false
+      // })
     })
   },
   scrollBottom: function () {

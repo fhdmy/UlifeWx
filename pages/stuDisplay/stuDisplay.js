@@ -59,9 +59,9 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    _this.setData({
-      loading: true
-    })
+    // _this.setData({
+    //   loading: true
+    // })
     //获得基本信息
     let p1 = new Promise(function (resolve, reject) {
       wx.request({
@@ -208,9 +208,9 @@ Page({
           }
         })
       }
-      _this.setData({
-        loading: false
-      })
+      // _this.setData({
+      //   loading: false
+      // })
     })
   },
   toDynamic: function () {

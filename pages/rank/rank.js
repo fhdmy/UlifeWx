@@ -12,16 +12,22 @@ Page({
     },
     org_rank: [],
     activity_rank: [],
-    loading: false
+    loading: false,
+    onTabLoad:true
   },
   onLoad: function(options) {
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    _this.setData({
-      loading:true
-    })
+    let timer=setTimeout(function(){
+      _this.setData({
+        onTabLoad:false
+      })
+    },300)
+    // _this.setData({
+    //   loading:true
+    // })
     // 推荐组织
     let p1 = new Promise(function(resolve, reject) {
       wx.request({
@@ -124,9 +130,9 @@ Page({
       })
     });
     Promise.all([p1,p2,p3]).then(function(){
-      _this.setData({
-        loading: false
-      })
+      // _this.setData({
+      //   loading: false
+      // })
     })
   },
   openOrg: function(e) {

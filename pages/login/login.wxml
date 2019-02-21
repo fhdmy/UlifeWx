@@ -3,16 +3,16 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <loading hidden="{{!loading}}">加载中...</loading>
-    <image src='/images/UlifeIcon.png' class='Ulife-img'></image>
+    <image src='/images/UlifeIcon.png' class='Ulife-img' hidden='{{focusKeyBoard}}'></image>
     <!-- <text class='Ulife'>Ulife</text> -->
     <view class='input-userinfo'>
       <view class='account-wrapper'>
         <i class="iconfont icon-youxiang"></i>
-        <input placeholder='请输入手机号或组织名称' cursor-spacing="120" value='{{number}}' bindinput='bindNumber'></input>
+        <input placeholder='请输入手机号或组织名称' value='{{number}}' bindinput='bindNumber' bindfocus='focusInput' bindblur='blurInput'></input>
       </view>
       <view class='pwd-wrapper'>
         <i class="iconfont icon-password"></i>
-        <input placeholder='请输入密码' password="true" cursor-spacing="50" value='{{pwd}}' bindinput='bindPwd'></input>
+        <input placeholder='请输入密码' password="true" value='{{pwd}}' bindinput='bindPwd' bindfocus='focusInput' bindblur='blurInput'></input>
       </view>
       <text class='alert'>{{alert}}</text>
       <text class='logout' wx:if="{{type=='changeAccount'}}" bindtap='logout'>我只是想注销</text>

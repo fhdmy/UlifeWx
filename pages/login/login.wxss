@@ -25,7 +25,7 @@ page {
 
 .Ulife-img{
   vertical-align:top;
-  margin: 100rpx 225rpx 80rpx 225rpx;
+  margin: 30rpx 225rpx 0rpx 225rpx;
   width: 300rpx;
   height: 300rpx;
   max-width: 100%;
@@ -45,7 +45,6 @@ page {
 
 .input-userinfo{
   width: 100%;
-  margin-top: 40rpx;
 }
 
 .account-wrapper{

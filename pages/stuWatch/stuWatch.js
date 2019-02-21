@@ -19,9 +19,9 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    _this.setData({
-      loading: true
-    })
+    // _this.setData({
+    //   loading: true
+    // })
     let id = wx.getStorageSync(md5.hex_md5("user_url"))
     let p2 = new Promise(function (resolve, reject) {
       wx.request({
@@ -107,9 +107,9 @@ Page({
         })
       })
       p1.then(function (results) {
-        _this.setData({
-          loading: false
-        })
+        // _this.setData({
+        //   loading: false
+        // })
       })
     })
   },

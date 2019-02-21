@@ -1,4 +1,4 @@
-<view class='view-page'>
+<view class='view-page' hidden='{{onTabLoad}}'>
   <navbar page-name="排行榜" pageType="noSearch"></navbar>
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <loading hidden="{{!loading}}">加载中...</loading>

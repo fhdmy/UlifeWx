@@ -10,7 +10,8 @@ Page({
     isLogin:false,
     loading:false,
     redDot:false,
-    type:"none"
+    type:"none",
+    onTabLoad: true
   },
   onShow: function (options) {
     let _this=this;
@@ -37,6 +38,14 @@ Page({
         redDot: false
       })
     }
+  },
+  onLoad:function(options){
+    let _this=this;
+    let timer = setTimeout(function () {
+      _this.setData({
+        onTabLoad: false
+      })
+    }, 300)
   },
   editInform:function(){
     if (this.data.type != 'org' && this.data.type != 'none')

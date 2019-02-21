@@ -84,7 +84,7 @@ Page({
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight,
-      loading: true
+      // loading: true
     })
     let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
     let orgId = wx.getStorageSync(md5.hex_md5("org_url"));
@@ -178,9 +178,9 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
-              _this.setData({
-                loading: false
-              })
+              // _this.setData({
+              //   loading: false
+              // })
               wx.showToast({
                 title: '网络传输故障',
                 image: '/images/about.png'
@@ -209,9 +209,9 @@ Page({
           },
           complete: (res) => {
             if (res.statusCode != 200) {
-              _this.setData({
-                loading: false
-              })
+              // _this.setData({
+              //   loading: false
+              // })
               wx.showToast({
                 title: '网络传输故障',
                 image: '/images/about.png'
@@ -277,9 +277,9 @@ Page({
         } else resolve(2)
       })
       p2.then(function (results) {
-        _this.setData({
-          loading: false
-        })
+        // _this.setData({
+        //   loading: false
+        // })
       })
     })
     // 添加历史浏览

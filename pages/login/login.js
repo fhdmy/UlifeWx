@@ -11,7 +11,8 @@ Page({
     type: "login",
     number: "",
     pwd: "",
-    loading: false
+    loading: false,
+    focusKeyBoard:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -20,6 +21,16 @@ Page({
     })
     this.setData({
       type: options.type
+    })
+  },
+  focusInput(){
+    this.setData({
+      focusKeyBoard:true
+    })
+  },
+  blurInput(){
+    this.setData({
+      focusKeyBoard:false
     })
   },
   login: function () {

@@ -55,9 +55,9 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    _this.setData({
-      loading: true
-    })
+    // _this.setData({
+    //   loading: true
+    // })
     let p1 = new Promise(function(resolve, reject) {
       wx.request({
         url: app.globalData.url + '/account/org-visitor-homepage/' + options.orgId + '/',
@@ -185,9 +185,9 @@ Page({
           }
         })
       }
-      _this.setData({
-        loading: false
-      })
+      // _this.setData({
+      //   loading: false
+      // })
     })
   },
   towatch: function() {
