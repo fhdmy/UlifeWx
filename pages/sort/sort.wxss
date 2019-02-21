@@ -101,3 +101,10 @@ image{
 .double-height{
   height: 200rpx;
 }
+
+button{
+  width: 670rpx;
+  margin: 100rpx 40rpx 0 40rpx;
+  color: white;
+  background: #FE9246;
+}

@@ -9,6 +9,7 @@
     <text wx:if="{{item.type=='title'}}" class='inner-title'>{{item.inner}}</text>
     </view>
     </view>
-    <text class="savebtn" bindtap="save">完成</text>
+    <!-- <text class="savebtn" bindtap="save">完成</text> -->
+    <button bindtap="save">完成</button>
   </view>
 </view>

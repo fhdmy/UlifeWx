@@ -265,3 +265,10 @@ swiper-item{
   font-size: 30rpx;
   color: #484848;
 }
+
+button{
+  width: 670rpx;
+  margin: 10rpx 40rpx 80rpx 40rpx;
+  color: white;
+  background: #FE9246;
+}

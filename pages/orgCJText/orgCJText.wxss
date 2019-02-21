@@ -114,3 +114,11 @@ slider{
   float: right;
   margin-right: 40rpx;
 }
+
+
+button{
+  width: 670rpx;
+  margin: 0 40rpx;
+  color: white;
+  background: #FE9246;
+}

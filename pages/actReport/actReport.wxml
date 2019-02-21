@@ -4,6 +4,7 @@
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
     <textarea placeholder='有什么意见吗……' bindconfirm='confirm' bindinput='inputContent' value='{{reportContent}}'></textarea>
-    <text bindtap='confirm'>提交</text>
+    <button bindtap='confirm'>提交</button>
+    <!-- <text bindtap='confirm'>提交</text> -->
   </view>
 </view>

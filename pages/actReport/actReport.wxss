@@ -41,3 +41,10 @@ text{
   border: 1px solid #999999;
   float: right;
 }
+
+button{
+  width: 670rpx;
+  margin: 0 40rpx;
+  color: white;
+  background: #FE9246;
+}

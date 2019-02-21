@@ -129,7 +129,8 @@
       </view>
       <view class='content-txt'>内容: </view>
       <textarea placeholder='有什么意见吗……' bindinput='inputMsgContent' value='{{msgContent}}' class='msg-textarea'></textarea>
-      <text bindtap='msgConfirm' class='msg-confirm'>提交</text>
+      <!-- <text bindtap='msgConfirm' class='msg-confirm'>提交</text> -->
+      <button bindtap='msgConfirm'>提交</button>
     </view>
 
     <!-- 消息历史 -->
@@ -170,7 +171,8 @@
       </view>
       <textarea placeholder='有什么意见吗……' bindinput='inputPhoneContent' value='{{phoneContent}}' class='msg-textarea' style="margin-bottom:20rpx;"></textarea>
       <text class='etc'>{{etc}}</text>
-      <text bindtap='phoneConfirm' class='msg-confirm' style='margin-bottom:80rpx;'>提交</text>
+      <!-- <text bindtap='phoneConfirm' class='msg-confirm' style='margin-bottom:80rpx;'>提交</text> -->
+        <button bindtap="phoneConfirm">提交</button>
     </view>
 
     <!-- 短信历史 -->

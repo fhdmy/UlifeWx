@@ -17,6 +17,12 @@ Page({
   },
   confirm: function () {
     let _this = this;
+    if(_this.data.reportContent.length==0){
+      wx.showToast({
+        title: '举报内容为空',
+        image: '/images/about.png'
+      })
+    }
     _this.setData({
       loading: true
     })
