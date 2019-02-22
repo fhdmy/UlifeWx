@@ -46,7 +46,7 @@
       <view wx:if="{{filename.length>0}}">
         <view class='download-file'>文件下载</view>
         <view wx:for="{{filename}}" wx:key="item">
-          <view class='filename' bindtap='openFile' id="{{index}}">{{filename}}</view>
+          <view class='filename' bindtap='openFile' id="{{index}}">{{item}}</view>
         </view>
       </view>
     </view>

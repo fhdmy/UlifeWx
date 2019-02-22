@@ -221,6 +221,13 @@ Page({
   },
   confirmSave(){
     let _this = this;
+    if(_this.data.nickname=="" || _this.data.realname=="" || _this.data.phone=="" || _this.data.gender=="" || _this.data.college=="" || _this.data.grade==""){
+      wx.showToast({
+        title: '信息填写不完整',
+        image: '/images/about.png'
+      })
+      return;
+    }
     if (_this.data.phone.length > 0 && _this.data.phone != _this.data.originPhone) {
       const pattern = /^1(3|4|5|7|8)\d{9}$/;
       if (pattern.test(_this.data.phone) == false) {

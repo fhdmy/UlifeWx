@@ -24,7 +24,7 @@ page {
 }
 
 textarea{
-  font-size: 28rpx;
+  font-size: 36rpx;
   color: #484848;
   margin: 40rpx 40rpx 70rpx 40rpx;
   display: block;

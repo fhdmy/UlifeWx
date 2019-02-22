@@ -165,7 +165,7 @@ swiper-item{
 }
 
 .msg-textarea{
-  font-size: 32rpx;
+  font-size: 36rpx;
   color: #484848;
   margin: 20rpx 40rpx 70rpx 40rpx;
   display: block;

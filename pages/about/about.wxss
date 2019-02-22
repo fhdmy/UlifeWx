@@ -54,4 +54,6 @@ page {
   text-align: center;
   margin-top: 120rpx;
   margin-bottom: 10rpx;
+  display: block;
+  width: 100%;
 }

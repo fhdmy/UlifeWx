@@ -4,11 +4,11 @@ const app = getApp()
 Page({
   data: {
     navH: 0,
-    loading:false,
+    loading: false,
     hiddenmodalput: true,
     clock: 0,
     clo: null,
-    cfmOnlyPhone:"",
+    cfmOnlyPhone: "",
     cfmNumber: "",
     sexArray: ["男", "女", "保密"],
     gradeArray: ["大一", "大二", "大三", "大四", "其他"],
@@ -16,21 +16,21 @@ Page({
       '理学院', '生命科学学院', '文学院', '法学院', '外国语学院', '社会学院', '计算机工程与科学学院', '机电工程与自动化学院', '通信与信息工程学院', '环境与化学工程学院', '材料科学与工程学院', '中欧工程技术学院', '土木工程系', '材料基因组工程研究院', '经济学院', '管理学院', '图书情报档案系', '悉尼工商学院', '管理教育研究院', '上海电影学院', '上海美术学院', '音乐学院', '数码艺术学院', '上海温哥华电影学院', '社区学院', '钱伟长学院', '体育学院', '其他',
     ],
     ifo: ['', '', '', '', ''],//[realname, phone_number, gender, college, grade]
-    originPhone:"",
+    originPhone: "",
     select_name: true,
     select_gender: true,
     select_college: true,
     select_phone_number: true,
     select_grade: true,
-    requirement:[],
-    actId:0,
-    answer:[]
+    requirement: [],
+    actId: 0,
+    answer: []
   },
-  onShow: function (options){
+  onShow: function (options) {
     let _this = this;
     let signupType = app.globalData.signupType;
     // 个人信息
-    if (app.globalData.signupItem==""){
+    if (app.globalData.signupItem == "") {
       if (signupType == "name") {
         let i = "ifo[0]"
         this.setData({
@@ -44,13 +44,13 @@ Page({
         })
       }
     }
-    else{
-      let i = "answer["+app.globalData.signupId+"]"
+    else {
+      let i = "answer[" + app.globalData.signupId + "]"
       this.setData({
         [i]: app.globalData.signupContent
       })
     }
-    app.globalData.signupItem="";
+    app.globalData.signupItem = "";
     app.globalData.signupType = "";
     app.globalData.signupContent = "";
   },
@@ -60,7 +60,7 @@ Page({
       navH: app.globalData.navbarHeight
     })
     _this.setData({
-      loading:true
+      loading: true
     })
     _this.setData({
       select_name: options.select_name,
@@ -71,22 +71,22 @@ Page({
       requirement: JSON.parse(options.requirement),
       actId: options.actId
     })
-    for(let i=0;i<_this.data.requirement.length;i++){
-      let ans="answer["+i+"]";
+    for (let i = 0; i < _this.data.requirement.length; i++) {
+      let ans = "answer[" + i + "]";
       _this.setData({
-        [ans]:""
+        [ans]: ""
       })
     }
-    let p1=new Promise(function(resolve,reject){
+    let p1 = new Promise(function (resolve, reject) {
       wx.request({
-        url: app.globalData.url+'/account/students/get_current_personal_info/',
+        url: app.globalData.url + '/account/students/get_current_personal_info/',
         header: {
           "Authorization": app.globalData.token
         },
-        complete:(res)=>{
-          if(res.statusCode!=200){
+        complete: (res) => {
+          if (res.statusCode != 200) {
             _this.setData({
-              loading:false
+              loading: false
             })
             wx.showToast({
               title: '网络传输故障',
@@ -94,7 +94,7 @@ Page({
             })
             reject(1)
           }
-          else{
+          else {
             // [realname, phone_number, gender, college, grade]
             let ifo = ['', '', '', '', '']
             ifo[0] = res.data.realname;
@@ -115,16 +115,16 @@ Page({
             ifo[3] = res.data.college;
             ifo[4] = res.data.grade;
             _this.setData({
-              ifo:ifo
+              ifo: ifo
             })
             resolve(1)
           }
         }
       })
     })
-    p1.then(function(results){
+    p1.then(function (results) {
       _this.setData({
-        loading:false
+        loading: false
       })
     })
   },
@@ -138,8 +138,8 @@ Page({
       }
     }
   },
-  bindSexChange:function(e){
-    let i="ifo[2]"
+  bindSexChange: function (e) {
+    let i = "ifo[2]"
     this.setData({
       [i]: this.data.sexArray[e.detail.value]
     })
@@ -151,38 +151,38 @@ Page({
     })
   },
   bindCollegeChange: function (e) {
-    let i="ifo[3]"
+    let i = "ifo[3]"
     this.setData({
       [i]: this.data.collegeArray[e.detail.value]
     })
   },
-  toEditName:function(){
+  toEditName: function () {
     wx.navigateTo({
       url: '/pages/editArea/editArea?from=SignupHomepage&type=name',
     })
   },
-  toEditPhone:function(){
+  toEditPhone: function () {
     wx.navigateTo({
       url: '/pages/editArea/editArea?from=SignupHomepage&type=phone',
     })
   },
-  toEditAnswer:function(e){
-    let _this=this;
-    let id=e.currentTarget.id;
-    if(_this.data.requirement[id].type=='text'){
+  toEditAnswer: function (e) {
+    let _this = this;
+    let id = e.currentTarget.id;
+    if (_this.data.requirement[id].type == 'text') {
       wx.navigateTo({
-        url: '/pages/editArea/editArea?from=SignupHomepage&type=answer&id=' + id + '&item=text'+"&answer="+_this.data.answer[id]
+        url: '/pages/editArea/editArea?from=SignupHomepage&type=answer&id=' + id + '&item=text' + "&answer=" + _this.data.answer[id]
       })
     }
-    else{
+    else {
       wx.navigateTo({
         url: '/pages/editArea/editArea?from=SignupHomepage&type=answer&id=' + id + '&item=select&array=' + JSON.stringify(_this.data.requirement[id].inner) + "&answer=" + _this.data.answer[id]
       })
     }
   },
-  signup:function(){
-    let _this=this;
-    let temp=_this.data.ifo;
+  signup: function () {
+    let _this = this;
+    let temp = _this.data.ifo;
     switch (_this.data.ifo[2]) {
       case '女':
         temp[2] = "female";
@@ -193,20 +193,20 @@ Page({
       case '保密':
         temp[2] = "secret";
         break;
-    if(!_this.data.select_name)
-      temp[0]="";
-    if(!_this.data.select_gender)
-      temp[1]=""
-    if(!_this.data.select_college)
-      temp[2]=""
-    if(!_this.data.select_phone_number)
-      temp[3]=""
-    if(!_this.data.select_grade)
-      temp[4]=""
+        if (!_this.data.select_name)
+          temp[0] = "";
+        if (!_this.data.select_gender)
+          temp[1] = ""
+        if (!_this.data.select_college)
+          temp[2] = ""
+        if (!_this.data.select_phone_number)
+          temp[3] = ""
+        if (!_this.data.select_grade)
+          temp[4] = ""
     }
     wx.request({
       url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/toggle_participation/',
-      method:"POST",
+      method: "POST",
       header: {
         "Authorization": app.globalData.token
       },
@@ -214,26 +214,26 @@ Page({
         p_info: JSON.stringify(temp),
         forms: JSON.stringify(_this.data.answer)
       },
-      complete:(res)=>{
-        if(res.statusCode!=201){
+      complete: (res) => {
+        if (res.statusCode != 201) {
           _this.setData({
             loading: false
           })
           wx.showToast({
             title: '网络传输故障',
-            image:'/images/about.png'
+            image: '/images/about.png'
           })
         }
-        else{
+        else {
           _this.setData({
             loading: false
           })
-          app.globalData.actSignupSuccess="ok";
+          app.globalData.actSignupSuccess = "ok";
           wx.navigateBack({
             delta: 1
           })
         }
-        }
+      }
     })
   },
   // 验证手机号
@@ -264,8 +264,8 @@ Page({
         }
         else {
           _this.setData({
-            cfmOnlyPhone:_this.data.ifo[1],
-            clock:60
+            cfmOnlyPhone: _this.data.ifo[1],
+            clock: 60
           })
           _this.data.clo = setInterval(function () {
             _this.setData({
@@ -279,9 +279,16 @@ Page({
   //确认  
   confirm: function () {
     let _this = this;
-    if (_this.data.cfmOnlyPhone!=_this.data.ifo[1]){
+    if (_this.data.cfmOnlyPhone != _this.data.ifo[1]) {
       wx.showToast({
         title: '未获得验证码',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    if (_this.data.cfmNumber==""){
+      wx.showToast({
+        title: '验证码为空',
         image: '/images/about.png'
       })
       return;
@@ -336,15 +343,48 @@ Page({
       return;
     }
     for (let k = 0; k < _this.data.requirement.length; k++) {
-      if (_this.data.requirement[k].type == 'text') {
-        if (_this.data.answer[k] == null || _this.data.answer[k] == "" || _this.data.answer[k] == undefined) {
-          wx.showToast({
-            title: '信息未填写完整',
-            image: '/images/about.png'
-          })
-          return;
-        }
+      if (_this.data.answer[k] == null || _this.data.answer[k] == "" || _this.data.answer[k] == undefined) {
+        wx.showToast({
+          title: '信息未填写完整',
+          image: '/images/about.png'
+        })
+        return;
       }
+    }
+    if (_this.data.select_name==true && _this.data.ifo[0]==""){
+      wx.showToast({
+        title: '信息未填写完整',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    if (_this.data.select_phone_number == true && _this.data.ifo[1] == "") {
+      wx.showToast({
+        title: '信息未填写完整',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    if (_this.data.select_gender == true && _this.data.ifo[2] == "") {
+      wx.showToast({
+        title: '信息未填写完整',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    if (_this.data.select_college == true && _this.data.ifo[3] == "") {
+      wx.showToast({
+        title: '信息未填写完整',
+        image: '/images/about.png'
+      })
+      return;
+    }
+    if (_this.data.select_grade == true && _this.data.ifo[4] == "") {
+      wx.showToast({
+        title: '信息未填写完整',
+        image: '/images/about.png'
+      })
+      return;
     }
     if (_this.data.ifo[1].length > 0 && _this.data.ifo[1] != _this.data.originPhone) {
       const pattern = /^1(3|4|5|7|8)\d{9}$/;
@@ -360,7 +400,7 @@ Page({
           hiddenmodalput: false
         })
       }
-    }else{
+    } else {
       _this.signup();
     }
   },
