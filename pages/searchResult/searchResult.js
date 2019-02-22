@@ -229,19 +229,34 @@ Page({
     })
   },
   chooseTime:function(e){
-    this.setData({
-      time: e._relatedInfo.anchorTargetText
-    })
+    if (this.data.time == e._relatedInfo.anchorTargetText)
+      this.setData({
+        time: "全部"
+      })
+    else
+      this.setData({
+        time: e._relatedInfo.anchorTargetText
+      })
   },
   chooseInterest:function(e){
-    this.setData({
-      interest: e._relatedInfo.anchorTargetText
-    })
+    if (this.data.interest == e._relatedInfo.anchorTargetText)
+      this.setData({
+        interest: "全部"
+      })
+    else
+      this.setData({
+        interest: e._relatedInfo.anchorTargetText
+      })
   },
   chooseHobby:function(e){
-    this.setData({
-      hobby: e._relatedInfo.anchorTargetText
-    })
+    if (this.data.hobby == e._relatedInfo.anchorTargetText)
+      this.setData({
+        hobby: "全部"
+      })
+    else
+      this.setData({
+        hobby: e._relatedInfo.anchorTargetText
+      })
   },
   chooseSort:function(e){
     this.setData({
