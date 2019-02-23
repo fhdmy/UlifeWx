@@ -133,7 +133,7 @@ Page({
               link: res.data.link
             })
             _this.data.select_name=info[0]
-            _this.data.select_phone=numberinfo[1]
+            _this.data.select_phone=info[1]
             _this.data.select_gender=info[2]
             _this.data.select_college=info[3]
             _this.data.select_grade=info[4]
