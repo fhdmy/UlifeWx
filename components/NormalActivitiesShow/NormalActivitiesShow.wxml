@@ -1,7 +1,7 @@
 <view>
   <view class='activities-wrapper'>
     <view class='activity-sep-wrapper' wx:for="{{activities}}" wx:key="item" bindlongpress='excuse' id="{{index}}">
-      <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct' id="{{index}}"></image>
+      <image src='{{item.head_img}}' class='act-headimg' bindtap='openAct' id="{{index}}" lazy-load="true"></image>
         <view class='act-heading' bindtap='openAct' id="{{index}}">
         <text>{{item.heading}}</text>
           <!-- 用pageType判断使用该组件的页面是否是”排行榜“，如果是，显示以下图标，icon-shuzi1,icon-shuzi2等依次为1，2，3..的图标  -->

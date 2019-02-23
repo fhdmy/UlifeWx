@@ -21,6 +21,7 @@ page {
   position: relative;
   overflow-y: auto;
   background: #f8f8f8;
+  -webkit-overflow-scrolling: touch;
 }
 
 .top-tabbar{

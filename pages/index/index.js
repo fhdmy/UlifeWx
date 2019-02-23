@@ -81,10 +81,10 @@ Page({
                   org_id: res.data.results[k].owner.id,
                   is_ended: res.data.results[k].is_ended
                 },
-                moreacts: res.data.next,
-                presentacts: res.data.results.length,
-                actmax: res.data.count
               });
+              _this.data.moreacts = res.data.next
+              _this.data.presentacts = res.data.results.length
+              _this.data.actmax=res.data.count
             }
             resolve(1);
           }
@@ -171,10 +171,8 @@ Page({
                 },
               })
             }
-            _this.setData({
-              moreacts: res.data.next,
-              presentacts: (res.data.results.length + _this.data.presentacts)
-            })
+            _this.data.moreacts=res.data.next
+            _this.data.presentacts+=res.data.results.length
             resolve("pm");
           }
         }

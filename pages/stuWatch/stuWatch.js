@@ -96,11 +96,9 @@ Page({
                   }
                 })
               }
-              _this.setData({
-                moresignupacts: res.data.next,
-                presentsignup: res.data.results.length,
-                signupmax: res.data.count
-              })
+              _this.data.moresignupacts=res.data.next
+              _this.data.presentsignup=res.data.results.length
+              _this.data.signupmax=res.data.count
               resolve(1)
             }
           }
@@ -155,10 +153,8 @@ Page({
                 },
               })
             }
-            _this.setData({
-              moresignupacts: res.data.next,
-              presentsignup: (res.data.results.length + _this.data.presentsignup)
-            })
+            _this.data.moresignupacts=res.data.next
+            _this.data.presentsignup+=res.data.results.length
             resolve("pm");
           }
         }

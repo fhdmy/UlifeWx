@@ -116,11 +116,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moreacts : res.data.next,
-              presentacts : res.data.results.length,
-              actmax : res.data.count,
-            })
+            _this.data.moreacts= res.data.next
+            _this.data.presentacts = res.data.results.length
+            _this.data.actmax = res.data.count
             resolve(1)
           }
         }
@@ -222,6 +220,11 @@ Page({
       })
     this.searchRequest();
   },
+  openSearch:function(){
+    this.setData({
+      swiper: !this.data.swiper,
+    })
+  },
   chooseType:function(e){
     // console.log(e._relatedInfo.anchorTargetText)
     this.setData({
@@ -314,10 +317,8 @@ Page({
                   }
                 })
               }
-              _this.setData({
-                moreacts: res.data.next,
-                presentacts: (res.data.results.length + _this.data.presentacts)
-              })
+              _this.data.moreacts= res.data.next
+              _this.data.presentacts+=res.data.results.length
               resolve("pm");
             }
           }

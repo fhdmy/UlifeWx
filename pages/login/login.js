@@ -19,9 +19,7 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    this.setData({
-      type: options.type
-    })
+    this.data.type=options.type
   },
   focusInput(){
     this.setData({
@@ -32,6 +30,7 @@ Page({
     this.setData({
       focusKeyBoard:false
     })
+    this.judge();
   },
   login: function () {
     let _this = this;
@@ -258,13 +257,11 @@ Page({
     this.setData({
       number: e.detail.value
     })
-    this.judge();
   },
   bindPwd: function (e) {
     this.setData({
       pwd: e.detail.value
     })
-    this.judge();
   },
   judge: function () {
     var pattern = /^[0-9]*$/;

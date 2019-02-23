@@ -82,11 +82,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moremsg:res.data.next,
-              presentmsg:res.data.results.length,
-              msgmax:res.data.count
-            })
+            _this.data.moremsg=res.data.next
+            _this.data.presentmsg=res.data.results.length
+            _this.data.msgmax=res.data.count
             resolve(1);
           }
         }
@@ -166,10 +164,8 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moremsg: res.data.next,
-              presentmsg: res.data.results.length+_this.data.presentmsg
-            })
+            _this.data.moremsg=res.data.next
+            _this.data.presentmsg+=res.data.results.length
             resolve("pm");
           }
         }

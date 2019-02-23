@@ -72,9 +72,9 @@ Page({
             })
             resolve(1)
           } else {
+            _this.data.shareImg=app.globalData.url + res.data.bg_img + '.thumbnail.0.jpg'
             _this.setData({
               headImg: app.globalData.url + res.data.bg_img + '.thumbnail.2.jpg',
-              shareImg: app.globalData.url + res.data.bg_img + '.thumbnail.0.jpg',
               orgAvatar: app.globalData.url + res.data.avatar + '.thumbnail.3.jpg',
               org: res.data.org_name,
               watch: res.data.watcher_count,
@@ -152,11 +152,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moremyacts : res.data.next,
-              presentmyacts : res.data.results.length,
-              myactsmax : res.data.count
-            })
+            _this.data.moremyacts = res.data.next
+            _this.data.presentmyacts = res.data.results.length
+            _this.data.myactsmax = res.data.count
             resolve(3)
           }
         }
@@ -255,8 +253,8 @@ Page({
               reject(3)
             }
             else{
+              _this.data.watchUrl=res.data.id
               _this.setData({
-                watchUrl: res.data.id,
                 hasWatched:true
               })
               wx.showToast({
@@ -340,10 +338,8 @@ Page({
                 },
               })
             }
-            _this.setData({
-              moremyacts: res.data.next,
-              presentmyacts: (res.data.results.length + _this.data.presentmyacts)
-            })
+            _this.data.moremyacts=res.data.next
+            _this.data.presentmyacts+=res.data.results.length
             resolve("pm");
           }
         }

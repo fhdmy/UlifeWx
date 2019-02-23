@@ -132,11 +132,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              morecollects: res.data.next,
-              presentcollects: res.data.results.length,
-              collectmax: res.data.count,
-            })
+            _this.data.morecollects= res.data.next
+            _this.data.presentcollects= res.data.results.length
+            _this.data.collectmax= res.data.count
             resolve(2)
           }
         }
@@ -175,11 +173,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moreatt: res.data.next,
-              presentatt: res.data.results.length,
-              thattmax: res.data.count
-            })
+            _this.data.moreatt= res.data.next
+            _this.data.presentatt= res.data.results.length
+            _this.data.thattmax= res.data.count
             resolve(3)
           }
         }
@@ -267,10 +263,8 @@ Page({
                   },
                 })
               }
-              _this.setData({
-                morecollects: res.data.next,
-                presentcollects: (res.data.results.length + _this.data.presentcollects)
-              })
+              _this.data.morecollects=res.data.next
+              _this.data.presentcollects+=res.data.results.length
               resolve("pm");
             }
           }
@@ -323,10 +317,8 @@ Page({
                   },
                 })
               }
-              _this.setData({
-                moreatt: res.data.next,
-                presentatt: (res.data.results.length + _this.data.presentatt)
-              })
+              _this.data.moreatt=res.data.next
+              _this.data.presentatt+=res.data.results.length
               resolve("pm");
             }
           }

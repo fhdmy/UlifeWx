@@ -48,7 +48,7 @@
       <view style='clear:both;'></view>
     </view>
   </view>
-  <navbar page-name="Ulife" pageType="searchResult" bind:searchChoose="searchChoose"></navbar>
+  <navbar page-name="Ulife" pageType="searchResult" bind:searchChoose="openSearch"></navbar>
   <view class='search-wrapper'>
     <view class='search-inner'>
       <i class="iconfont icon-sousuo"></i>

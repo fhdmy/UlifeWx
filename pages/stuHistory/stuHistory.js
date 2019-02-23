@@ -59,11 +59,9 @@ Page({
                 }
               })
             }
-            _this.setData({
-              moresignupacts1: res.data.next,
-              presentsignup1: res.data.results.length,
-              signupmax1: res.data.count
-            })
+            _this.data.moresignupacts1=res.data.next
+            _this.data.presentsignup1=res.data.results.length
+            _this.data.signupmax1=res.data.count
             resolve(1)
           }
         }
@@ -138,11 +136,9 @@ Page({
                   }
                 })
               }
-              _this.setData({
-                moresignupacts2: res.data.next,
-                presentsignup2: res.data.results.length,
-                signupmax2: res.data.count
-              })
+              _this.data.moresignupacts2=res.data.next
+              _this.data.presentsignup2=res.data.results.length
+              _this.data.signupmax2=res.data.count
               resolve(2)
             }
           }
@@ -199,10 +195,8 @@ Page({
                   },
                 })
               }
-              _this.setData({
-                moresignupacts1: res.data.next,
-                presentsignup1: (res.data.results.length + _this.data.presentsignup1)
-              })
+              _this.data.moresignupacts1=res.data.next
+              _this.data.presentsignup1+=res.data.results.length
               resolve("pm");
             }
           }
@@ -257,10 +251,8 @@ Page({
                   },
                 })
               }
-              _this.setData({
-                moresignupacts2: res.data.next,
-                presentsignup2: (res.data.results.length + _this.data.presentsignup2)
-              })
+              _this.data.moresignupacts2=res.data.next
+              _this.data.presentsignup2+=res.data.results.length
               resolve("pm");
             }
           }
@@ -301,7 +293,7 @@ Page({
         }
         else {
           _this.setData({
-            activities1: 0,
+            activities1: [],
             presentsignup1: 0,
             signupmax1: 0,
             loading: false
@@ -337,7 +329,7 @@ Page({
         }
         else {
           _this.setData({
-            activities2: 0,
+            activities2: [],
             presentsignup2: 0,
             signupmax2: 0,
             loading: false

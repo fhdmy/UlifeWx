@@ -115,11 +115,11 @@ Page({
             let cst = computedstart[0].split("-");
             let comutedstarttime = computedstart[1].split(':');
             let info = JSON.parse(res.data.p_info);
+            _this.data.actId=res.data.id
+            _this.data.orgName=res.data.owner.org_name
             _this.setData({
-              actId: res.data.id,
               headImg: app.globalData.url + res.data.head_img + '.thumbnail.2.jpg',
               orgAvatar: app.globalData.url + res.data.owner.avatar + '.thumbnail.3.jpg',
-              orgName: res.data.owner.org_name,
               heading: res.data.heading,
               orgId: res.data.owner.id,
               date: (cst[1] + "/" + cst[2]),
@@ -130,14 +130,14 @@ Page({
               hobby: res.data.hobby,
               ended: res.data.is_ended,
               star: ((_this.data.is_ended == true) ? res.data.score : 2),
-              link: res.data.link,
-              requirement: JSON.parse(res.data.requirement),
-              select_name: info[0],
-              select_phone_number: info[1],
-              select_gender: info[2],
-              select_college: info[3],
-              select_grade: info[4]
+              link: res.data.link
             })
+            _this.data.select_name=info[0]
+            _this.data.select_phone=numberinfo[1]
+            _this.data.select_gender=info[2]
+            _this.data.select_college=info[3]
+            _this.data.select_grade=info[4]
+            _this.data.requirement = JSON.parse(res.data.requirement)
             if (!res.data.link)
               _this.setData({
                 lists: JSON.parse(res.data.demonstration)
@@ -223,9 +223,7 @@ Page({
                 collected: res.data.length == 0 ? false : true
               })
               if (_this.data.collected)
-                _this.setData({
-                  collectId: res.data[0].id
-                })
+                _this.data.collectId=res.data[0].id
               resolve("pc")
             }
           }

@@ -79,9 +79,9 @@ Page({
           else if (res.data.gender == "female")
             gender = "女";
           else gender = "保密";
+          _this.data.originPhone = res.data.phone_number
           _this.setData({
             phone: res.data.phone_number,
-            originPhone:res.data.phone_number,
             nickname: res.data.nickname,
             realname: res.data.realname,
             college: res.data.college,
