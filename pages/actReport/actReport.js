@@ -24,6 +24,13 @@ Page({
         image: '/images/about.png'
       })
     }
+    if (app.globalData.isLogin == false) {
+      wx.showToast({
+        title: '请先登录账号',
+        image: "/images/about.png"
+      })
+      return;
+    }
     _this.setData({
       loading: true
     })
