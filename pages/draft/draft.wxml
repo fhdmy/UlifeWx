@@ -3,7 +3,7 @@
   <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
-    <image wx:if="{{activities.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+    <image wx:if="{{activities.length==0 && loadOk==true && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities}}" pageType="draft" bind:draft="showActionSheet"></NormalActivitiesShow>
   </scroll-view>
 </view>

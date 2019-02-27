@@ -16,6 +16,7 @@ Page({
     presentsignup2: 0,
     signupmax2: 0,
     scroll: false,
+    loadOk:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -68,9 +69,9 @@ Page({
       })
     })
     p1.then(function (results) {
-      // _this.setData({
-      //   loading: false
-      // })
+      _this.setData({
+        loadOk:true
+      })
     })
   },
   chooseTab0: function () {
@@ -100,9 +101,6 @@ Page({
       })
     }
     if (_this.data.activities2.length == 0) {
-      _this.setData({
-        loading: true
-      })
       let p2 = new Promise(function (resolve, reject) {
         wx.request({
           url: app.globalData.url + '/activity/participations/?student=' + id + '&activity__is_ended=True',
@@ -145,9 +143,9 @@ Page({
         })
       })
       p2.then(function (results) {
-        _this.setData({
-          loading: false
-        })
+        // _this.setData({
+        //   loading: false
+        // })
       })
     }
   },

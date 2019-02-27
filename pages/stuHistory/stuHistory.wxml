@@ -15,8 +15,8 @@
     <!--这里放你的内容-->
     <view class="clear" wx:if="{{choosen==0}}" bindtap='clearView'>清空</view>
     <view class="clear" wx:if="{{choosen==1}}" bindtap='clearAttend'>清空</view>
-    <image wx:if="{{activities1.length==0 && loading==false && choosen==0}}" src='/images/noActs.png' class='no-acts'></image>
-    <image wx:if="{{activities2.length==0 && loading==false && choosen==1}}" src='/images/noActs.png' class='no-acts'></image>
+    <image wx:if="{{activities1.length==0 && loading==false && choosen==0 && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
+    <image wx:if="{{activities2.length==0 && loading==false && choosen==1 && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities1}}" wx:if="{{choosen==0}}"></NormalActivitiesShow>
     <NormalActivitiesShow activities="{{activities2}}" wx:if="{{choosen==1}}"></NormalActivitiesShow>
   </scroll-view>

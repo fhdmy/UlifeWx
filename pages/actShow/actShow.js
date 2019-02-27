@@ -263,11 +263,9 @@ Page({
                     }
                   });
                 }
-                _this.setData({
-                  morecomment: res.data.next,
-                  presentcomment: res.data.results.length,
-                  commentmax: res.data.count
-                })
+                _this.data.morecomment=res.data.next
+                _this.data.presentcomment=res.data.results.length
+                _this.data.commentmax=res.data.count
                 resolve(2);
               }
             }
@@ -309,7 +307,8 @@ Page({
       wx.showModal({
         title: '收藏无效',
         content: '组织不能收藏活动',
-        showCancel: false
+        showCancel: false,
+        confirmColor: "#FE9246"
       })
       return;
     }
@@ -418,10 +417,8 @@ Page({
                 },
               })
             }
-            _this.setData({
-              morecomment: res.data.next,
-              presentcomment: (res.data.results.length + _this.data.presentcomment)
-            })
+            _this.data.morecomment=res.data.next
+            _this.data.presentcomment+=res.data.results.length
             resolve("pm");
           }
         }
@@ -455,7 +452,8 @@ Page({
       wx.showModal({
         title: '报名无效',
         content: '组织不能报名活动',
-        showCancel: false
+        showCancel: false,
+        confirmColor: "#FE9246"
       })
       return;
     }
@@ -561,6 +559,14 @@ Page({
           })
         }
       }
+    })
+  },
+  openDescribe:function(){
+    wx.showModal({
+      title: this.data.heading,
+      content: this.data.describe,
+      showCancel:false,
+      confirmColor: "#FE9246"
     })
   }
 })

@@ -12,7 +12,8 @@ Page({
     presentmsg:0,
     msgmax:0,
     setStar:[],
-    comment:[]
+    comment:[],
+    loadOk:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -91,9 +92,9 @@ Page({
       })
     })
     p1.then(function(results){
-      // _this.setData({
-      //   loading:false
-      // })
+      _this.setData({
+        loadOk:true
+      })
     })
   },
   scrollBottom: function () {

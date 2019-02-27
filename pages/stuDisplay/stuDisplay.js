@@ -27,7 +27,8 @@ Page({
     activities2: [],
     moreatt: "",
     presentatt: 0,
-    thattmax: 0
+    thattmax: 0,
+    loadOk:false
   },
   onShareAppMessage: function (options) {
     return {
@@ -204,9 +205,9 @@ Page({
           }
         })
       }
-      // _this.setData({
-      //   loading: false
-      // })
+      _this.setData({
+        loadOk:true
+      })
     })
   },
   toDynamic: function () {

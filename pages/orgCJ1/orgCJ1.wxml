@@ -3,7 +3,8 @@
   <navbar page-name="第一步" pageType="backButton"></navbar>
   <loading hidden="{{!loading}}">加载中...</loading>
   <view class="text1">
-    <input placeholder='请输入活动名称' focus='{{focus}}'  placeholder-style="color:#484848;" cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput' value='{{heading}}'></input>
+    <text class='placeholder' hidden='{{placeHolder}}'>请输入活动名称</text>
+    <input cursor-spacing="100" bindconfirm='toNext' bindinput='bindInput' value='{{heading}}' bindfocus='bindFocus'></input>
   </view>
   <view class="nextbtn">
     <button class="nxtbtn" bindtap='toNext'>下一步</button>

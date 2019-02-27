@@ -6,8 +6,8 @@ Page({
   data: {
     navH: 0,
     searchContent:"",
-    focus:true,
-    searchHistory:[]
+    searchHistory:[],
+    placeHolder:false
   },
   onShow: function (options) {
     let _this = this;
@@ -64,8 +64,21 @@ Page({
     this.search();
   },
   bindInput:function(e){
+    if (e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder: true
+      })
     this.setData({
       searchContent: e.detail.value
+    })
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder: true
     })
   }
 })

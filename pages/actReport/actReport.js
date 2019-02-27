@@ -6,7 +6,8 @@ Page({
     navH: 0,
     loading: false,
     reportContent: "",
-    id: 0
+    id: 0,
+    placeHolder:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -57,8 +58,21 @@ Page({
     })
   },
   inputContent: function (e) {
+    if(e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder: true
+      })
     this.setData({
       reportContent: e.detail.value
+    })
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder: true
     })
   }
 })

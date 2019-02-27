@@ -17,6 +17,7 @@ Page({
     location:"上海大学",
     describe:"",
     type:"link",
+    placeHolder:false
   },
   onLoad: function (options){
     this.data.type = options.type;
@@ -82,10 +83,23 @@ Page({
     })
   },
   inputDescribe:function(e){
+    if(e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder: true
+      })
     this.setData({
       describe: e.detail.value
     })
     app.globalData.createDescribe = this.data.describe
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder:true
+    })
   },
   changeHeadImg:function(){
     let _this = this;

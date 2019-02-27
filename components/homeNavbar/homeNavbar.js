@@ -78,5 +78,10 @@ Component({
     upload: function () {
       this.triggerEvent('upload', {}, {})
     },
+    refresh:function(){
+      if (this.properties.pageType=='home'){
+        this.triggerEvent('refresh', {}, {})
+      }else return;
+    }
   }
 })

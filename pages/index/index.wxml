@@ -1,5 +1,5 @@
 <view class='view-page'>
-  <navbar page-name="Ulife" pageType="home"></navbar>
+  <navbar page-name="Ulife" pageType="home" bind:refresh="refresh"></navbar>
   <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <!--这里放你的内容-->
     <loading hidden="{{!loading}}">加载中...</loading>

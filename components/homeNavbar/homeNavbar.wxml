@@ -19,7 +19,7 @@
   <view class="navbar-action-wrap row item-center" wx:if="{{pageType=='searchResult'}}" bindtap='searchChoose'>
     <i class="iconfont icon-funnel"></i>
   </view>
-  <view class='navbar-title' wx:if="{{pageType!='orgDisplay' && pageType!='stuDisplay' && pageType!='orgCJEdit' && pageType!='orgABEdit'}}">
+  <view class='navbar-title' wx:if="{{pageType!='orgDisplay' && pageType!='stuDisplay' && pageType!='orgCJEdit' && pageType!='orgABEdit'}}" bindtap='refresh'>
     {{pageName}}
   </view>
   <view class='display-wrapper' wx:if="{{pageType=='orgDisplay' || pageType=='stuDisplay'}}">

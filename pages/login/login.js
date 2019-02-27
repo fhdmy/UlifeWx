@@ -12,7 +12,8 @@ Page({
     number: "",
     pwd: "",
     loading: false,
-    focusKeyBoard:false
+    numberPlaceHolder:false,
+    pwdPlaceHolder:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -21,16 +22,30 @@ Page({
     })
     this.data.type=options.type
   },
-  focusInput(){
+  focusNumber(){
     this.setData({
-      focusKeyBoard:true
+      numberPlaceHolder:true
     })
   },
-  blurInput(){
+  focusPwd(){
     this.setData({
-      focusKeyBoard:false
+      pwdPlaceHolder: true
     })
-    this.judge();
+  },
+  blurNumber(){
+    let pattern = /^[0-9]*$/;
+    if (pattern.test(this.data.number) == true && this.data.number.length != 8) {
+      this.setData({
+        alert: "请输入8位数字的学号！"
+      })
+    }
+  },
+  blurPwd(){
+    if (this.data.pwd.length < 6) {
+      this.setData({
+        alert: "密码长度过短！"
+      })
+    }
   },
   login: function () {
     let _this = this;
@@ -254,11 +269,27 @@ Page({
     })
   },
   bindNumber: function (e) {
+    if(e.detail.value=="")
+      this.setData({
+        numberPlaceHolder: false
+      })
+    else
+      this.setData({
+        numberPlaceHolder: true
+      })
     this.setData({
       number: e.detail.value
     })
   },
   bindPwd: function (e) {
+    if (e.detail.value == "")
+      this.setData({
+        pwdPlaceHolder: false
+      })
+    else
+      this.setData({
+        pwdPlaceHolder: true
+      })
     this.setData({
       pwd: e.detail.value
     })

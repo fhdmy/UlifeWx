@@ -52,9 +52,9 @@ Page({
   },
   onLoad:function(){
     let _this=this;
-    _this.setData({
-      loading:true
-    })
+    // _this.setData({
+    //   loading:true
+    // })
     //发请求
     _this.data.userurl = wx.getStorageSync(md5.hex_md5("user_url"));
     wx.request({
@@ -64,9 +64,9 @@ Page({
       },
       complete: (res) => {
         if (res.statusCode != 200) {
-          _this.setData({
-            loading: false
-          })
+          // _this.setData({
+          //   loading: false
+          // })
           wx.showToast({
             title: '网络传输故障',
             image: '/images/about.png'
@@ -88,7 +88,7 @@ Page({
             grade: res.data.grade,
             sex: gender,
             avatar: wx.getStorageSync(md5.hex_md5("avatar")),
-            loading: false
+            // loading: false
           })
         }
       }

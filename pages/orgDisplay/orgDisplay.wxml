@@ -40,7 +40,7 @@
         <view style='clear:both;'></view>
       </view>
       <view class='dynamic'>
-        <image wx:if="{{activities.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+        <image wx:if="{{activities.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
         <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
       </view>
     </view>

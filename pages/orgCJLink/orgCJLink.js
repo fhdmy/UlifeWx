@@ -24,7 +24,8 @@ Page({
     p_info: [true, true, true, true, true],
     actId: -1,
     fileUrl: [],
-    fileName: []
+    fileName: [],
+    placeHolder:false
   },
   onShow: function (options) {
     if (app.globalData.createLink != "")
@@ -315,10 +316,23 @@ Page({
     _this.save(autoSave,upLoad, hasActId);
   },
   inputContent: function (e) {
+    if (e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder:true
+      })
     this.setData({
       content: e.detail.value
     })
     app.globalData.createLink=this.data.content;
   },
+  bindFocus:function(){
+    this.setData({
+      placeHolder:true
+    })
+  }
 })
 

@@ -4,13 +4,13 @@ const app = getApp()
 Page({
   data: {
     navH: 0,
-    focus:true,
     pageFrom:"",
     pageType:"",
     content:"",
     actId:0,
     array:[],
-    item:""
+    item:"",
+    placeHolder:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -87,8 +87,21 @@ Page({
     }
   },
   inputContent:function(e){
+    if (e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder: true
+      })
     this.setData({
       content: e.detail.value
+    })
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder:true
     })
   },
   bindInputPicker:function(e){

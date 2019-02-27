@@ -46,6 +46,7 @@ page {
 
 .input-userinfo{
   width: 100%;
+  position: relative;
 }
 
 .account-wrapper{
@@ -66,6 +67,7 @@ page {
   float: left;
   margin-left: 30rpx;
   width: 600rpx;
+  color: #484848;
 }
 
 .pwd-wrapper{
@@ -86,6 +88,7 @@ page {
   float: left;
   margin-left: 30rpx;
   width: 600rpx;
+  color: #484848;
 }
 
 .alert{
@@ -97,7 +100,9 @@ page {
 .login-button{
   width: 670rpx;
   height: 110rpx;
-  margin:60rpx 40rpx;
+  margin:30rpx 40rpx;
+  background: #FE9246;
+  color: white;
 }
 
 .logout{
@@ -106,4 +111,18 @@ page {
   float: right;
   margin-right: 40rpx;
   margin-top: 12rpx;
+}
+
+.number-placeholder{
+  position: absolute;
+  left: 109rpx;
+  color: #666666;
+  font-size: 32rpx;
+}
+
+.pwd-placeholder{
+  position: absolute;
+  left: 109rpx;
+  color: #666666;
+  font-size: 32rpx;
 }

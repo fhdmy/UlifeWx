@@ -14,6 +14,7 @@ Page({
       'fontStyle':'normal'
     },
     showModel:false,
+    placeHolder:false,
     setColor: 'rgb(66, 66, 66)',
     R:66,
     G:66,
@@ -56,8 +57,21 @@ Page({
     })
   },
   inputContent: function (e) {
+    if(e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder:true
+      })
     this.setData({
       content: e.detail.value
+    })
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder:true
     })
   },
   openCutiActionSheet:function(){

@@ -65,3 +65,10 @@ button{
   color:#666666;
   float: left;
 }
+
+.placeholder{
+  padding-left: 40rpx;
+  padding-top: 20rpx;
+  color:#666666;
+  position: absolute;
+}

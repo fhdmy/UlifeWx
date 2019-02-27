@@ -144,7 +144,8 @@ Page({
       wx.showModal({
         title: '二维码无效',
         content: '只能扫描站内二维码',
-        showCancel: false
+        showCancel: false,
+        confirmColor: "#FE9246"
       })
       return;
     }
@@ -158,7 +159,8 @@ Page({
     wx.showModal({
       title: 'Ulife网站',
       content: 'https://ulife.org.cn（建议在pc上打开）',
-      showCancel:false
+      showCancel:false,
+      confirmColor: "#FE9246"
     })
   },
   toRules:function(){

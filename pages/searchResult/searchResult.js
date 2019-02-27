@@ -20,7 +20,8 @@ Page({
     swiper:false,
     searchorgs:[],
     searchType:0,
-    searchHistory:[]
+    searchHistory:[],
+    loadOk:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -168,7 +169,8 @@ Page({
     })
     p1.then(function(results){
       _this.setData({
-        loading:false
+        loading:false,
+        loadOk:true
       })
     })
   },

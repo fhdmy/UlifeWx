@@ -98,6 +98,13 @@ textarea{
   border-bottom: 1px solid #cccccc;
 }
 
+.placeholder{
+  position: absolute;
+  font-size: 36rpx;
+  color: #666666;
+  padding: 30rpx 0 0 40rpx;
+}
+
 .nextButton{
   color: white;
   font-size: 36rpx;

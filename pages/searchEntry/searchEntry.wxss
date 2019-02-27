@@ -82,3 +82,11 @@ page {
   background: #999999;
   color: white;
 }
+
+.placeholder{
+  position: absolute;
+  color: #484848;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-left: 40rpx;
+}

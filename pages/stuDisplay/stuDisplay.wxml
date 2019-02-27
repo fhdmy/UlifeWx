@@ -26,7 +26,7 @@
           <view style='clear:both;'></view>
         </view>
         <view class='dynamic' wx:if="{{showItem}}">
-        <image wx:if="{{activities1.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+        <image wx:if="{{activities1.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
           <NormalActivitiesShow activities="{{activities1}}"></NormalActivitiesShow>
         </view>
         <view class='abstract-title' wx:if="{{!showItem}}">
@@ -35,7 +35,7 @@
           <view style='clear:both;'></view>
         </view>
       <view class='dynamic' wx:if="{{!showItem}}">
-      <image wx:if="{{activities2.length==0 && loading==false}}" src='/images/noActs.png' class='no-acts'></image>
+      <image wx:if="{{activities2.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
         <NormalActivitiesShow activities="{{activities2}}"></NormalActivitiesShow>
       </view>
     </view>

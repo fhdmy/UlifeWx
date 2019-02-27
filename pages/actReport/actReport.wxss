@@ -27,20 +27,21 @@ page {
 textarea{
   font-size: 36rpx;
   color: #484848;
-  margin: 40rpx 40rpx 70rpx 40rpx;
+  padding-top: 5rpx;
+  /* margin: 40rpx 40rpx 70rpx 40rpx; */
+  margin-bottom: 70rpx;
   display: block;
-  width: 670rpx;
+  /* width: 670rpx; */
+  width: 100%;
   height: 600rpx;
-  border: 1px solid #999999;
+  /* border: 1px solid #999999; */
+  border-bottom: 1px solid #999999;
 }
 
-text{
-  color: #484848;
-  font-size: 32rpx;
-  margin-right: 40rpx;
-  padding: 15rpx 40rpx;
-  border: 1px solid #999999;
-  float: right;
+.placeholder{
+  font-size: 36rpx;
+  color: #666666;
+  position: absolute;
 }
 
 button{

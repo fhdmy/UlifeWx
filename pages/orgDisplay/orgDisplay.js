@@ -23,7 +23,8 @@ Page({
     watchUrl:"",
     moremyacts: "",
     presentmyacts: 0,
-    myactsmax: 0
+    myactsmax: 0,
+    loadOk:false
   },
   onShareAppMessage: function (options) {
     return {
@@ -183,9 +184,9 @@ Page({
           }
         })
       }
-      // _this.setData({
-      //   loading: false
-      // })
+      _this.setData({
+        loadOk:true
+      })
     })
   },
   towatch: function() {
@@ -201,7 +202,8 @@ Page({
       wx.showModal({
         title: '关注无效',
         content: '组织不能进行关注',
-        showCancel: false
+        showCancel: false,
+        confirmColor: "#FE9246"
       })
       return;
     }

@@ -77,6 +77,8 @@ App({
         complete: (res) => {
           if (res.data.detail == "Token has expired" || res.data.detail == "Invalid token") {
             _this.globalData.type = "none";
+            _this.globalData.token = "";
+            _this.globalData.avatar = "";
             wx.clearStorageSync();
           } else if (res.statusCode != 200) {
             wx.showToast({

@@ -1,12 +1,13 @@
 /* pages/OrgCJ I/chuangjianI.wxss */
 @import"../../iconfont/iconfont.wxss";
-.text1{
+input{
   margin-top: 95rpx;
   margin-bottom: 95rpx;
   margin-left: 40rpx;
   font-weight: bold;
   font-size: 50rpx;
   color:rgb(70, 66, 66);
+  height: 100rpx;
 }
 .nextbtn{
   width: 100%;
@@ -32,4 +33,13 @@
 .txt2{
   margin-bottom: 30rpx;
   font-size: 35rpx;
+}
+
+.placeholder{
+  position: absolute;
+  font-weight: bold;
+  font-size: 50rpx;
+  color:rgb(70, 66, 66);
+  margin-left: 40rpx;
+  margin-top: 10rpx;
 }

@@ -23,7 +23,8 @@
   <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y wx:if="{{!showModel}}">
     <loading hidden="{{!loading}}">加载中...</loading>
     <!--这里放你的内容-->
-    <textarea placeholder='在这里输入文本……' bindconfirm='confirm' bindinput='inputContent' value='{{content}}' style='color:{{other.color}};text-align:{{other.textAlign}};text-decoration:{{other.textDecoration}};font-weight:{{other.fontWeight}};font-style:{{other.fontStyle}};'></textarea>
+    <text class='placeholder' hidden='{{placeHolder}}'>在这里输入文本……</text>
+    <textarea bindconfirm='confirm' bindinput='inputContent' value='{{content}}' style='color:{{other.color}};text-align:{{other.textAlign}};text-decoration:{{other.textDecoration}};font-weight:{{other.fontWeight}};font-style:{{other.fontStyle}};' bindfocus='bindFocus'></textarea>
     <view class='attention-txt'>注意：斜体、下划线、删除线在此处不能有效显示。</view>
     <!-- <text bindtap='confirm' class='confirm'>提交</text> -->
     <button bindtap='confirm'>提交</button>

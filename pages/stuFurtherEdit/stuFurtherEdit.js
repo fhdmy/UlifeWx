@@ -28,8 +28,9 @@ Page({
       },
       complete: (res) => {
         if (res.statusCode != 200) {
-          _this.setData({
-            loading: false
+          wx.showToast({
+            title: '网络传输故障',
+            image: '/images/about.png'
           })
         }
         else {
@@ -39,7 +40,7 @@ Page({
             publishVisitor: (res.data.is_visitor_public == true ? "是" : "否"),
             publishCollect: (res.data.is_fav_public == true ? "是" : "否"),
             publishHistory: (res.data.is_history_public == true ? "是" : "否"),
-            loading: false
+            // loading: false
           })
         }
       }

@@ -28,6 +28,7 @@ Page({
     phoneContent: "",
     phoneTarget: "",
     orgPhone:"",
+    qrcode:"",
     etc:`示例:
 
     输入:
@@ -342,7 +343,34 @@ Page({
         }
       })
     })
-    Promise.all([p1,p2,p3,p4,p5]).then(function(){
+    // 获得二维码
+    let p6 = new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/activity/activities/' + _this.data.actId +'/get_qr0/',
+        header: {
+          "Authorization": app.globalData.token
+        }, 
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            _this.setData({
+              loading: false
+            })
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+            reject(6)
+          }
+          else {
+            _this.setData({
+              qrcode:app.globalData.url+res.data
+            })
+            resolve(6)
+          }
+        }
+      })
+    })
+    Promise.all([p1,p2,p3,p4,p5,p6]).then(function(){
       _this.setData({
         loading:false
       })

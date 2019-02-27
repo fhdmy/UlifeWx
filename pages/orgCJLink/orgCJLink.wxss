@@ -33,6 +33,13 @@ input{
   color:#666666;
 }
 
+.placeholder{
+  padding-left: 40rpx;
+  padding-top: 20rpx;
+  position: absolute;
+  color:#666666;
+}
+
 button{
   width: 670rpx;
   margin: 0 auto;

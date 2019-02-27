@@ -7,8 +7,8 @@ Page({
     navH: 0,
     type:"link",
     heading: "",
-    focus: true,
-    loading:false
+    loading:false,
+    placeHolder:false
   },
   onShow: function (options) {
     let _this = this;
@@ -102,10 +102,23 @@ Page({
       app.globalData.createActId = -1;
   },
   bindInput: function (e) {
+    if(e.detail.value=="")
+      this.setData({
+        placeHolder:false
+      })
+    else
+      this.setData({
+        placeHolder:true
+      })
     this.setData({
       heading: e.detail.value
     })
     app.globalData.createHeading = this.data.heading
+  },
+  bindFocus:function(){
+    this.setData({
+      placeHolder:true
+    })
   },
   toNext: function() {
     if (this.data.heading.length > 20 || this.data.heading.length == 0) {

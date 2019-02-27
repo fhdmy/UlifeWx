@@ -3,7 +3,8 @@
   <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <!--这里放你的内容-->
     <loading hidden="{{!loading}}">加载中...</loading>
-    <input placeholder='请在这里输入微信推文链接' bindconfirm='save' bindinput='inputContent' value='{{content}}' focus='{{focus}}'></input>
+    <text class='placeholder' hidden='{{placeHolder}}'>请在这里输入微信推文链接</text>
+    <input bindconfirm='save' bindinput='inputContent' value='{{content}}' bindfocus='bindFocus'></input>
     <text class='txt'>请点击微信右上角“复制链接”获取推文链接</text>
     <view class='upload-file'>
       <text>上传文件</text> 

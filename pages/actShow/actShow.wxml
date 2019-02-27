@@ -9,7 +9,7 @@
     <view class='describe-wrapper'>
       <image src='{{orgAvatar}}' bindtap='openOrg' id="{{orgId}}"></image>
       <text class='heading'>{{heading}}</text>
-      <text class='describe-text'>{{describe}}</text>
+      <text class='describe-text' bindtap='openDescribe'>{{describe}}</text>
       <view class='stars'>
         <i class="iconfont icon-stars" wx:for="{{calStars.cal(star).wholestar}}" wx:if="calStars.cal(star).wholestar!=0" wx:key="{{item}}"></i>  <!--满-->
         <i class="iconfont icon-xingxingbanke" wx:for="{{calStars.cal(star).halfstar}}"  wx:if="calStars.cal(star).halfstar!=0" wx:key="{{item}}"></i> <!--半-->

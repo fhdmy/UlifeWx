@@ -11,6 +11,7 @@ Page({
     presentsignup: 0,
     signupmax: 0,
     scroll: false,
+    loadOk:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -18,9 +19,6 @@ Page({
     _this.setData({
       navH: app.globalData.navbarHeight
     })
-    // _this.setData({
-    //   loading: true
-    // })
     let p1 = new Promise(function (resolve, reject) {
       wx.request({
         url: app.globalData.url + '/activity/activities/?owner=' + id + '&is_published=False&want_to_be_allowed_to_publish=False&ordering=-created_at',
@@ -63,9 +61,9 @@ Page({
       })
     })
     p1.then(function (results) {
-      // _this.setData({
-      //   loading: false
-      // })
+      _this.setData({
+        loadOk:true
+      })
     })
   },
   scrollBottom: function () {

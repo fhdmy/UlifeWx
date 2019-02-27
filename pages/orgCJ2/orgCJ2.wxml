@@ -32,7 +32,8 @@
       <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
       <view class='inform-sep-val-picker'>{{hobby}}</view>
     </picker>
-    <textarea placeholder="这里输入活动简介" bindconfirm='confirm' bindinput='inputDescribe' value='{{describe}}'/>
+    <text class='placeholder' hidden='{{placeHolder}}'>这里输入活动简介</text>
+    <textarea bindconfirm='confirm' bindinput='inputDescribe' value='{{describe}}' bindfocus='bindFocus'/>
     <text bindtap='toNext' class='nextButton'>下一步</text>
   </view>
 </view>

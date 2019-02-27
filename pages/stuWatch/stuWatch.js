@@ -12,7 +12,8 @@ Page({
     presentsignup: 0,
     signupmax: 0,
     scroll: false,
-    watcher: []
+    watcher: [],
+    loadOk:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -105,9 +106,9 @@ Page({
         })
       })
       p1.then(function (results) {
-        // _this.setData({
-        //   loading: false
-        // })
+        _this.setData({
+          loadOk:true
+        })
       })
     })
   },
