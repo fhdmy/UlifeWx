@@ -5,5 +5,8 @@
     <!--这里放你的内容-->
     <image wx:if="{{activities.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities}}" pageType="orgSignup"></NormalActivitiesShow>
+    <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{signupmax != presentsignup}}"></image>
+    </view>
   </scroll-view>
 </view>

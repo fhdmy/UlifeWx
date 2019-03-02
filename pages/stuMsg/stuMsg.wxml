@@ -38,5 +38,8 @@
         </view>
       </view>
     </view>
+    <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{msgmax != presentmsg}}"></image>
+    </view>
   </scroll-view>
 </view>

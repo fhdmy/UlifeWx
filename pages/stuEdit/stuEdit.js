@@ -6,6 +6,7 @@ Page({
   data: {
     navH: 0,
     loading:false,
+    btnLoading:false,
     hiddenmodalput:true,
     clock:0,
     clo:null,
@@ -214,7 +215,7 @@ Page({
           _this.setData({
             hiddenmodalput: true
           })
-          _this.save();
+          _this.save(true);
         }
       }
     })
@@ -243,11 +244,15 @@ Page({
         })
       }
     }else{
-      _this.save();
+      _this.save(false);
     }
   },
-  save:function(){
+  save:function(cfmPhone){
     let _this=this;
+    if (cfmPhone==false)
+      _this.setData({
+        btnLoading:true
+      })
     let p1=new Promise(function(resolve,reject){
       let gender;
       switch(_this.data.sex){
@@ -278,7 +283,8 @@ Page({
         complete:(res)=>{
           if(res.statusCode!=200){
             _this.setData({
-              loading:false
+              loading:false,
+              btnLoading:false
             })
             wx.showToast({
               title: '网络传输故障',
@@ -309,7 +315,8 @@ Page({
           complete: (r) => {
             if (r.statusCode != 201) {
               _this.setData({
-                loading: false
+                loading: false,
+                btnLoading: false
               })
               wx.showToast({
                 title: '网络传输故障',
@@ -329,7 +336,8 @@ Page({
     })
     Promise.all([p1,p2]).then(function(results){
       _this.setData({
-        loading:false
+        loading: false,
+        btnLoading: false
       })
       wx.navigateBack({
         delta: 1

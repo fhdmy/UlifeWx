@@ -44,7 +44,10 @@ Page({
     if (app.globalData.createHobby != "")
       _this.setData({ hobby: app.globalData.createHobby })
     if (app.globalData.createDescribe != "")
-      _this.setData({ describe: app.globalData.createDescribe })
+      _this.setData({ 
+        placeHolder: true,
+        describe: app.globalData.createDescribe 
+      })
     app.globalData.createCJ2Content ="上海大学";
     app.globalData.createCJ2Type="";
   },

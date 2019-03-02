@@ -136,3 +136,18 @@ slider{
   font-size:30rpx;
   padding-top: 10rpx;
 }
+
+.loading-icon{
+  animation: myLoading 1.5s infinite linear;
+  width: 48rpx;
+  height: 48rpx;
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+@keyframes myLoading{
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
+}

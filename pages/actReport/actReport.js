@@ -7,7 +7,8 @@ Page({
     loading: false,
     reportContent: "",
     id: 0,
-    placeHolder:false
+    placeHolder:false,
+    btnLoading:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -32,7 +33,7 @@ Page({
       return;
     }
     _this.setData({
-      loading: true
+      btnLoading: true
     })
     wx.request({
       url: app.globalData.url + '/activity/activities/' + _this.data.id + '/jubao/',
@@ -46,7 +47,7 @@ Page({
       complete: (res) => {
         if(res.statusCode!=200){
           _this.setData({
-            loading: false
+            btnLoading: false
           })
           wx.showToast({
             title: '网络传输故障',
@@ -55,7 +56,7 @@ Page({
         }
         else{
           _this.setData({
-            loading: false
+            btnLoading: false
           })
           wx.navigateBack({
             delta: 1

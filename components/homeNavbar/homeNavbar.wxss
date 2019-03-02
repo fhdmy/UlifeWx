@@ -157,3 +157,20 @@
   position: relative;
   top: 4rpx;
 }
+
+.loading-icon{
+  animation: myLoading 1.5s infinite linear;
+  width: 40rpx;
+  height: 40rpx;
+  max-height: 100%;
+  max-width: 100%;
+  display: inline-block;
+  position: relative;
+  left: 6rpx;
+  top: 7rpx;
+}
+
+@keyframes myLoading{
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
+}

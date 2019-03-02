@@ -11,7 +11,8 @@ Page({
     publishVisitor: "是",
     publishCollect: "是",
     publishHistory: "是",
-    loading: false
+    loading: false,
+    btnLoading:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -69,7 +70,7 @@ Page({
   save: function () {
     let _this = this;
     _this.setData({
-      loading: true
+      btnLoading: true
     })
     let p1 = new Promise(function (resolve, reject) {
       wx.request({
@@ -87,7 +88,7 @@ Page({
         complete: (res) => {
           if (res.statusCode != 200) {
             _this.setData({
-              loading: false
+              btnLoading: false
             })
             wx.showToast({
               title: '网络传输故障',
@@ -116,7 +117,7 @@ Page({
           complete: (r) => {
             if (r.statusCode != 201) {
               _this.setData({
-                loading: false
+                btnLoading: false
               })
               wx.showToast({
                 title: '网络传输故障',
@@ -133,7 +134,7 @@ Page({
     })
     Promise.all([p1, p2]).then(function (results) {
       _this.setData({
-        loading: false
+        btnLoading: false
       })
       wx.navigateBack({
         delta: 1

@@ -1,5 +1,5 @@
 <view class='view-page'>
-  <navbar page-name="Ulife" pageType="home" bind:refresh="refresh"></navbar>
+  <navbar page-name="Ulife" pageType="home" bind:refresh="refresh" reLoad="{{reload}}"></navbar>
   <scroll-view class='page-content' style='height:calc(100vh - {{navH}}px)' scroll-y bindscrolltolower="scrollBottom">
     <!--这里放你的内容-->
     <loading hidden="{{!loading}}">加载中...</loading>
@@ -14,5 +14,8 @@
     </view>
     <text class="recent-activities">近期活动</text>
     <NormalActivitiesShow activities="{{actcontainer}}"></NormalActivitiesShow>
+    <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{actmax!=presentacts}}"></image>
+    </view> 
   </scroll-view>
 </view>

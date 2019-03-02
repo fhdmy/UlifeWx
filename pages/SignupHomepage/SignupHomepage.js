@@ -24,7 +24,8 @@ Page({
     select_grade: true,
     requirement: [],
     actId: 0,
-    answer: []
+    answer: [],
+    btnLoading:false
   },
   onShow: function (options) {
     let _this = this;
@@ -180,9 +181,13 @@ Page({
       })
     }
   },
-  signup: function () {
+  signup: function (cfmPhone) {
     let _this = this;
     let temp = _this.data.ifo;
+    if(cfmPhone==false)
+      _this.setData({
+        btnLoading:true
+      })
     switch (_this.data.ifo[2]) {
       case '女':
         temp[2] = "female";
@@ -217,7 +222,8 @@ Page({
       complete: (res) => {
         if (res.statusCode != 201) {
           _this.setData({
-            loading: false
+            loading: false,
+            btnLoading: false
           })
           wx.showToast({
             title: '网络传输故障',
@@ -226,7 +232,8 @@ Page({
         }
         else {
           _this.setData({
-            loading: false
+            loading: false,
+            btnLoading: false
           })
           app.globalData.actSignupSuccess = "ok";
           wx.navigateBack({
@@ -328,7 +335,7 @@ Page({
           _this.setData({
             hiddenmodalput: true
           })
-          _this.signup();
+          _this.signup(true);
         }
       }
     })
@@ -401,7 +408,7 @@ Page({
         })
       }
     } else {
-      _this.signup();
+      _this.signup(false);
     }
   },
 })

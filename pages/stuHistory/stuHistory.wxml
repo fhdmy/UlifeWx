@@ -19,5 +19,8 @@
     <image wx:if="{{activities2.length==0 && loading==false && choosen==1 && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities1}}" wx:if="{{choosen==0}}"></NormalActivitiesShow>
     <NormalActivitiesShow activities="{{activities2}}" wx:if="{{choosen==1}}"></NormalActivitiesShow>
+    <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{signupmax1 != presentsignup1 || signupmax2 != presentsignup2}}"></image>
+    </view>
   </scroll-view>
 </view>

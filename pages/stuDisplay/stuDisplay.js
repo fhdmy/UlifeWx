@@ -227,7 +227,6 @@ Page({
       if (_this.data.collectmax == _this.data.presentcollects || _this.data.scroll == true)
         return;
       _this.setData({
-        loading: true,
         scroll: true
       })
       var pm = new Promise(function (resolve, reject) {
@@ -273,7 +272,6 @@ Page({
       })
       pm.then(function (results) {
         _this.setData({
-          loading: false,
           scroll: false
         })
       })
@@ -283,7 +281,6 @@ Page({
       if (_this.data.thattmax == _this.data.presentatt || _this.data.scroll == true)
         return;
       _this.setData({
-        loading: true,
         scroll: true
       })
       var pm = new Promise(function (resolve, reject) {
@@ -327,7 +324,6 @@ Page({
       })
       pm.then(function (results) {
         _this.setData({
-          loading: false,
           scroll: false
         })
       })

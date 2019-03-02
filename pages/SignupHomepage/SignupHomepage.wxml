@@ -45,6 +45,6 @@
         </view>
       </view>
     </view>
-    <button type='default' plain="true" class='signup-button' bindtap='confirmSave'>报名</button>
+    <button type='default' plain="true" class='signup-button' bindtap='confirmSave' loading="{{btnLoading}}">报名</button>
   </view>
 </view>

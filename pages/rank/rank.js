@@ -50,7 +50,7 @@ Page({
                   orgId: res.data.org.id,
                   avatar: app.globalData.url + res.data.org.avatar,
                   index: res.data.index,
-                  org_name: res.data.org_name
+                  org_name: res.data.org.org_name
                 }
               })
             }
@@ -138,6 +138,14 @@ Page({
   openOrg: function(e) {
     wx.navigateTo({
       url: '/pages/orgDisplay/orgDisplay?orgId=' + e.currentTarget.id,
+    })
+  },
+  openIndex:function(){
+    wx.showModal({
+      title: this.data.target.org_name,
+      content: this.data.target.index,
+      showCancel: false,
+      confirmColor: "#FE9246"
     })
   }
 })

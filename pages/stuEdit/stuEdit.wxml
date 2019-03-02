@@ -45,7 +45,7 @@
       <view class='inform-sep-val-picker'>{{grade}}</view>
     </picker>
     <text class='further-inform' bindtap='toFurtherInform'>修改背景或隐私设置</text>
-    <button type='default' plain="true" class='save-button' bindtap='confirmSave'>保存</button>
+    <button type='default' plain="true" class='save-button' bindtap='confirmSave' loading='{{btnLoading}}'>保存</button>
     <text class='remind-text'>报名活动需要填写以上信息</text>
   </view>
 </view>

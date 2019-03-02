@@ -25,11 +25,14 @@ Page({
     actId: -1,
     fileUrl: [],
     fileName: [],
-    placeHolder:false
+    placeHolder:false,
+    uploadLoading:false,
+    saveLoading:false
   },
   onShow: function (options) {
     if (app.globalData.createLink != "")
       this.setData({
+        placeHolder: true,
         content: app.globalData.createLink
       })
     this.data.createHeading = app.globalData.createHeading
@@ -72,6 +75,16 @@ Page({
       })
       return;
     }
+    if(upload==true && autoSave!=true){
+      _this.setData({
+        uploadLoading:true
+      })
+    }
+    else if (upload == false && autoSave != true){
+      _this.setData({
+        saveLoading: true
+      })
+    }
     let p1 = new Promise(function (resolve, reject) {
       if(hasActId==true){
         wx.request({
@@ -85,6 +98,10 @@ Page({
           },
           complete: (res) => {
             if (res.data == "Pls give me an url of Wechat Blog") {
+              _this.setData({
+                saveLoading:false,
+                uploadLoading:false
+              })
               wx.showToast({
                 title: '请输入微信推文的链接',
                 image: '/images/about.png'
@@ -92,6 +109,10 @@ Page({
               return;
             }
             else if (res.statusCode != 200) {
+              _this.setData({
+                saveLoading: false,
+                uploadLoading: false
+              })
               wx.showToast({
                 title: '网络传输故障',
                 image: '/images/about.png'
@@ -115,7 +136,7 @@ Page({
       else if (a[2] == 'ulife.org.cn') {
         let b = _this.data.createHeadImg.split(app.globalData.url)
         let head_img_url = b[1]
-        _this.saveMain(head_img_url, upLoad, autoSave);
+        _this.saveMain(autoSave, head_img_url, upLoad, hasActId);
       }
       else {
         wx.uploadFile({
@@ -128,12 +149,20 @@ Page({
           },
           complete: (res) => {
             if (res.statusText == "Request Entity Too Large") {
+              _this.setData({
+                saveLoading: false,
+                uploadLoading: false
+              })
               wx.showToast({
                 title: '图片太大了',
                 image: '/images/about.png'
               })
             }
             else if (res.statusCode != 201) {
+              _this.setData({
+                saveLoading: false,
+                uploadLoading: false
+              })
               wx.showToast({
                 title: '网络传输故障',
                 image: '/images/about.png'
@@ -193,17 +222,25 @@ Page({
         },
         complete: (res) => {
           if (res.statusCode != 201 && res.statusCode!=200) {
+            _this.setData({
+              saveLoading: false,
+              uploadLoading: false
+            })
             wx.showToast({
               title: '网络传输故障',
               image: '/images/about.png'
             })
             reject(3)
           } else {
+            _this.setData({
+              saveLoading: false,
+            })
             _this.data.actId = res.data.id;
             if (upLoad==true)
               _this.uploadMain(head_img_url);
             else{
               if(autoSave==true)return;
+              
               wx.showToast({
                 title: '保存成功',
               })
@@ -284,11 +321,17 @@ Page({
       },
       complete:(res)=>{
         if (res.statusCode != 200) {
+          _this.setData({
+            uploadLoading: false
+          })
           wx.showToast({
             title: '网络传输故障',
             image: '/images/about.png'
           })
         } else {
+          _this.setData({
+            uploadLoading: false
+          })
           wx.showToast({
             title: '上传成功',
           })

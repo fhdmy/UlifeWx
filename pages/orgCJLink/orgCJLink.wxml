@@ -10,7 +10,7 @@
       <text>上传文件</text> 
       <i class="iconfont icon-jiahao-fill" bindtap="uploadFile"></i>
     </view>
-    <button bindtap='save' class="save-button">保存</button>
-    <button bindtap='upload'>上传</button>
+    <button bindtap='save' class="save-button" loading="{{saveLoading}}">保存</button>
+    <button bindtap='upload' loading="{{uploadLoading}}">上传</button>
   </view>
 </view>

@@ -1,6 +1,6 @@
 @import"../../iconfont/iconfont.wxss";
 .activities-wrapper{
-  margin: 60rpx 0 200rpx;
+  margin: 60rpx 0 100rpx;
 }
 
 .activity-sep-wrapper{

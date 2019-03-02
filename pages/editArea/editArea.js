@@ -26,12 +26,14 @@ Page({
         if(options.type=='answer'){
           if(options.item=='text'){
             _this.setData({
+              placeHolder:true,
               actId:options.id,
               content:options.answer,
               item:"text"
             })
           }else{
             _this.setData({
+              placeHolder: true,
               array: JSON.parse(options.array),
               actId: options.id,
               content: options.answer,
@@ -43,6 +45,7 @@ Page({
       else if (options.from =='orgCJEdit'){
         if (app.globalData.orgCJEditContent!="")
           _this.setData({
+            placeHolder: true,
             content: app.globalData.orgCJEditContent
           })
         app.globalData.orgCJEditContent=""

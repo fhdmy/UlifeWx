@@ -13,7 +13,8 @@ Page({
     pwd: "",
     loading: false,
     numberPlaceHolder:false,
-    pwdPlaceHolder:false
+    pwdPlaceHolder:false,
+    btnLoading:false
   },
   onLoad: function (options) {
     let _this = this;
@@ -60,7 +61,7 @@ Page({
     }
     const pattern = /^\d{8}$/; //八位数字
     _this.setData({
-      loading: true
+      btnLoading: true
     })
     var p1 = new Promise(function (resolve, reject) {
       //学生登录
@@ -76,7 +77,7 @@ Page({
             if (res.data == 'SNO verification failed') {
               _this.setData({
                 alert: "账号或密码错误",
-                loading: false
+                btnLoading: false
               })
               reject("fail")
             }
@@ -84,7 +85,7 @@ Page({
             else if (res.statusCode != 200) {
               reject("fail")
               _this.setData({
-                loading:false
+                btnLoading:false
               })
               wx.showToast({
                 title: '网络传输故障',
@@ -121,7 +122,7 @@ Page({
             if (res.data.non_field_errors == "Unable to log in with provided credentials.") {
               _this.setData({
                 alert: "账号或密码错误",
-                loading:false
+                btnLoading:false
               })
               reject("fail")
             }
@@ -129,7 +130,7 @@ Page({
             else if (res.statusCode != 200) {
               reject("fail")
               _this.setData({
-                loading: false
+                btnLoading: false
               })
               wx.showToast({
                 title: '网络传输故障',
@@ -175,12 +176,12 @@ Page({
                 wx.clearStorageSync();
                 reject("fail")
                 _this.setData({
-                  loading: false
+                  btnLoading: false
                 })
               } else if (res.statusCode != 200) {
                 reject("fail")
                 _this.setData({
-                  loading: false
+                  btnLoading: false
                 })
                 wx.showToast({
                   title: '网络传输故障',
@@ -214,12 +215,12 @@ Page({
                 wx.clearStorageSync();
                 reject("fail")
                 _this.setData({
-                  loading: false
+                  btnLoading: false
                 })
               } else if (res.statusCode != 200) {
                 reject("fail")
                 _this.setData({
-                  loading: false
+                  btnLoading: false
                 })
                 wx.showToast({
                   title: '网络传输故障',
@@ -242,7 +243,7 @@ Page({
       })
       p3.then(function(results){
         _this.setData({
-          loading: false
+          btnLoading: false
         })
         wx.navigateBack({
           delta: 1
@@ -259,6 +260,7 @@ Page({
         if (res.confirm) {
           wx.clearStorageSync();
           app.globalData.isLogin = false;
+          app.globalData.type='none';
           wx.navigateBack({
             delta: 1
           })

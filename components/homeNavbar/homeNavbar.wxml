@@ -20,6 +20,7 @@
     <i class="iconfont icon-funnel"></i>
   </view>
   <view class='navbar-title' wx:if="{{pageType!='orgDisplay' && pageType!='stuDisplay' && pageType!='orgCJEdit' && pageType!='orgABEdit'}}" bindtap='refresh'>
+  <image src='/images/reload.png' class='loading-icon' wx-if="{{reLoad}}"></image>
     {{pageName}}
   </view>
   <view class='display-wrapper' wx:if="{{pageType=='orgDisplay' || pageType=='stuDisplay'}}">

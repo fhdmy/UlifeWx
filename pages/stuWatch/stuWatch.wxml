@@ -15,6 +15,9 @@
     <!--这里放你的内容-->
     <image wx:if="{{activities.length==0 && loading==false && choosen==0 && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
     <NormalActivitiesShow activities="{{activities}}" wx:if="{{choosen==0}}"></NormalActivitiesShow>
+    <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{signupmax != presentsignup}}"></image>
+    </view>
     <view wx:if="{{choosen==1}}">
       <image wx:if="{{watcher.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
       <view wx:for="{{watcher}}" wx:key="item" class='watcher-wrapper'>

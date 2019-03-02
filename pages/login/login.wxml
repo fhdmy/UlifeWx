@@ -18,7 +18,7 @@
       </view>
       <text class='alert'>{{alert}}</text>
       <text class='logout' wx:if="{{type=='changeAccount'}}" bindtap='logout'>我只是想注销</text>
-      <button class='login-button' bindtap='login'>登录</button>
+      <button class='login-button' bindtap='login' loading="{{btnLoading}}">登录</button>
     </view>
   </view> 
 </view>

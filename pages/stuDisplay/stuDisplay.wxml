@@ -28,6 +28,9 @@
         <view class='dynamic' wx:if="{{showItem}}">
         <image wx:if="{{activities1.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
           <NormalActivitiesShow activities="{{activities1}}"></NormalActivitiesShow>
+          <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{collectmax != presentcollects }}"></image>
+    </view>
         </view>
         <view class='abstract-title' wx:if="{{!showItem}}">
           <text class='abstract-title-left'>TA参与的活动</text>
@@ -37,6 +40,9 @@
       <view class='dynamic' wx:if="{{!showItem}}">
       <image wx:if="{{activities2.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
         <NormalActivitiesShow activities="{{activities2}}"></NormalActivitiesShow>
+        <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{thattmax != presentatt}}"></image>
+    </view>
       </view>
     </view>
   </scroll-view>

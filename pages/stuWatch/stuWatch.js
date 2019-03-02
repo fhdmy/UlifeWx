@@ -118,7 +118,6 @@ Page({
       return;
     //更多活动
     _this.setData({
-      loading: true,
       scroll: true
     })
     var pm = new Promise(function (resolve, reject) {
@@ -163,7 +162,6 @@ Page({
     })
     Promise.all([pm]).then(function (results) {
       _this.setData({
-        loading: false,
         scroll: false
       })
     })

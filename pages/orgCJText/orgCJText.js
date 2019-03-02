@@ -32,6 +32,7 @@ Page({
       let b = a[1].split(")");
       let c = b[0].split(",");
       _this.setData({
+        placeHolder: true,
         content: setting.inner,
         setColor: setting.color,
         R: c[0],

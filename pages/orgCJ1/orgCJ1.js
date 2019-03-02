@@ -17,6 +17,7 @@ Page({
     })
     if(app.globalData.createHeading!="")
       _this.setData({
+        placeHolder: true,
         heading: app.globalData.createHeading
       })
   },
@@ -83,6 +84,7 @@ Page({
             app.globalData.createDescribe = res.data.description;
             app.globalData.createHeading = res.data.heading;
             _this.setData({
+              placeHolder: true,
               heading:res.data.heading
             })
             app.globalData.createHobby = res.data.hobby;

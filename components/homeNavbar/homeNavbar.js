@@ -15,7 +15,8 @@ Component({
     pageType: String,    //判断使用该组件的页面类型，决定html以不同的形式展示
     qRCodeMsg: String,   //扫描二维码用
     displayAvatar:String,  //组织和学生展示界面的头像url
-    hasWatched:Boolean   //组织展示界面是否关注的判断依据
+    hasWatched:Boolean,   //组织展示界面是否关注的判断依据
+    reLoad: Boolean
   },
   data: {
 

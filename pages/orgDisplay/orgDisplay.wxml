@@ -42,6 +42,9 @@
       <view class='dynamic'>
         <image wx:if="{{activities.length==0 && loading==false && loadOk==true}}" src='/images/noActs.png' class='no-acts'></image>
         <NormalActivitiesShow activities="{{activities}}"></NormalActivitiesShow>
+        <view style='height:60rpx;'>
+      <image src='/images/moreLoading.png' class='loading-icon' wx-if="{{myactsmax != presentmyacts}}"></image>
+    </view>
       </view>
     </view>
   </scroll-view>

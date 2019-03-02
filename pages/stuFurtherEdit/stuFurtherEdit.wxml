@@ -28,6 +28,6 @@
       <i class="iconfont icon-youjiantou inform-sep-icon-picker"></i>
       <view class='inform-sep-val-picker'>{{publishHistory}}</view>
     </picker>
-    <button type='default' plain="true" class='save-button' bindtap='save'>保存</button>
+    <button type='default' plain="true" class='save-button' bindtap='save' loading="{{btnLoading}}">保存</button>
   </view>
 </view>

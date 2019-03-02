@@ -15,12 +15,14 @@ Page({
       _this.setData({
         navH: app.globalData.navbarHeight,
         searchContent:"",
-        searchHistory: JSON.parse(wx.getStorageSync(md5.hex_md5("searchHistory")))
+        searchHistory: JSON.parse(wx.getStorageSync(md5.hex_md5("searchHistory"))),
+        placeHolder:false
       })
     }else{
       _this.setData({
         navH: app.globalData.navbarHeight,
-        searchContent: ""
+        searchContent: "",
+        placeHolder:false
       })
     }
   },

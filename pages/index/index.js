@@ -11,7 +11,8 @@ Page({
     presentacts: 0,
     actmax: 0,
     loading: false,
-    scroll:false
+    scroll:false,
+    reload:false
   },
   onShareAppMessage:function(options){
     return {
@@ -50,7 +51,6 @@ Page({
       return;
     //更多活动
     _this.setData({
-      loading:true,
       scroll:true
     })
     var pm = new Promise(function (resolve, reject) {
@@ -95,7 +95,6 @@ Page({
     })
     pm.then(function (results) {
       _this.setData({
-        loading:false,
         scroll:false
       })
     })
@@ -118,6 +117,9 @@ Page({
   },
   getrequest:function(){
     let _this = this;
+    _this.setData({
+      reload:true
+    })
     // 获得近期活动
     let p1 = new Promise(function (resolve, reject) {
       wx.request({
@@ -128,6 +130,9 @@ Page({
         complete: (res) => {
           // 网络请求问题
           if (res.statusCode != 200) {
+            _this.setData({
+              reload: false
+            })
             wx.showToast({
               title: '网络传输故障',
               image: '/images/about.png'
@@ -170,6 +175,9 @@ Page({
         complete: (res) => {
           // 网络请求问题
           if (res.statusCode != 200) {
+            _this.setData({
+              reload: false
+            })
             wx.showToast({
               title: '网络传输故障',
               image: '/images/about.png'
@@ -192,5 +200,10 @@ Page({
         }
       })
     });
+    Promise.all([p1,p2]).then(function(){
+      _this.setData({
+        reload: false
+      })
+    })
   }
 })

@@ -5,7 +5,7 @@
     <!--这里放你的内容-->
     <text class='placeholder' hidden='{{placeHolder}}'>有什么意见吗……</text>
     <textarea bindconfirm='confirm' bindinput='inputContent' value='{{reportContent}}' bindfocus='bindFocus'></textarea>
-    <button bindtap='confirm'>提交</button>
+    <button bindtap='confirm' loading='{{btnLoading}}'>提交</button>
     <!-- <text bindtap='confirm'>提交</text> -->
   </view>
 </view>
