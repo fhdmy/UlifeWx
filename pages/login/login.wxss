@@ -89,6 +89,7 @@ page {
   margin-left: 30rpx;
   width: 600rpx;
   color: #484848;
+  font-size: 28rpx;
 }
 
 .alert{
