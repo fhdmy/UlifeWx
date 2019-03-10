@@ -57,7 +57,7 @@ Page({
       wx.request({
         url: _this.data.moreacts,
         header: {
-          "Authorization": app.globalData.token
+          "Authorization": ""
         },
         complete: (res) => {
           if (res.statusCode != 200) {
@@ -125,7 +125,7 @@ Page({
       wx.request({
         url: app.globalData.url + "/activity/activities/?ordering=-created_at&is_published=True",
         header: {
-          "Authorization": app.globalData.token
+          "Authorization": ""
         },
         complete: (res) => {
           // 网络请求问题
@@ -170,7 +170,7 @@ Page({
       wx.request({
         url: app.globalData.url + '/activity/activity-homepaged/',
         header: {
-          "Authorization": app.globalData.token
+          "Authorization":""
         },
         complete: (res) => {
           // 网络请求问题
