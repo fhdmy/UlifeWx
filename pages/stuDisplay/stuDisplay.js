@@ -28,6 +28,7 @@ Page({
     moreatt: "",
     presentatt: 0,
     thattmax: 0,
+    targetid:0,
     loadOk:false
   },
   onShareAppMessage: function (options) {
@@ -91,7 +92,8 @@ Page({
               is_visitor_public: res.data.is_visitor_public,
               is_fav_public: res.data.is_fav_public,
               is_history_public: res.data.is_history_public,
-              is_watched_orgs_public: res.data.is_watched_orgs_public
+              is_watched_orgs_public: res.data.is_watched_orgs_public,
+              targetid: res.data.user
             })
             resolve(1)
           }
@@ -184,7 +186,7 @@ Page({
     })
     Promise.all([p1, p2, p3]).then(function (results) {
       // 添加访客
-      if (app.globalData.token != "" && app.globalData.uid != _this.data.stuId) {
+      if (app.globalData.token != "" && app.globalData.uid != _this.data.targetid) {
         wx.request({
           url: app.globalData.url + '/message/visitings/',
           method: "POST",
