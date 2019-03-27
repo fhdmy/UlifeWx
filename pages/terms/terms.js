@@ -1,10 +1,8 @@
 // pages/relevantTerms/terms.js
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    navH:0,
     txt:`组织推荐板块将通过每周推荐一个组织的形式帮助大家推广，同时为了能有更多的组织得到该机会，我们将不会选取在一个学期内已推广过的组织。推荐渠道分别为新加入组织、综合评比、关注人数以及官方推荐，仅前两者需要申请。 
 
 Q&A： 
@@ -21,60 +19,9 @@ Q：新加入组织评比的限制条件是什么？
 A：必须是在组织用户注册后的2个月之内哦。
     `
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    this.setData({
+      navH: app.globalData.navbarHeight
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -8,7 +8,7 @@ Page({
   data: {
     navH: 0,
     alert: "",
-    type: "login",
+    type: "changeAccount",
     number: "",
     pwd: "",
     loading: false,
@@ -256,6 +256,7 @@ Page({
       content: '你真的想注销吗？',
       confirmText: '确定',
       cancelText: '取消',
+      confirmColor: "#FE9246",
       success(res) {
         if (res.confirm) {
           wx.clearStorageSync();

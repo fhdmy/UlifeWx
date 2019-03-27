@@ -1,7 +1,7 @@
 <!--pages/relevantTerms/terms.wxml-->
 <view class='view-page'>
   <navbar page-name="推荐规则" pageType="backButton"></navbar>
-  <view>
+  <view class='page-content' style='height:calc(100vh - {{navH}}px)'>
     <text>{{txt}}</text>
   </view>
 </view>

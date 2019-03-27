@@ -42,7 +42,9 @@ Page({
     teststyle: "",
     routerId: 0,
     filename: [],
-    fileurl: []
+    fileurl: [],
+    pdfUrl: "",
+    linktext: ""
   },
   onShow: function (options) {
     wx.showShareMenu({
@@ -61,8 +63,8 @@ Page({
   onShareAppMessage: function (options) {
     return {
       title: this.data.heading,  // 转发标题（默认：当前小程序名称）
-      path: '/pages/actShow/actShow?actId='+this.data.actId, // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
-      imageUrl:this.data.headImg,
+      path: '/pages/actShow/actShow?actId=' + this.data.actId, // 转发路径（当前页面 path ），必须是以 / 开头的完整路径
+      imageUrl: this.data.headImg,
       success(e) {
         // shareAppMessage: ok,
         // shareTickets 数组，每一项是一个 shareTicket ，对应一个转发对象
@@ -115,8 +117,8 @@ Page({
             let cst = computedstart[0].split("-");
             let comutedstarttime = computedstart[1].split(':');
             let info = JSON.parse(res.data.p_info);
-            _this.data.actId=res.data.id
-            _this.data.orgName=res.data.owner.org_name
+            _this.data.actId = res.data.id
+            _this.data.orgName = res.data.owner.org_name
             _this.setData({
               headImg: app.globalData.url + res.data.head_img + '.thumbnail.2.jpg',
               orgAvatar: app.globalData.url + res.data.owner.avatar + '.thumbnail.3.jpg',
@@ -132,11 +134,11 @@ Page({
               star: ((_this.data.is_ended == true) ? res.data.score : 2),
               link: res.data.link
             })
-            _this.data.select_name=info[0]
-            _this.data.select_phone=info[1]
-            _this.data.select_gender=info[2]
-            _this.data.select_college=info[3]
-            _this.data.select_grade=info[4]
+            _this.data.select_name = info[0]
+            _this.data.select_phone = info[1]
+            _this.data.select_gender = info[2]
+            _this.data.select_college = info[3]
+            _this.data.select_grade = info[4]
             _this.data.requirement = JSON.parse(res.data.requirement)
             if (!res.data.link)
               _this.setData({
@@ -144,7 +146,8 @@ Page({
               })
             else
               _this.setData({
-                linkhtml: JSON.parse(res.data.demonstration).linkhtml
+                linkhtml: JSON.parse(res.data.demonstration).linkhtml,
+                linktext: JSON.parse(res.data.demonstration).linktext
               })
             if (res.data.file_uploaded.length != 0) {
               let file = JSON.parse(res.data.file_uploaded);
@@ -223,7 +226,7 @@ Page({
                 collected: res.data.length == 0 ? false : true
               })
               if (_this.data.collected)
-                _this.data.collectId=res.data[0].id
+                _this.data.collectId = res.data[0].id
               resolve("pc")
             }
           }
@@ -232,8 +235,34 @@ Page({
         resolve(pc)
       }
     })
-    // 获得评论
     p1.then(function (results) {
+      //获得pdf
+      if (_this.data.link) {
+        let temp = _this.data.linktext.split("https://");
+        let tempUrl = temp[1];
+        wx.request({
+          url: app.globalData.url + '/activity/activities/weixin_scrapper/',
+          method: 'POST',
+          data: {
+            url: tempUrl
+          },
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete: (res) => {
+            if (res.statusCode != 200) {
+              wx.showToast({
+                title: '网络传输故障',
+                image: '/images/about.png'
+              })
+            }
+            else {
+              _this.data.pdfUrl = app.globalData.url + res.data.pdf;
+            }
+          }
+        })
+      }
+      // 获得评论
       var p2 = new Promise(function (resolve, reject) {
         if (_this.data.ended == true) {
           wx.request({
@@ -263,9 +292,9 @@ Page({
                     }
                   });
                 }
-                _this.data.morecomment=res.data.next
-                _this.data.presentcomment=res.data.results.length
-                _this.data.commentmax=res.data.count
+                _this.data.morecomment = res.data.next
+                _this.data.presentcomment = res.data.results.length
+                _this.data.commentmax = res.data.count
                 resolve(2);
               }
             }
@@ -291,7 +320,7 @@ Page({
           target: parseInt(options.actId)
         },
         complete: (res) => {
-          if (res.statusCode != 201 && res.statusCode!=200) {
+          if (res.statusCode != 201 && res.statusCode != 200) {
             wx.showToast({
               title: '网络传输故障',
               image: '/images/about.png'
@@ -417,8 +446,8 @@ Page({
                 },
               })
             }
-            _this.data.morecomment=res.data.next
-            _this.data.presentcomment+=res.data.results.length
+            _this.data.morecomment = res.data.next
+            _this.data.presentcomment += res.data.results.length
             resolve("pm");
           }
         }
@@ -541,12 +570,12 @@ Page({
         else {
           wx.openDocument({
             filePath: res.tempFilePath,
-            success:(res)=>{
+            success: (res) => {
               _this.setData({
                 loading: false
               })
             },
-            fail:(error)=>{
+            fail: (error) => {
               console.log(error);
               _this.setData({
                 loading: false
@@ -561,12 +590,122 @@ Page({
       }
     })
   },
-  openDescribe:function(){
+  openDescribe: function () {
     wx.showModal({
       title: this.data.heading,
       content: this.data.describe,
-      showCancel:false,
+      showCancel: false,
       confirmColor: "#FE9246"
     })
+  },
+  openPdf: function () {
+    let _this = this;
+    _this.setData({
+      loading: true
+    })
+    if (_this.data.pdfUrl == "") {
+      let temp = _this.data.linktext.split("https://");
+      let tempUrl = temp[1];
+      wx.request({
+        url: app.globalData.url + '/activity/activities/weixin_scrapper/',
+        method: 'POST',
+        data: {
+          url: tempUrl
+        },
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            _this.setData({
+              loading:false
+            })
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else {
+            _this.data.pdfUrl = app.globalData.url + res.data.pdf;
+            wx.downloadFile({
+              url: _this.data.pdfUrl,
+              header: {
+                "Authorization": app.globalData.token
+              },
+              complete: (res) => {
+                if (res.statusCode != 200) {
+                  _this.setData({
+                    loading: false
+                  })
+                  wx.showToast({
+                    title: '网络传输故障',
+                    image: '/images/about.png'
+                  })
+                }
+                else {
+                  wx.openDocument({
+                    filePath: res.tempFilePath,
+                    success: (res) => {
+                      _this.setData({
+                        loading: false
+                      })
+                    },
+                    fail: (error) => {
+                      console.log(error);
+                      _this.setData({
+                        loading: false
+                      })
+                      wx.showToast({
+                        title: '打开文件失败',
+                        image: '/images/about.png'
+                      })
+                    }
+                  })
+                }
+              }
+            })
+          }
+        }
+      })
+    }
+    else{
+      wx.downloadFile({
+        url: _this.data.pdfUrl,
+        header: {
+          "Authorization": app.globalData.token
+        },
+        complete: (res) => {
+          if (res.statusCode != 200) {
+            _this.setData({
+              loading: false
+            })
+            wx.showToast({
+              title: '网络传输故障',
+              image: '/images/about.png'
+            })
+          }
+          else {
+            wx.openDocument({
+              filePath: res.tempFilePath,
+              success: (res) => {
+                _this.setData({
+                  loading: false
+                })
+              },
+              fail: (error) => {
+                console.log(error);
+                _this.setData({
+                  loading: false
+                })
+                wx.showToast({
+                  title: '打开文件失败',
+                  image: '/images/about.png'
+                })
+              }
+            })
+          }
+        }
+      })
+    }
   }
 })

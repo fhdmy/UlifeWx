@@ -35,8 +35,9 @@
     </view>
     <view class='main-content'>
       <view wx:if="{{link}}">
-        <text class="link-otext">很抱歉，目前微信推文无法直接显示在小程序内，麻烦复制下方链接在浏览器中打开。微信推文部分图片也存在显示问题，请谅解。</text>   
+        <text class="link-otext">很抱歉，目前微信推文无法直接显示在小程序内，麻烦复制下方链接在浏览器中打开，也可点击“推文pdf”了解信息。微信推文部分图片也存在显示问题，请谅解。</text>   
         <text class='link-html-text' selectable="true">{{linkhtml}}</text>  
+        <text bindtap='openPdf' class='link-otext' style="margin-top:10rpx;">推文pdf</text>
       </view>
       <view wx:for="{{lists}}" wx:key="item" wx:if="{{!link}}">
         <text wx:if="{{item.type=='title'}}" class='content-title' selectable="true">{{item.inner}}</text>
