@@ -255,6 +255,13 @@ Page({
         let a = temp[i].inner.split(app.globalData.url)
         temp[i].inner = a[1]
       }
+      if (temp[i].type == 'text'){
+        temp[i].align = _this.data.computeddata[i].align;
+        temp[i].color = _this.data.computeddata[i].color;
+        temp[i].text_decoration = _this.data.computeddata[i].text_decoration;
+        temp[i].font_weight = _this.data.computeddata[i].font_weight;
+        temp[i].font_style = _this.data.computeddata[i].font_style;
+      }
     }
     // 正文
     let p3 = new Promise(function (resolve, reject) {
@@ -321,6 +328,13 @@ Page({
       if (temp[i].type == 'img') {
         let a = temp[i].inner.split(app.globalData.url)
         temp[i].inner = a[1]
+      }
+      if (temp[i].type == 'text') {
+        temp[i].align = _this.data.computeddata[i].align;
+        temp[i].color = _this.data.computeddata[i].color;
+        temp[i].text_decoration = _this.data.computeddata[i].text_decoration;
+        temp[i].font_weight = _this.data.computeddata[i].font_weight;
+        temp[i].font_style = _this.data.computeddata[i].font_style;
       }
     }
     // 删除空的选项框

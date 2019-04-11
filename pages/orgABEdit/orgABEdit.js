@@ -215,6 +215,13 @@ Page({
           let a=temp[i].inner.split(app.globalData.url)
           temp[i].inner=a[1]
         }
+        if (temp[i].type == 'text') {
+          temp[i].align = _this.data.computeddata[i].align;
+          temp[i].color = _this.data.computeddata[i].color;
+          temp[i].text_decoration = _this.data.computeddata[i].text_decoration;
+          temp[i].font_weight = _this.data.computeddata[i].font_weight;
+          temp[i].font_style = _this.data.computeddata[i].font_style;
+        }
       }
       wx.request({
         url: app.globalData.url + '/account/orgs/' + _this.data.orgId + "/",
