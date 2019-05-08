@@ -8,12 +8,12 @@
     <view class='input-userinfo'>
       <view class='account-wrapper'>
         <i class="iconfont icon-youxiang"></i>
-        <text class='number-placeholder' hidden='{{numberPlaceHolder}}'>请输入手机号或组织名称</text>
+        <text class='number-placeholder' hidden='{{numberPlaceHolder}}'>请输入学号/组织名称</text>
         <input value='{{number}}' bindinput='bindNumber' bindblur='blurNumber' bindfocus='focusNumber'></input>
       </view>
       <view class='pwd-wrapper'>
         <i class="iconfont icon-password"></i>
-        <text class='pwd-placeholder' hidden='{{pwdPlaceHolder}}'>请输入密码</text>
+        <text class='pwd-placeholder' hidden='{{pwdPlaceHolder}}'>请输入学生证密码/组织密码</text>
         <input password="true" value='{{pwd}}' bindinput='bindPwd' bindblur='blurPwd' bindfocus='focusPwd'></input>
       </view>
       <text class='alert'>{{alert}}</text>
