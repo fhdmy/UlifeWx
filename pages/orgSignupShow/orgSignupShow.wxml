@@ -191,7 +191,7 @@
 
     <!-- 二维码 -->
     <view wx:if="{{currentOption==6}}">
-      <image src='{{qrcode}}' class='qr-code'></image>
+      <image src='{{qrcode}}' class='qr-code' bindtap='previewImg' mode="widthFix"></image>
       <text class='qrcode-text'>扫描此二维码可以打开web网页版的活动页面，如果用Ulife小程序扫码，可以跳转到相应活动页面。</text>
     </view>
   </scroll-view>

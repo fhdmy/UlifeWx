@@ -208,7 +208,7 @@ Page({
                 male: gender__male_sum,
                 female: gender__female_sum,
                 freshman: gender__freshman_sum,
-                sophomore: gender__junior_sum,
+                sophomore: gender__sophomore_sum,
                 junior: gender__junior_sum,
                 senior: gender__senior_sum,
                 count: res.data.participations.length
@@ -757,6 +757,12 @@ Page({
           })
         }
       }
+    })
+  },
+  previewImg:function(){
+    wx.previewImage({
+      current: this.data.qrcode, // 当前显示图片的http链接
+      urls: [this.data.qrcode]
     })
   }
 })
