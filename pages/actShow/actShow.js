@@ -89,19 +89,6 @@ Page({
       // loading: true
     })
     _this.data.actId = options.actId;
-  },
-  onShow: function () {
-    let _this = this;
-    let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
-    let orgId = wx.getStorageSync(md5.hex_md5("org_url"));
-    if (app.globalData.type == "student" || app.globalData.type == "admin")
-      _this.setData({
-        routerId: stuId
-      })
-    else if (app.globalData.type == "org")
-      _this.setData({
-        routerId: orgId
-      })
     let p1 = new Promise(function (resolve, reject) {
       // 获得活动
       wx.request({
@@ -175,70 +162,6 @@ Page({
         }
       })
     })
-    // 是否报名
-    let pp = new Promise(function (resolve, reject) {
-      if (app.globalData.type == "student" || app.globalData.type == "admin") {
-        wx.request({
-          url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/is_participated/',
-          header: {
-            "Authorization": app.globalData.token
-          },
-          complete: (res) => {
-            if (res.statusCode != 200) {
-              // _this.setData({
-              //   loading: false
-              // })
-              wx.showToast({
-                title: '网络传输故障',
-                image: '/images/about.png'
-              })
-              reject("pp")
-            }
-            else {
-              _this.setData({
-                hasSignUp: res.data == 'yes' ? true : false
-              })
-              resolve("pp")
-            }
-          }
-        })
-      } else {
-        resolve("pp")
-      }
-    })
-    // 是否收藏
-    let pc = new Promise(function (resolve, reject) {
-      if (app.globalData.type == "student" || app.globalData.type == "admin") {
-        wx.request({
-          url: app.globalData.url + '/activity/bookmarking-actdemo/?watcher=' + wx.getStorageSync(md5.hex_md5("user_url")) + '&target=' + _this.data.actId,
-          header: {
-            "Authorization": app.globalData.token
-          },
-          complete: (res) => {
-            if (res.statusCode != 200) {
-              // _this.setData({
-              //   loading: false
-              // })
-              wx.showToast({
-                title: '网络传输故障',
-                image: '/images/about.png'
-              })
-              reject("pc")
-            }
-            else {
-              _this.setData({
-                collected: res.data.length == 0 ? false : true
-              })
-              if (_this.data.collected)
-                _this.data.collectId = res.data[0].id
-              resolve("pc")
-            }
-          }
-        })
-      } else {
-        resolve(pc)
-      }
-    })
     p1.then(function (results) {
       //获得pdf
       if (_this.data.link) {
@@ -310,6 +233,83 @@ Page({
         //   loading: false
         // })
       })
+    })
+  },
+  onShow: function () {
+    let _this = this;
+    let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
+    let orgId = wx.getStorageSync(md5.hex_md5("org_url"));
+    if (app.globalData.type == "student" || app.globalData.type == "admin")
+      _this.setData({
+        routerId: stuId
+      })
+    else if (app.globalData.type == "org")
+      _this.setData({
+        routerId: orgId
+      })
+    // 是否报名
+    let pp = new Promise(function (resolve, reject) {
+      if (app.globalData.type == "student" || app.globalData.type == "admin") {
+        wx.request({
+          url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/is_participated/',
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete: (res) => {
+            if (res.statusCode != 200) {
+              // _this.setData({
+              //   loading: false
+              // })
+              wx.showToast({
+                title: '网络传输故障',
+                image: '/images/about.png'
+              })
+              reject("pp")
+            }
+            else {
+              _this.setData({
+                hasSignUp: res.data == 'yes' ? true : false
+              })
+              resolve("pp")
+            }
+          }
+        })
+      } else {
+        resolve("pp")
+      }
+    })
+    // 是否收藏
+    let pc = new Promise(function (resolve, reject) {
+      if (app.globalData.type == "student" || app.globalData.type == "admin") {
+        wx.request({
+          url: app.globalData.url + '/activity/bookmarking-actdemo/?watcher=' + wx.getStorageSync(md5.hex_md5("user_url")) + '&target=' + _this.data.actId,
+          header: {
+            "Authorization": app.globalData.token
+          },
+          complete: (res) => {
+            if (res.statusCode != 200) {
+              // _this.setData({
+              //   loading: false
+              // })
+              wx.showToast({
+                title: '网络传输故障',
+                image: '/images/about.png'
+              })
+              reject("pc")
+            }
+            else {
+              _this.setData({
+                collected: res.data.length == 0 ? false : true
+              })
+              if (_this.data.collected)
+                _this.data.collectId = res.data[0].id
+              resolve("pc")
+            }
+          }
+        })
+      } else {
+        resolve(pc)
+      }
     })
     // 添加历史浏览
     if (wx.getStorageSync(md5.hex_md5("token")) != "") {
