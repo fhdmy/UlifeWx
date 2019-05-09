@@ -1,24 +1,24 @@
 {
-  "pages":[
-    "pages/index/index",    
-    "pages/rank/rank",      
-    "pages/StuOwn/StuOwn",  
-    "pages/login/login",    
-    "pages/searchEntry/searchEntry",   
-    "pages/searchResult/searchResult",   
-    "pages/stuSignUp/stuSignUp",      
-    "pages/stuCollect/stuCollect", 
-    "pages/stuWatch/stuWatch",   
-    "pages/actShow/actShow", 
-    "pages/orgDisplay/orgDisplay", 
-    "pages/stuDisplay/stuDisplay",   
-    "pages/stuEdit/stuEdit",    
-    "pages/editArea/editArea",    
-    "pages/about/about",   
-    "pages/newVersion/newVersion",  
-    "pages/stuHistory/stuHistory",    
-    "pages/stuMsg/stuMsg", 
-    "pages/stuFurtherEdit/stuFurtherEdit", 
+  "pages": [
+    "pages/index/index",
+    "pages/rank/rank",
+    "pages/StuOwn/StuOwn",
+    "pages/login/login",
+    "pages/searchEntry/searchEntry",
+    "pages/searchResult/searchResult",
+    "pages/stuSignUp/stuSignUp",
+    "pages/stuCollect/stuCollect",
+    "pages/stuWatch/stuWatch",
+    "pages/actShow/actShow",
+    "pages/orgDisplay/orgDisplay",
+    "pages/stuDisplay/stuDisplay",
+    "pages/stuEdit/stuEdit",
+    "pages/editArea/editArea",
+    "pages/about/about",
+    "pages/newVersion/newVersion",
+    "pages/stuHistory/stuHistory",
+    "pages/stuMsg/stuMsg",
+    "pages/stuFurtherEdit/stuFurtherEdit",
     "pages/actReport/actReport",
     "pages/SignupHomepage/SignupHomepage",
     "pages/terms/terms",
@@ -37,7 +37,7 @@
     "pages/sort/sort",
     "pages/orgEdit/orgEdit",
     "pages/orgABEdit/orgABEdit"
-  ], 
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarTextStyle": "white",
@@ -69,5 +69,6 @@
         "selectedIconPath": "images/own-red.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

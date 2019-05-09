@@ -262,6 +262,11 @@ Page({
           wx.clearStorageSync();
           app.globalData.isLogin = false;
           app.globalData.type='none';
+          app.globalData.token="";
+          app.globalData.name="";
+          app.globalData.uid="";
+          app.globalData.avatar="";
+          app.globalData.user_url="";
           wx.navigateBack({
             delta: 1
           })

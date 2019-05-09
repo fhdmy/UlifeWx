@@ -82,12 +82,16 @@ Page({
       complete() { }
     }
   },
-  onLoad: function (options) {
+  onLoad: function (options){
     let _this = this;
     _this.setData({
       navH: app.globalData.navbarHeight,
       // loading: true
     })
+    _this.data.actId = options.actId;
+  },
+  onShow: function () {
+    let _this = this;
     let stuId = wx.getStorageSync(md5.hex_md5("user_url"));
     let orgId = wx.getStorageSync(md5.hex_md5("org_url"));
     if (app.globalData.type == "student" || app.globalData.type == "admin")
@@ -101,7 +105,7 @@ Page({
     let p1 = new Promise(function (resolve, reject) {
       // 获得活动
       wx.request({
-        url: app.globalData.url + '/activity/activity-demo/' + options.actId + '/',
+        url: app.globalData.url + '/activity/activity-demo/' + _this.data.actId + '/',
         header: {
           "Authorization": app.globalData.token
         },
@@ -117,7 +121,7 @@ Page({
             let cst = computedstart[0].split("-");
             let comutedstarttime = computedstart[1].split(':');
             let info = JSON.parse(res.data.p_info);
-            _this.data.actId = res.data.id
+            // _this.data.actId = res.data.id
             _this.data.orgName = res.data.owner.org_name
             _this.setData({
               headImg: app.globalData.url + res.data.head_img + '.thumbnail.2.jpg',
@@ -131,7 +135,7 @@ Page({
               type: res.data._type,
               hobby: res.data.hobby,
               ended: res.data.is_ended,
-              star: ((_this.data.is_ended == true) ? res.data.score : 2),
+              star: ((res.data.is_ended == true) ? res.data.score : 2),
               link: res.data.link
             })
             _this.data.select_name = info[0]
@@ -175,7 +179,7 @@ Page({
     let pp = new Promise(function (resolve, reject) {
       if (app.globalData.type == "student" || app.globalData.type == "admin") {
         wx.request({
-          url: app.globalData.url + '/activity/activities/' + options.actId + '/is_participated/',
+          url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/is_participated/',
           header: {
             "Authorization": app.globalData.token
           },
@@ -206,7 +210,7 @@ Page({
     let pc = new Promise(function (resolve, reject) {
       if (app.globalData.type == "student" || app.globalData.type == "admin") {
         wx.request({
-          url: app.globalData.url + '/activity/bookmarking-actdemo/?watcher=' + wx.getStorageSync(md5.hex_md5("user_url")) + '&target=' + options.actId,
+          url: app.globalData.url + '/activity/bookmarking-actdemo/?watcher=' + wx.getStorageSync(md5.hex_md5("user_url")) + '&target=' + _this.data.actId,
           header: {
             "Authorization": app.globalData.token
           },
@@ -266,7 +270,7 @@ Page({
       var p2 = new Promise(function (resolve, reject) {
         if (_this.data.ended == true) {
           wx.request({
-            url: app.globalData.url + '/activity/activities/' + options.actId + '/get_comment/',
+            url: app.globalData.url + '/activity/activities/' + _this.data.actId + '/get_comment/',
             header: {
               "Authorization": app.globalData.token
             },
@@ -308,7 +312,7 @@ Page({
       })
     })
     // 添加历史浏览
-    if (app.globalData.token != "") {
+    if (wx.getStorageSync(md5.hex_md5("token")) != "") {
       wx.request({
         url: app.globalData.url + '/activity/browsering-histories/',
         header: {
@@ -317,7 +321,7 @@ Page({
         method: "POST",
         data: {
           watcher: parseInt(_this.data.routerId),
-          target: parseInt(options.actId)
+          target: parseInt(_this.data.actId)
         },
         complete: (res) => {
           if (res.statusCode != 201 && res.statusCode != 200) {
@@ -342,9 +346,23 @@ Page({
       return;
     }
     else if (app.globalData.type == 'none') {
-      wx.showToast({
-        title: '请先登录账号',
-        image: "/images/about.png"
+      // wx.showToast({
+      //   title: '请先登录账号',
+      //   image: "/images/about.png"
+      // })
+      // return;
+      wx.showModal({
+        title: '未登录',
+        content: '请先登录Ulife账号',
+        confirmColor: "#FE9246",
+        confirmText: "登录",
+        success: function (e) {
+          if (e.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
+        },
       })
       return;
     }
@@ -487,9 +505,23 @@ Page({
       return;
     }
     else if (app.globalData.type == 'none') {
-      wx.showToast({
-        title: '请先登录账号',
-        image: '/images/about.png'
+      // wx.showToast({
+      //   title: '请先登录账号',
+      //   image: '/images/about.png'
+      // })
+      // return;
+      wx.showModal({
+        title: '未登录',
+        content: '请先登录Ulife账号',
+        confirmColor: "#FE9246",
+        confirmText:"登录",
+        success:function(e){
+          if (e.confirm){
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
+        },
       })
       return;
     }
